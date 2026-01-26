@@ -296,7 +296,9 @@ svg {
   border-right: 0.15em solid var(--first-color);
   white-space: nowrap;
   letter-spacing: 0.15em;
-  animation: typing 2s steps(24), cursor 0.5s step-end infinite alternate;
+  animation:
+    typing 2s steps(24),
+    cursor 0.5s step-end infinite alternate;
 }
 
 /* animation digitation */
@@ -469,6 +471,10 @@ svg {
   object-fit: cover;
 }
 
+.certification--hidden {
+  display: none;
+}
+
 .projects__modal {
   position: absolute;
   left: 0;
@@ -535,44 +541,44 @@ svg {
   bottom: 0;
 }
 
-/* CONTACT */
-.contact__container {
+/* CERTIFICATES */
+.certifications__container {
   padding-top: 1rem;
 }
 
-.contact__form,
-.contact__group {
+.certifications__form,
+.certifications__group {
   display: grid;
   row-gap: 1rem;
 }
 
-.contact__form {
+.certifications__form {
   position: relative;
 }
 
-.contact__input {
+.certifications__input {
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;
   background-color: var(--container-color);
   color: var(--title-color);
 }
 
-.contact__input::placeholder {
+.certifications__input::placeholder {
   color: var(--text-color);
 }
 
-.contact__form textarea {
+.certifications__form textarea {
   height: 11rem;
   resize: none;
   margin-bottom: 2rem;
 }
 
-.contact__button {
+.certifications__button {
   justify-self: center;
   cursor: pointer;
 }
 
-.contact__message {
+.certifications__message {
   position: absolute;
   left: 0;
   bottom: 4.5rem;
@@ -669,7 +675,9 @@ html::-moz-scrollbar-thumb:hover {
   font-size: 1.25rem;
   box-shadow: 0 4px 12px hsla(228, 15%, 8%, 0.4);
   z-index: var(--z-tooltip);
-  transition: bottom 0.4s, transform 0.4s;
+  transition:
+    bottom 0.4s,
+    transform 0.4s;
 }
 
 .scrollup:hover {
@@ -700,7 +708,7 @@ html::-moz-scrollbar-thumb:hover {
   .about__container,
   .skills__container,
   .projects__container,
-  .contact__container {
+  .certifications__container {
     grid-template-columns: 360px;
     justify-content: center;
   }
@@ -850,25 +858,25 @@ html::-moz-scrollbar-thumb:hover {
     font-size: var(--normal-font-size);
   }
 
-  .contact__container {
+  .certifications__container {
     grid-template-columns: repeat(3, 420px);
     padding-block: 2.5rem 4rem;
   }
 
-  .contact__form {
+  .certifications__form {
     row-gap: 1.5rem;
   }
 
-  .contact__group {
+  .certifications__group {
     grid-template-columns: repeat(2, 1fr);
     column-gap: 1.5rem;
   }
 
-  .contact__input {
+  .certifications__input {
     padding: 1.5rem;
   }
 
-  .contact__form textarea {
+  .certifications__form textarea {
     height: 20rem;
   }
 
