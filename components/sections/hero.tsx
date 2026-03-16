@@ -1,0 +1,262 @@
+'use client'
+
+import { useState, useRef, useEffect } from 'react'
+import Link from 'next/link'
+import Image from 'next/image'
+import { motion, useInView, useReducedMotion } from 'framer-motion'
+import { Github, Linkedin, Mail, Download } from 'lucide-react'
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
+}
+
+function HeroContent() {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true })
+  const shouldReduceMotion = useReducedMotion()
+
+  const itemVariantsReduced = {
+    hidden: { opacity: 1, y: 0 },
+    visible: { opacity: 1, y: 0 },
+  }
+
+  const avatarVariants = shouldReduceMotion
+    ? { hidden: { opacity: 1, scale: 1 }, visible: { opacity: 1, scale: 1 } }
+    : {
+        hidden: { opacity: 0, scale: 0.95 },
+        visible: { opacity: 1, scale: 1, transition: { duration: 0.6, delay: 0.3, ease: 'easeOut' as const } },
+      }
+
+  const socialVariants = shouldReduceMotion
+    ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
+    : {
+        hidden: { opacity: 0, y: 20 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.8, ease: 'easeOut' as const } },
+      }
+
+  return (
+    <section id="home" className="min-h-[80vh] flex items-center py-20">
+      <div className="container mx-auto max-w-4xl px-4">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <motion.div
+            ref={ref}
+            variants={shouldReduceMotion ? itemVariantsReduced : containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.p variants={itemVariants} className="text-muted-foreground mb-4">
+              Olá 👋, eu sou
+            </motion.p>
+            <motion.h1
+              variants={itemVariants}
+              className="text-4xl md:text-6xl font-bold mb-4"
+            >
+              Felipe Melo
+            </motion.h1>
+            <motion.h2
+              variants={itemVariants}
+              className="text-xl md:text-2xl text-accent mb-6"
+            >
+              Desenvolvedor Fullstack
+            </motion.h2>
+            <motion.p
+              variants={itemVariants}
+              className="text-muted-foreground mb-8 max-w-md"
+            >
+              Apaixonado por tecnologia, interfaces modernas e experiências de
+              usuário fluidas. Construindo soluções com React, Next.js e PHP.
+            </motion.p>
+            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+              <Link
+                href="#projects"
+                className="inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground rounded-md hover:bg-accent/90 transition-colors"
+              >
+                Ver Projetos
+              </Link>
+              <Link
+                href="#contact"
+                className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-md hover:bg-muted transition-colors"
+              >
+                Contato
+              </Link>
+              <a
+                href="/assets/FelipeMeloGomesDesenvolvedorFullStack.docx"
+                download="FelipeMeloGomesDesenvolvedorFullStack.docx"
+                className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-md hover:bg-muted transition-colors"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Baixar Currículo
+              </a>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            variants={avatarVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex justify-center"
+          >
+            <div className="relative w-48 h-48 md:w-64 md:h-64">
+              <div className="absolute inset-0 bg-accent/20 rounded-full blur-3xl" />
+              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-border">
+                <Image
+                  src="/assets/img/perfil.webp"
+                  alt="Felipe Melo - Desenvolvedor Fullstack"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 192px, 256px"
+                  priority
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+
+        <motion.div
+          variants={socialVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex gap-6 mt-12 justify-center md:justify-start"
+        >
+          <Link
+            href="https://github.com/FelipeMelogomes"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-md hover:bg-muted transition-colors"
+            aria-label="GitHub"
+          >
+            <Github className="w-6 h-6" />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/felipemelog/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-md hover:bg-muted transition-colors"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="w-6 h-6" />
+          </Link>
+          <Link
+            href="mailto:felipe@example.com"
+            className="p-2 rounded-md hover:bg-muted transition-colors"
+            aria-label="Email"
+          >
+            <Mail className="w-6 h-6" />
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function HeroStatic() {
+  return (
+    <section id="home" className="min-h-[80vh] flex items-center py-20">
+      <div className="container mx-auto max-w-4xl px-4">
+        <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div>
+            <p className="text-muted-foreground mb-4">Olá 👋, eu sou</p>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">Felipe Melo</h1>
+            <h2 className="text-xl md:text-2xl text-accent mb-6">
+              Desenvolvedor Fullstack
+            </h2>
+            <p className="text-muted-foreground mb-8 max-w-md">
+              Apaixonado por tecnologia, interfaces modernas e experiências de
+              usuário fluidas. Construindo soluções com React, Next.js e PHP.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="#projects"
+                className="inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground rounded-md hover:bg-accent/90 transition-colors"
+              >
+                Ver Projetos
+              </Link>
+              <Link
+                href="#contact"
+                className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-md hover:bg-muted transition-colors"
+              >
+                Contato
+              </Link>
+              <a
+                href="/assets/FelipeMeloGomesDesenvolvedorFullStack.docx"
+                download="FelipeMeloGomesDesenvolvedorFullStack.docx"
+                className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-md hover:bg-muted transition-colors"
+              >
+                <Download className="w-4 h-4 mr-2" />
+                Baixar Currículo
+              </a>
+            </div>
+          </div>
+          <div className="flex justify-center">
+            <div className="relative w-48 h-48 md:w-64 md:h-64">
+              <div className="absolute inset-0 bg-accent/20 rounded-full blur-3xl" />
+              <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-border">
+                <Image
+                  src="/assets/img/perfil.webp"
+                  alt="Felipe Melo - Desenvolvedor Fullstack"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 192px, 256px"
+                  priority
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex gap-6 mt-12 justify-center md:justify-start">
+          <Link
+            href="https://github.com/FelipeMelogomes"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-md hover:bg-muted transition-colors"
+            aria-label="GitHub"
+          >
+            <Github className="w-6 h-6" />
+          </Link>
+          <Link
+            href="https://www.linkedin.com/in/felipemelog/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="p-2 rounded-md hover:bg-muted transition-colors"
+            aria-label="LinkedIn"
+          >
+            <Linkedin className="w-6 h-6" />
+          </Link>
+          <Link
+            href="mailto:felipe@example.com"
+            className="p-2 rounded-md hover:bg-muted transition-colors"
+            aria-label="Email"
+          >
+            <Mail className="w-6 h-6" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export function Hero() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return <HeroStatic />
+  }
+
+  return <HeroContent />
+}
