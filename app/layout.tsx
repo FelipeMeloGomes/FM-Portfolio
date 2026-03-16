@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
+import { ScrollToTop } from '@/components/scroll-to-top'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -83,6 +84,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <ScrollToTop />
         </ThemeProvider>
       </body>
     </html>
