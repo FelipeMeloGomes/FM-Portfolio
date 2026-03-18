@@ -64,7 +64,7 @@ Portfólio pessoal construído com tecnologias web modernas.
 ### Pré-requisitos
 
 - Node.js 18+
-- npm ou pnpm
+- pnpm
 
 ### Instalação
 
@@ -76,10 +76,10 @@ git clone https://github.com/FelipeMelogomes/fm-portfolio.git
 cd fm-portfolio
 
 # Instale as dependências
-npm install
+pnpm install
 
 # Inicie o servidor de desenvolvimento
-npm run dev
+pnpm dev
 ```
 
 Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
@@ -127,7 +127,7 @@ Faça deploy na Vercel com zero configuração:
 
 ```bash
 # Instale a CLI da Vercel
-npm i -g vercel
+pnpm add -g vercel
 
 # Faça o deploy
 vercel
