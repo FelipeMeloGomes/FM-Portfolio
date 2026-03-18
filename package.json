@@ -12,12 +12,12 @@
     "check": "biome check --write ."
   },
   "dependencies": {
+    "@ducanh2912/next-pwa": "^10.2.9",
     "@radix-ui/react-slot": "^1.0.2",
     "clsx": "^2.1.1",
     "framer-motion": "^12.36.0",
     "lucide-react": "^0.395.0",
     "next": "14.2.5",
-    "next-pwa": "^5.6.0",
     "next-sitemap": "^4.2.3",
     "next-themes": "^0.3.0",
     "react": "^18.3.1",
