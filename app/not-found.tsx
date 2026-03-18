@@ -1,16 +1,16 @@
-'use client'
+"use client";
 
-import { useEffect, useState } from 'react'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { Home, Search } from 'lucide-react'
+import { motion } from "framer-motion";
+import { Home, Search } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function NotFound() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
     return (
@@ -29,7 +29,7 @@ export default function NotFound() {
           </Link>
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -37,13 +37,13 @@ export default function NotFound() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
+        transition={{ duration: 0.5, ease: "easeOut" }}
         className="text-center px-4"
       >
         <motion.div
           initial={{ scale: 0.8 }}
           animate={{ scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.1, ease: 'easeOut' }}
+          transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
         >
           <h1 className="text-8xl md:text-9xl font-bold text-accent mb-4">
             404
@@ -63,8 +63,8 @@ export default function NotFound() {
           </div>
 
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-            A página que você está procurando pode ter sido removida, 
-            teve seu nome alterado ou está temporariamente indisponível.
+            A página que você está procurando pode ter sido removida, teve seu
+            nome alterado ou está temporariamente indisponível.
           </p>
 
           <Link
@@ -77,5 +77,5 @@ export default function NotFound() {
         </motion.div>
       </motion.div>
     </div>
-  )
+  );
 }

@@ -1,25 +1,25 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
-import { ArrowUp } from 'lucide-react'
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { ArrowUp } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function ScrollToTop() {
-  const [visible, setVisible] = useState(false)
-  const shouldReduceMotion = useReducedMotion()
+  const [visible, setVisible] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const handleScroll = () => {
-      setVisible(window.scrollY > 300)
-    }
+      setVisible(window.scrollY > 300);
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <AnimatePresence>
@@ -28,7 +28,7 @@ export function ScrollToTop() {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.8 }}
-          transition={{ duration: 0.2, ease: 'easeOut' }}
+          transition={{ duration: 0.2, ease: "easeOut" }}
           whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
           onClick={scrollToTop}
           className="fixed bottom-6 right-6 z-50 p-3 bg-accent text-accent-foreground rounded-full shadow-lg hover:bg-accent/90 transition-colors"
@@ -38,5 +38,5 @@ export function ScrollToTop() {
         </motion.button>
       )}
     </AnimatePresence>
-  )
+  );
 }

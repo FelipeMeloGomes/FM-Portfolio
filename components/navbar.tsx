@@ -1,44 +1,49 @@
-'use client'
+"use client";
 
-import { useState, useEffect } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { motion, useScroll, useMotionValueEvent, useReducedMotion } from 'framer-motion'
-import { ThemeToggle } from '@/components/theme-toggle'
-import { cn } from '@/lib/utils'
+import {
+  motion,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+} from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { ThemeToggle } from "@/components/theme-toggle";
+import { cn } from "@/lib/utils";
 
 const navItems = [
-  { href: '#home', label: 'Home' },
-  { href: '#about', label: 'Sobre' },
-  { href: '#carreira', label: 'Carreira' },
-  { href: '/blog', label: 'Blog' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#certifications', label: 'Certificações' },
-  { href: '#projects', label: 'Projetos' },
-  { href: '#books', label: 'Livros' },
-  { href: '#contact', label: 'Contato' },
-]
+  { href: "#home", label: "Home" },
+  { href: "#about", label: "Sobre" },
+  { href: "#carreira", label: "Carreira" },
+  { href: "/blog", label: "Blog" },
+  { href: "#skills", label: "Skills" },
+  { href: "#certifications", label: "Certificações" },
+  { href: "#projects", label: "Projetos" },
+  { href: "#books", label: "Livros" },
+  { href: "#contact", label: "Contato" },
+];
 
 export function Navbar() {
-  const pathname = usePathname()
-  const [scrolled, setScrolled] = useState(false)
-  const { scrollY } = useScroll()
-  const shouldReduceMotion = useReducedMotion()
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const { scrollY } = useScroll();
+  const _shouldReduceMotion = useReducedMotion();
 
-  useMotionValueEvent(scrollY, 'change', (latest) => {
-    setScrolled(latest > 20)
-  })
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setScrolled(latest > 20);
+  });
 
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
+      transition={{ duration: 0.5, ease: "easeOut" }}
       className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-300',
+        "sticky top-0 z-50 w-full transition-all duration-300",
         scrolled
-          ? 'bg-background/80 backdrop-blur-md border-b border-border/50'
-          : 'bg-background/0 border-b border-transparent'
+          ? "bg-background/80 backdrop-blur-md border-b border-border/50"
+          : "bg-background/0 border-b border-transparent"
       )}
     >
       <div className="container mx-auto max-w-4xl px-4">
@@ -55,10 +60,10 @@ export function Navbar() {
                   <Link
                     href={item.href}
                     className={cn(
-                      'px-3 py-2 text-sm rounded-md transition-colors hover:text-accent',
+                      "px-3 py-2 text-sm rounded-md transition-colors hover:text-accent",
                       pathname === item.href
-                        ? 'text-accent'
-                        : 'text-muted-foreground'
+                        ? "text-accent"
+                        : "text-muted-foreground"
                     )}
                   >
                     {item.label}
@@ -72,5 +77,5 @@ export function Navbar() {
         </nav>
       </div>
     </motion.header>
-  )
+  );
 }

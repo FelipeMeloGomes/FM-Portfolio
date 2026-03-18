@@ -1,29 +1,33 @@
-'use client'
+"use client";
 
-import { useState, useRef, useEffect } from 'react'
-import Link from 'next/link'
-import { motion, useInView, useReducedMotion } from 'framer-motion'
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 const variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
+};
 
 function AboutContent() {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px', amount: 0.1 })
-  const shouldReduceMotion = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 });
+  const shouldReduceMotion = useReducedMotion();
 
   const finalVariants = shouldReduceMotion
     ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
-    : variants
+    : variants;
 
   return (
     <section id="about" className="py-20 bg-muted/30">
       <motion.div
         ref={ref}
         initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
+        animate={isInView ? "visible" : "hidden"}
         variants={finalVariants}
         className="container mx-auto max-w-4xl px-4"
       >
@@ -39,10 +43,10 @@ function AboutContent() {
               Development.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              🚀 Apaixonado por tecnologia, estou sempre em busca de
-              aprendizado contínuo e evolução profissional. Tenho interesse
-              especial por boas práticas de código, interfaces modernas e
-              experiências de usuário fluidas.
+              🚀 Apaixonado por tecnologia, estou sempre em busca de aprendizado
+              contínuo e evolução profissional. Tenho interesse especial por
+              boas práticas de código, interfaces modernas e experiências de
+              usuário fluidas.
             </p>
             <p className="text-muted-foreground mb-8 leading-relaxed">
               🎯 Além do universo da programação, gosto de futebol, música,
@@ -65,7 +69,7 @@ function AboutContent() {
         </div>
       </motion.div>
     </section>
-  )
+  );
 }
 
 function AboutStatic() {
@@ -84,10 +88,10 @@ function AboutStatic() {
               Development.
             </p>
             <p className="text-muted-foreground mb-6 leading-relaxed">
-              🚀 Apaixonado por tecnologia, estou sempre em busca de
-              aprendizado contínuo e evolução profissional. Tenho interesse
-              especial por boas práticas de código, interfaces modernas e
-              experiências de usuário fluidas.
+              🚀 Apaixonado por tecnologia, estou sempre em busca de aprendizado
+              contínuo e evolução profissional. Tenho interesse especial por
+              boas práticas de código, interfaces modernas e experiências de
+              usuário fluidas.
             </p>
             <p className="text-muted-foreground mb-8 leading-relaxed">
               🎯 Além do universo da programação, gosto de futebol, música,
@@ -110,19 +114,19 @@ function AboutStatic() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export function About() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return <AboutStatic />
+    return <AboutStatic />;
   }
 
-  return <AboutContent />
+  return <AboutContent />;
 }

@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-import { useState, useRef, useEffect } from 'react'
-import Link from 'next/link'
-import Image from 'next/image'
-import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { Github, Linkedin, Mail, Download } from 'lucide-react'
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { Download, Github, Linkedin, Mail } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -15,36 +15,48 @@ const containerVariants = {
       delayChildren: 0.2,
     },
   },
-}
+};
 
 const itemVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
+};
 
 function HeroContent() {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true })
-  const shouldReduceMotion = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null);
+  const _isInView = useInView(ref, { once: true });
+  const shouldReduceMotion = useReducedMotion();
 
   const itemVariantsReduced = {
     hidden: { opacity: 1, y: 0 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
 
   const avatarVariants = shouldReduceMotion
     ? { hidden: { opacity: 1, scale: 1 }, visible: { opacity: 1, scale: 1 } }
     : {
         hidden: { opacity: 0, scale: 0.95 },
-        visible: { opacity: 1, scale: 1, transition: { duration: 0.6, delay: 0.3, ease: 'easeOut' as const } },
-      }
+        visible: {
+          opacity: 1,
+          scale: 1,
+          transition: { duration: 0.6, delay: 0.3, ease: "easeOut" as const },
+        },
+      };
 
   const socialVariants = shouldReduceMotion
     ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
     : {
         hidden: { opacity: 0, y: 20 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: 0.8, ease: 'easeOut' as const } },
-      }
+        visible: {
+          opacity: 1,
+          y: 0,
+          transition: { duration: 0.5, delay: 0.8, ease: "easeOut" as const },
+        },
+      };
 
   return (
     <section id="home" className="min-h-[80vh] flex items-center py-20">
@@ -52,11 +64,16 @@ function HeroContent() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <motion.div
             ref={ref}
-            variants={shouldReduceMotion ? itemVariantsReduced : containerVariants}
+            variants={
+              shouldReduceMotion ? itemVariantsReduced : containerVariants
+            }
             initial="hidden"
             animate="visible"
           >
-            <motion.p variants={itemVariants} className="text-muted-foreground mb-4">
+            <motion.p
+              variants={itemVariants}
+              className="text-muted-foreground mb-4"
+            >
               Olá 👋, eu sou
             </motion.p>
             <motion.h1
@@ -78,7 +95,10 @@ function HeroContent() {
               Apaixonado por tecnologia, interfaces modernas e experiências de
               usuário fluidas. Construindo soluções com React, Next.js e PHP.
             </motion.p>
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap gap-4"
+            >
               <Link
                 href="#projects"
                 className="inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground rounded-md hover:bg-accent/90 transition-colors"
@@ -158,7 +178,7 @@ function HeroContent() {
         </motion.div>
       </div>
     </section>
-  )
+  );
 }
 
 function HeroStatic() {
@@ -244,19 +264,19 @@ function HeroStatic() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export function Hero() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return <HeroStatic />
+    return <HeroStatic />;
   }
 
-  return <HeroContent />
+  return <HeroContent />;
 }

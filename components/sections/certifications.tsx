@@ -1,11 +1,11 @@
-'use client'
+"use client";
 
-import { Suspense, useState, useRef, useEffect } from 'react'
-import Image from 'next/image'
-import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { ExternalLink } from 'lucide-react'
-import { certifications } from '@/data/certifications'
-import { SkeletonCertCard } from '@/components/skeleton'
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { ExternalLink } from "lucide-react";
+import Image from "next/image";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { SkeletonCertCard } from "@/components/skeleton";
+import { certifications } from "@/data/certifications";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -13,27 +13,35 @@ const containerVariants = {
     opacity: 1,
     transition: { staggerChildren: 0.1 },
   },
-}
+};
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' as const } },
-}
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" as const },
+  },
+};
 
 const headerVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
+};
 
-function CertificationCard({ cert }: { cert: typeof certifications[0] }) {
-  const shouldReduceMotion = useReducedMotion()
+function CertificationCard({ cert }: { cert: (typeof certifications)[0] }) {
+  const shouldReduceMotion = useReducedMotion();
 
   const cardMotionProps = shouldReduceMotion
     ? {}
     : {
         whileHover: { scale: 1.02 },
-        transition: { duration: 0.2, ease: 'easeOut' as const },
-      }
+        transition: { duration: 0.2, ease: "easeOut" as const },
+      };
 
   return (
     <motion.article
@@ -67,28 +75,28 @@ function CertificationCard({ cert }: { cert: typeof certifications[0] }) {
         )}
       </div>
     </motion.article>
-  )
+  );
 }
 
 function CertificationsGrid() {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px', amount: 0.1 })
-  const shouldReduceMotion = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 });
+  const shouldReduceMotion = useReducedMotion();
 
   const finalHeaderVariants = shouldReduceMotion
     ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
-    : headerVariants
+    : headerVariants;
 
   const finalContainerVariants = shouldReduceMotion
     ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
-    : containerVariants
+    : containerVariants;
 
   return (
     <section id="certifications" className="py-20">
       <motion.div
         ref={ref}
         initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
+        animate={isInView ? "visible" : "hidden"}
         variants={finalHeaderVariants}
         className="container mx-auto max-w-4xl px-4"
       >
@@ -103,7 +111,7 @@ function CertificationsGrid() {
       <motion.div
         variants={finalContainerVariants}
         initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
+        animate={isInView ? "visible" : "hidden"}
         className="container mx-auto max-w-5xl px-4"
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -113,7 +121,7 @@ function CertificationsGrid() {
         </div>
       </motion.div>
     </section>
-  )
+  );
 }
 
 function CertificationsLoading() {
@@ -131,12 +139,12 @@ function CertificationsLoading() {
       <div className="container mx-auto max-w-5xl px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {Array.from({ length: 6 }).map((_, i) => (
-            <SkeletonCertCard key={i} />
+            <SkeletonCertCard key={`skeleton-${i}`} />
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function CertificationsStatic() {
@@ -169,8 +177,12 @@ function CertificationsStatic() {
               </div>
               <div className="p-4">
                 <h3 className="font-semibold text-sm mb-1">{cert.title}</h3>
-                <p className="text-xs text-muted-foreground mb-2">{cert.institution}</p>
-                <p className="text-xs text-muted-foreground mb-3">{cert.date}</p>
+                <p className="text-xs text-muted-foreground mb-2">
+                  {cert.institution}
+                </p>
+                <p className="text-xs text-muted-foreground mb-3">
+                  {cert.date}
+                </p>
                 {cert.credentialUrl && (
                   <a
                     href={cert.credentialUrl}
@@ -188,23 +200,23 @@ function CertificationsStatic() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export function Certifications() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return <CertificationsStatic />
+    return <CertificationsStatic />;
   }
 
   return (
     <Suspense fallback={<CertificationsLoading />}>
       <CertificationsGrid />
     </Suspense>
-  )
+  );
 }

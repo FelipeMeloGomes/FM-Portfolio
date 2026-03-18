@@ -1,74 +1,80 @@
-'use client'
+"use client";
 
-import { useRef, useState, useEffect } from 'react'
-import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { FolderKanban, BookOpen, Award } from 'lucide-react'
-import { projects } from '@/data/projects'
-import { books } from '@/data/books'
-import { certifications } from '@/data/certifications'
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { Award, BookOpen, FolderKanban } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { books } from "@/data/books";
+import { certifications } from "@/data/certifications";
+import { projects } from "@/data/projects";
 
 interface StatItem {
-  id: string
-  label: string
-  value: number
-  icon: React.ElementType
+  id: string;
+  label: string;
+  value: number;
+  icon: React.ElementType;
 }
 
 const statsData: StatItem[] = [
   {
-    id: 'projects',
-    label: 'Projetos',
+    id: "projects",
+    label: "Projetos",
     value: projects.length,
     icon: FolderKanban,
   },
   {
-    id: 'books-read',
-    label: 'Livros Lidos',
-    value: books.filter((b) => b.status === 'lido').length,
+    id: "books-read",
+    label: "Livros Lidos",
+    value: books.filter((b) => b.status === "lido").length,
     icon: BookOpen,
   },
   {
-    id: 'certifications',
-    label: 'Certificações',
+    id: "certifications",
+    label: "Certificações",
     value: certifications.length,
     icon: Award,
   },
-]
+];
 
-function AnimatedCounter({ value, isInView }: { value: number; isInView: boolean }) {
-  const [count, setCount] = useState(0)
-  const shouldReduceMotion = useReducedMotion()
+function AnimatedCounter({
+  value,
+  isInView,
+}: {
+  value: number;
+  isInView: boolean;
+}) {
+  const [count, setCount] = useState(0);
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     if (!isInView || shouldReduceMotion) {
-      setCount(value)
-      return
+      setCount(value);
+      return;
     }
 
-    let start = 0
-    const duration = 1500
-    const increment = value / (duration / 16)
+    let start = 0;
+    const duration = 1500;
+    const increment = value / (duration / 16);
 
     const timer = setInterval(() => {
-      start += increment
+      start += increment;
       if (start >= value) {
-        setCount(value)
-        clearInterval(timer)
+        setCount(value);
+        clearInterval(timer);
       } else {
-        setCount(Math.floor(start))
+        setCount(Math.floor(start));
       }
-    }, 16)
+    }, 16);
 
-    return () => clearInterval(timer)
-  }, [isInView, value, shouldReduceMotion])
+    return () => clearInterval(timer);
+  }, [isInView, value, shouldReduceMotion]);
 
-  return <span>{count}</span>
+  return <span>{count}</span>;
 }
 
 function StatsGrid() {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-  const shouldReduceMotion = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const shouldReduceMotion = useReducedMotion();
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -76,19 +82,23 @@ function StatsGrid() {
       opacity: 1,
       transition: { staggerChildren: 0.1, delayChildren: 0.2 },
     },
-  }
+  };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' as const } },
-  }
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: "easeOut" as const },
+    },
+  };
 
   return (
     <section className="py-12 border-y border-border">
       <motion.div
         ref={ref}
         initial="hidden"
-        animate={isInView || shouldReduceMotion ? 'visible' : 'hidden'}
+        animate={isInView || shouldReduceMotion ? "visible" : "hidden"}
         variants={containerVariants}
         className="container mx-auto max-w-4xl px-4"
       >
@@ -109,7 +119,7 @@ function StatsGrid() {
         </div>
       </motion.div>
     </section>
-  )
+  );
 }
 
 function StatsStatic() {
@@ -132,19 +142,19 @@ function StatsStatic() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export function Stats() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return <StatsStatic />
+    return <StatsStatic />;
   }
 
-  return <StatsGrid />
+  return <StatsGrid />;
 }

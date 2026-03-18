@@ -1,19 +1,19 @@
-'use client'
+"use client";
 
-import { useState, useRef, useEffect } from 'react'
-import { motion, useInView, useReducedMotion } from 'framer-motion'
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 const skills = {
-  frontend: ['React & TypeScript', 'Next.js', 'Tailwind CSS', 'Jest'],
-  backend: ['PHP & Laravel', 'MySQL & PostgreSQL', 'Node.js', 'REST APIs'],
-  tools: ['Git & GitHub', 'Docker', 'Linux', 'Figma'],
-}
+  frontend: ["React & TypeScript", "Next.js", "Tailwind CSS", "Jest"],
+  backend: ["PHP & Laravel", "MySQL & PostgreSQL", "Node.js", "REST APIs"],
+  tools: ["Git & GitHub", "Docker", "Linux", "Figma"],
+};
 
 const categories = [
-  { title: 'Frontend', skills: skills.frontend },
-  { title: 'Backend', skills: skills.backend },
-  { title: 'Tools', skills: skills.tools },
-]
+  { title: "Frontend", skills: skills.frontend },
+  { title: "Backend", skills: skills.backend },
+  { title: "Tools", skills: skills.tools },
+];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -21,32 +21,36 @@ const containerVariants = {
     opacity: 1,
     transition: { staggerChildren: 0.1, delayChildren: 0.2 },
   },
-}
+};
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' as const } },
-}
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" as const },
+  },
+};
 
 function SkillsContent() {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px', amount: 0.1 })
-  const shouldReduceMotion = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 });
+  const shouldReduceMotion = useReducedMotion();
 
   const finalContainerVariants = shouldReduceMotion
     ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
-    : containerVariants
+    : containerVariants;
 
   const finalCardVariants = shouldReduceMotion
     ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
-    : cardVariants
+    : cardVariants;
 
   return (
     <section id="skills" className="py-20 bg-muted/30">
       <motion.div
         ref={ref}
         initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
+        animate={isInView ? "visible" : "hidden"}
         variants={finalContainerVariants}
         className="container mx-auto max-w-4xl px-4"
       >
@@ -80,7 +84,7 @@ function SkillsContent() {
         </div>
       </motion.div>
     </section>
-  )
+  );
 }
 
 function SkillsStatic() {
@@ -116,19 +120,19 @@ function SkillsStatic() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export function Skills() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return <SkillsStatic />
+    return <SkillsStatic />;
   }
 
-  return <SkillsContent />
+  return <SkillsContent />;
 }

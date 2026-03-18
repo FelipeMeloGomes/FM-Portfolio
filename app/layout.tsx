@@ -1,89 +1,89 @@
-import type { Metadata } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
-import './globals.css'
-import { ThemeProvider } from '@/components/theme-provider'
-import { ScrollToTop } from '@/components/scroll-to-top'
-import { ScrollProgress } from '@/components/scroll-progress'
-import { CommandPalette } from '@/components/command-palette'
-import { UmamiAnalytics } from '@/components/umami-analytics'
+import type { Metadata } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
+import "./globals.css";
+import { CommandPalette } from "@/components/command-palette";
+import { ScrollProgress } from "@/components/scroll-progress";
+import { ScrollToTop } from "@/components/scroll-to-top";
+import { ThemeProvider } from "@/components/theme-provider";
+import { UmamiAnalytics } from "@/components/umami-analytics";
 
 const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
+  subsets: ["latin"],
+  variable: "--font-inter",
+});
 
 const jetbrainsMono = JetBrains_Mono({
-  subsets: ['latin'],
-  variable: '--font-mono',
-})
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
-const SITE_URL = process.env.SITE_URL || 'https://felipemelo.dev'
+const SITE_URL = process.env.SITE_URL || "https://felipemelo.dev";
 
 export const metadata: Metadata = {
   title: {
-    default: 'Felipe Melo | Desenvolvedor Fullstack',
-    template: '%s | Felipe Melo',
+    default: "Felipe Melo | Desenvolvedor Fullstack",
+    template: "%s | Felipe Melo",
   },
   description:
-    'Desenvolvedor Fullstack com formação em Análise e Desenvolvimento de Sistemas. Especializado em React, Next.js, TypeScript, Tailwind CSS, PHP e Laravel.',
+    "Desenvolvedor Fullstack com formação em Análise e Desenvolvimento de Sistemas. Especializado em React, Next.js, TypeScript, Tailwind CSS, PHP e Laravel.",
   keywords: [
-    'Desenvolvedor Fullstack',
-    'Frontend',
-    'Backend',
-    'React',
-    'Next.js',
-    'TypeScript',
-    'Tailwind CSS',
-    'PHP',
-    'Laravel',
-    'Portfolio',
+    "Desenvolvedor Fullstack",
+    "Frontend",
+    "Backend",
+    "React",
+    "Next.js",
+    "TypeScript",
+    "Tailwind CSS",
+    "PHP",
+    "Laravel",
+    "Portfolio",
   ],
-  authors: [{ name: 'Felipe Melo' }],
-  creator: 'Felipe Melo',
-  publisher: 'Felipe Melo',
+  authors: [{ name: "Felipe Melo" }],
+  creator: "Felipe Melo",
+  publisher: "Felipe Melo",
   metadataBase: new URL(SITE_URL),
   alternates: {
-    canonical: '/',
+    canonical: "/",
   },
   icons: {
-    icon: '/assets/img/logo.webp',
-    apple: '/assets/img/logo.webp',
+    icon: "/assets/img/logo.webp",
+    apple: "/assets/img/logo.webp",
   },
-  manifest: '/manifest.json',
+  manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    statusBarStyle: 'default',
-    title: 'Felipe Melo',
+    statusBarStyle: "default",
+    title: "Felipe Melo",
   },
   viewport: {
-    width: 'device-width',
+    width: "device-width",
     initialScale: 1,
     maximumScale: 1,
   },
   openGraph: {
-    type: 'website',
-    locale: 'pt_BR',
+    type: "website",
+    locale: "pt_BR",
     url: SITE_URL,
-    siteName: 'Felipe Melo',
-    title: 'Felipe Melo | Desenvolvedor Fullstack',
+    siteName: "Felipe Melo",
+    title: "Felipe Melo | Desenvolvedor Fullstack",
     description:
-      'Desenvolvedor Fullstack especializado em React, Next.js, TypeScript e PHP/Laravel.',
+      "Desenvolvedor Fullstack especializado em React, Next.js, TypeScript e PHP/Laravel.",
     images: [
       {
-        url: '/assets/img/perfil.webp',
+        url: "/assets/img/perfil.webp",
         width: 512,
         height: 512,
-        alt: 'Felipe Melo - Desenvolvedor Fullstack',
+        alt: "Felipe Melo - Desenvolvedor Fullstack",
       },
     ],
   },
   twitter: {
-    card: 'summary_large_image',
-    title: 'Felipe Melo | Desenvolvedor Fullstack',
+    card: "summary_large_image",
+    title: "Felipe Melo | Desenvolvedor Fullstack",
     description:
-      'Desenvolvedor Fullstack especializado em React, Next.js, TypeScript e PHP/Laravel.',
-    creator: '@felipemelog',
-    images: ['/assets/img/perfil.webp'],
+      "Desenvolvedor Fullstack especializado em React, Next.js, TypeScript e PHP/Laravel.",
+    creator: "@felipemelog",
+    images: ["/assets/img/perfil.webp"],
   },
   robots: {
     index: true,
@@ -91,17 +91,17 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
     },
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
@@ -122,5 +122,5 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
+  );
 }

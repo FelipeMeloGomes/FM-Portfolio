@@ -1,100 +1,105 @@
-'use client'
+"use client";
 
-import { useState, useEffect, useCallback } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { useReducedMotion } from 'framer-motion'
-import { useRouter } from 'next/navigation'
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
-  Search,
-  Home,
-  User,
+  Award,
+  BookMarked,
+  BookOpen,
   Briefcase,
   FolderKanban,
-  Wrench,
-  BookOpen,
-  BookMarked,
-  Award,
+  Home,
   Mail,
+  Search,
+  User,
+  Wrench,
   X,
-} from 'lucide-react'
+} from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 
 interface CommandItem {
-  id: string
-  label: string
-  icon: React.ElementType
-  href: string
+  id: string;
+  label: string;
+  icon: React.ElementType;
+  href: string;
 }
 
 const commands: CommandItem[] = [
-  { id: 'home', label: 'Home', icon: Home, href: '#home' },
-  { id: 'about', label: 'Sobre', icon: User, href: '#about' },
-  { id: 'carreira', label: 'Carreira', icon: Briefcase, href: '#carreira' },
-  { id: 'blog', label: 'Blog', icon: BookMarked, href: '/blog' },
-  { id: 'skills', label: 'Skills', icon: Wrench, href: '#skills' },
-  { id: 'certifications', label: 'Certificações', icon: Award, href: '#certifications' },
-  { id: 'projects', label: 'Projetos', icon: FolderKanban, href: '#projects' },
-  { id: 'books', label: 'Livros', icon: BookOpen, href: '#books' },
-  { id: 'contact', label: 'Contato', icon: Mail, href: '#contact' },
-]
+  { id: "home", label: "Home", icon: Home, href: "#home" },
+  { id: "about", label: "Sobre", icon: User, href: "#about" },
+  { id: "carreira", label: "Carreira", icon: Briefcase, href: "#carreira" },
+  { id: "blog", label: "Blog", icon: BookMarked, href: "/blog" },
+  { id: "skills", label: "Skills", icon: Wrench, href: "#skills" },
+  {
+    id: "certifications",
+    label: "Certificações",
+    icon: Award,
+    href: "#certifications",
+  },
+  { id: "projects", label: "Projetos", icon: FolderKanban, href: "#projects" },
+  { id: "books", label: "Livros", icon: BookOpen, href: "#books" },
+  { id: "contact", label: "Contato", icon: Mail, href: "#contact" },
+];
 
 export function CommandPalette() {
-  const [open, setOpen] = useState(false)
-  const [query, setQuery] = useState('')
-  const shouldReduceMotion = useReducedMotion()
-  const router = useRouter()
+  const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
+  const shouldReduceMotion = useReducedMotion();
+  const router = useRouter();
 
   const filteredCommands = commands.filter((cmd) =>
     cmd.label.toLowerCase().includes(query.toLowerCase())
-  )
+  );
 
-  const handleOpen = useCallback(() => setOpen(true), [])
+  const handleOpen = useCallback(() => setOpen(true), []);
   const handleClose = useCallback(() => {
-    setOpen(false)
-    setQuery('')
-  }, [])
+    setOpen(false);
+    setQuery("");
+  }, []);
 
   const handleSelect = useCallback(
     (href: string) => {
-      handleClose()
-      const element = document.querySelector(href)
+      handleClose();
+      const element = document.querySelector(href);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
+        element.scrollIntoView({ behavior: "smooth" });
       } else {
-        router.push(href)
+        router.push(href);
       }
     },
     [handleClose, router]
-  )
+  );
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
-        e.preventDefault()
-        setOpen((prev) => !prev)
+      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setOpen((prev) => !prev);
       }
-      if (e.key === 'Escape') {
-        handleClose()
+      if (e.key === "Escape") {
+        handleClose();
       }
-    }
+    };
 
-    document.addEventListener('keydown', down)
-    return () => document.removeEventListener('keydown', down)
-  }, [handleClose])
+    document.addEventListener("keydown", down);
+    return () => document.removeEventListener("keydown", down);
+  }, [handleClose]);
 
   useEffect(() => {
     if (open) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = ''
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = ''
-    }
-  }, [open])
+      document.body.style.overflow = "";
+    };
+  }, [open]);
 
   return (
     <>
       <button
+        type="button"
         onClick={handleOpen}
         className="fixed bottom-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-muted border border-border rounded-lg text-sm text-muted-foreground hover:bg-muted/80 transition-colors"
       >
@@ -124,10 +129,14 @@ export function CommandPalette() {
             />
 
             <motion.div
-              initial={shouldReduceMotion ? {} : { opacity: 0, scale: 0.95, y: -20 }}
+              initial={
+                shouldReduceMotion ? {} : { opacity: 0, scale: 0.95, y: -20 }
+              }
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={shouldReduceMotion ? {} : { opacity: 0, scale: 0.95, y: -20 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
+              exit={
+                shouldReduceMotion ? {} : { opacity: 0, scale: 0.95, y: -20 }
+              }
+              transition={{ duration: 0.2, ease: "easeOut" }}
               className="relative w-full max-w-md mx-4 bg-background border border-border rounded-xl shadow-2xl overflow-hidden"
             >
               <div className="flex items-center gap-3 px-4 py-3 border-b border-border">
@@ -138,9 +147,9 @@ export function CommandPalette() {
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Buscar..."
                   className="flex-1 bg-transparent outline-none text-sm placeholder:text-muted-foreground"
-                  autoFocus
                 />
                 <button
+                  type="button"
                   onClick={handleClose}
                   className="p-1 hover:bg-muted rounded"
                 >
@@ -173,12 +182,14 @@ export function CommandPalette() {
               </div>
 
               <div className="px-4 py-2 border-t border-border text-xs text-muted-foreground">
-                Pressione <kbd className="px-1.5 py-0.5 bg-muted rounded">ESC</kbd> para fechar
+                Pressione{" "}
+                <kbd className="px-1.5 py-0.5 bg-muted rounded">ESC</kbd> para
+                fechar
               </div>
             </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
     </>
-  )
+  );
 }

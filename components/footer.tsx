@@ -1,5 +1,5 @@
-import Link from 'next/link'
-import { Github, Linkedin, Mail } from 'lucide-react'
+import { Github, Linkedin, Mail } from "lucide-react";
+import Link from "next/link";
 
 export function Footer() {
   return (
@@ -45,9 +45,10 @@ export function Footer() {
         </div>
 
         <p className="text-center text-sm text-muted-foreground mt-6">
-          © {new Date().getFullYear()} Felipe Melo. Todos os direitos reservados.
+          © {new Date().getFullYear()} Felipe Melo. Todos os direitos
+          reservados.
         </p>
       </div>
     </footer>
-  )
+  );
 }

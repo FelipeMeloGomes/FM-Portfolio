@@ -1,14 +1,13 @@
-'use client'
+"use client";
 
-import { useRef } from 'react'
-import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { type ReactNode } from 'react'
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { type ReactNode, useRef } from "react";
 
 interface AnimatedSectionProps {
-  children: ReactNode
-  className?: string
-  delay?: number
-  id?: string
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+  id?: string;
 }
 
 export function AnimatedSection({
@@ -17,12 +16,16 @@ export function AnimatedSection({
   delay = 0,
   id,
 }: AnimatedSectionProps) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-  const shouldReduceMotion = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) {
-    return <section id={id} className={className}>{children}</section>
+    return (
+      <section id={id} className={className}>
+        {children}
+      </section>
+    );
   }
 
   return (
@@ -36,22 +39,22 @@ export function AnimatedSection({
     >
       {children}
     </motion.section>
-  )
+  );
 }
 
 interface FadeInProps {
-  children: ReactNode
-  className?: string
-  delay?: number
+  children: ReactNode;
+  className?: string;
+  delay?: number;
 }
 
 export function FadeIn({ children, className, delay = 0 }: FadeInProps) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px' })
-  const shouldReduceMotion = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) {
-    return <div className={className}>{children}</div>
+    return <div className={className}>{children}</div>;
   }
 
   return (
@@ -59,10 +62,10 @@ export function FadeIn({ children, className, delay = 0 }: FadeInProps) {
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-      transition={{ duration: 0.5, delay, ease: 'easeOut' }}
+      transition={{ duration: 0.5, delay, ease: "easeOut" }}
       className={className}
     >
       {children}
     </motion.div>
-  )
+  );
 }

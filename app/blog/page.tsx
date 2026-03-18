@@ -1,10 +1,10 @@
-import Link from 'next/link'
-import { getAllPosts } from '@/src/lib/posts'
-import { AnimatedSection } from '@/components/animations'
-import { Calendar, Tag } from 'lucide-react'
+import { Calendar, Tag } from "lucide-react";
+import Link from "next/link";
+import { AnimatedSection } from "@/components/animations";
+import { getAllPosts } from "@/src/lib/posts";
 
 export default function BlogPage() {
-  const posts = getAllPosts()
+  const posts = getAllPosts();
 
   return (
     <AnimatedSection className="py-16 sm:py-24">
@@ -35,12 +35,12 @@ export default function BlogPage() {
                     <div className="flex items-center gap-4 text-sm text-muted-foreground">
                       <span className="flex items-center gap-1">
                         <Calendar className="w-4 h-4" />
-                        {new Date(post.date).toLocaleDateString('pt-BR')}
+                        {new Date(post.date).toLocaleDateString("pt-BR")}
                       </span>
                       {post.tags.length > 0 && (
                         <span className="flex items-center gap-1">
                           <Tag className="w-4 h-4" />
-                          {post.tags.join(', ')}
+                          {post.tags.join(", ")}
                         </span>
                       )}
                     </div>
@@ -52,5 +52,5 @@ export default function BlogPage() {
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }

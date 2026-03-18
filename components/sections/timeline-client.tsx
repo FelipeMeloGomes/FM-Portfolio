@@ -1,30 +1,30 @@
-'use client'
+"use client";
 
-import { useRef, useState, useEffect } from 'react'
-import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { Briefcase, GraduationCap, Star } from 'lucide-react'
-import type { TimelineItem } from '@/src/data/timeline'
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { Briefcase, GraduationCap, Star } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import type { TimelineItem } from "@/src/data/timeline";
 
 const typeConfig = {
   work: {
     icon: Briefcase,
-    color: 'text-blue-500 dark:text-blue-400',
-    bgColor: 'bg-blue-500/10 dark:bg-blue-400/10',
+    color: "text-blue-500 dark:text-blue-400",
+    bgColor: "bg-blue-500/10 dark:bg-blue-400/10",
   },
   education: {
     icon: GraduationCap,
-    color: 'text-green-500 dark:text-green-400',
-    bgColor: 'bg-green-500/10 dark:bg-green-400/10',
+    color: "text-green-500 dark:text-green-400",
+    bgColor: "bg-green-500/10 dark:bg-green-400/10",
   },
   milestone: {
     icon: Star,
-    color: 'text-yellow-500 dark:text-yellow-400',
-    bgColor: 'bg-yellow-500/10 dark:bg-yellow-400/10',
+    color: "text-yellow-500 dark:text-yellow-400",
+    bgColor: "bg-yellow-500/10 dark:bg-yellow-400/10",
   },
-}
+};
 
 interface TimelineClientProps {
-  items: TimelineItem[]
+  items: TimelineItem[];
 }
 
 function TimelineItemComponent({
@@ -32,20 +32,20 @@ function TimelineItemComponent({
   index,
   totalItems,
 }: {
-  item: TimelineItem
-  index: number
-  totalItems: number
+  item: TimelineItem;
+  index: number;
+  totalItems: number;
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px' })
-  const shouldReduceMotion = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
+  const shouldReduceMotion = useReducedMotion();
 
-  const config = typeConfig[item.type]
-  const Icon = config.icon
+  const config = typeConfig[item.type];
+  const Icon = config.icon;
 
   const content = (
     <div
-      className={`relative pl-8 sm:pl-12 ${index !== totalItems - 1 ? 'pb-8' : ''}`}
+      className={`relative pl-8 sm:pl-12 ${index !== totalItems - 1 ? "pb-8" : ""}`}
     >
       {index !== totalItems - 1 && (
         <div className="absolute left-[11px] sm:left-[15px] top-10 bottom-0 w-[2px] bg-border" />
@@ -69,10 +69,10 @@ function TimelineItemComponent({
         {item.description}
       </p>
     </div>
-  )
+  );
 
   if (shouldReduceMotion) {
-    return <div ref={ref}>{content}</div>
+    return <div ref={ref}>{content}</div>;
   }
 
   return (
@@ -80,11 +80,15 @@ function TimelineItemComponent({
       ref={ref}
       initial={{ opacity: 0, x: -20 }}
       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' as const }}
+      transition={{
+        duration: 0.5,
+        delay: index * 0.1,
+        ease: "easeOut" as const,
+      }}
     >
       {content}
     </motion.div>
-  )
+  );
 }
 
 function AnimatedSection({
@@ -93,21 +97,21 @@ function AnimatedSection({
   delay = 0,
   id,
 }: {
-  children: React.ReactNode
-  className?: string
-  delay?: number
-  id?: string
+  children: React.ReactNode;
+  className?: string;
+  delay?: number;
+  id?: string;
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
-  const shouldReduceMotion = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const shouldReduceMotion = useReducedMotion();
 
   if (shouldReduceMotion) {
     return (
       <section id={id} className={className}>
         {children}
       </section>
-    )
+    );
   }
 
   return (
@@ -121,15 +125,15 @@ function AnimatedSection({
     >
       {children}
     </motion.section>
-  )
+  );
 }
 
 export function TimelineClient({ items }: TimelineClientProps) {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
     return (
@@ -143,7 +147,7 @@ export function TimelineClient({ items }: TimelineClientProps) {
           </div>
         </div>
       </section>
-    )
+    );
   }
 
   return (
@@ -167,5 +171,5 @@ export function TimelineClient({ items }: TimelineClientProps) {
         </div>
       </div>
     </AnimatedSection>
-  )
+  );
 }

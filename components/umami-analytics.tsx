@@ -1,10 +1,10 @@
-'use client'
+"use client";
 
-const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID
+const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
 
 export function UmamiAnalytics() {
   if (!UMAMI_WEBSITE_ID) {
-    return null
+    return null;
   }
 
   return (
@@ -13,5 +13,5 @@ export function UmamiAnalytics() {
       src="https://analytics.umami.is/script.js"
       data-website-id={UMAMI_WEBSITE_ID}
     />
-  )
+  );
 }

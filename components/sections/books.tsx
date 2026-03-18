@@ -1,17 +1,22 @@
-'use client'
+"use client";
 
-import { Suspense, useState, useRef, useEffect } from 'react'
-import Image from 'next/image'
-import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { books, bookStatusLabels, bookStatusColors, type BookStatus } from '@/data/books'
-import { SkeletonBookCard } from '@/components/skeleton'
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import Image from "next/image";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { SkeletonBookCard } from "@/components/skeleton";
+import {
+  type BookStatus,
+  bookStatusColors,
+  bookStatusLabels,
+  books,
+} from "@/data/books";
 
-const filters: { label: string; value: BookStatus | 'all' }[] = [
-  { label: 'Todos', value: 'all' },
-  { label: 'Lendo', value: 'lendo' },
-  { label: 'Lido', value: 'lido' },
-  { label: 'Quero ler', value: 'quero ler' },
-]
+const filters: { label: string; value: BookStatus | "all" }[] = [
+  { label: "Todos", value: "all" },
+  { label: "Lendo", value: "lendo" },
+  { label: "Lido", value: "lido" },
+  { label: "Quero ler", value: "quero ler" },
+];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -19,27 +24,35 @@ const containerVariants = {
     opacity: 1,
     transition: { staggerChildren: 0.08 },
   },
-}
+};
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.4, ease: 'easeOut' as const } },
-}
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.4, ease: "easeOut" as const },
+  },
+};
 
 const headerVariants = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
+};
 
-function BookCard({ book }: { book: typeof books[0] }) {
-  const shouldReduceMotion = useReducedMotion()
+function BookCard({ book }: { book: (typeof books)[0] }) {
+  const shouldReduceMotion = useReducedMotion();
 
   const cardMotionProps = shouldReduceMotion
     ? {}
     : {
         whileHover: { scale: 1.02 },
-        transition: { duration: 0.2, ease: 'easeOut' as const },
-      }
+        transition: { duration: 0.2, ease: "easeOut" as const },
+      };
 
   return (
     <motion.div
@@ -55,8 +68,8 @@ function BookCard({ book }: { book: typeof books[0] }) {
           className="object-cover"
           sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
           onError={(e) => {
-            const target = e.target as HTMLImageElement
-            target.style.display = 'none'
+            const target = e.target as HTMLImageElement;
+            target.style.display = "none";
           }}
         />
       </div>
@@ -73,27 +86,27 @@ function BookCard({ book }: { book: typeof books[0] }) {
         </span>
       </div>
     </motion.div>
-  )
+  );
 }
 
 function BooksGrid() {
-  const [activeFilter, setActiveFilter] = useState<BookStatus | 'all'>('all')
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px', amount: 0.1 })
-  const shouldReduceMotion = useReducedMotion()
+  const [activeFilter, setActiveFilter] = useState<BookStatus | "all">("all");
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 });
+  const shouldReduceMotion = useReducedMotion();
 
   const filteredBooks =
-    activeFilter === 'all'
+    activeFilter === "all"
       ? books
-      : books.filter((book) => book.status === activeFilter)
+      : books.filter((book) => book.status === activeFilter);
 
   const finalHeaderVariants = shouldReduceMotion
     ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
-    : headerVariants
+    : headerVariants;
 
   const finalContainerVariants = shouldReduceMotion
     ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
-    : containerVariants
+    : containerVariants;
 
   return (
     <section id="books" className="py-20">
@@ -101,7 +114,7 @@ function BooksGrid() {
         <motion.div
           ref={ref}
           initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
+          animate={isInView ? "visible" : "hidden"}
           variants={finalHeaderVariants}
         >
           <h2 className="text-3xl font-bold mb-4 text-center">
@@ -115,17 +128,18 @@ function BooksGrid() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, delay: 0.2, ease: 'easeOut' }}
+          transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
           className="flex flex-wrap justify-center gap-2 mb-10"
         >
           {filters.map((filter) => (
             <button
+              type="button"
               key={filter.value}
               onClick={() => setActiveFilter(filter.value)}
               className={`px-4 py-2 rounded-full text-sm transition-colors ${
                 activeFilter === filter.value
-                  ? 'bg-accent text-accent-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                  ? "bg-accent text-accent-foreground"
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >
               {filter.label}
@@ -136,7 +150,7 @@ function BooksGrid() {
         <motion.div
           variants={finalContainerVariants}
           initial="hidden"
-          animate={isInView ? 'visible' : 'hidden'}
+          animate={isInView ? "visible" : "hidden"}
           className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
         >
           {filteredBooks.map((book) => (
@@ -151,16 +165,16 @@ function BooksGrid() {
         )}
       </div>
     </section>
-  )
+  );
 }
 
 function BooksLoading() {
-  const [activeFilter, setActiveFilter] = useState<BookStatus | 'all'>('all')
+  const [activeFilter, setActiveFilter] = useState<BookStatus | "all">("all");
 
   const filteredBooks =
-    activeFilter === 'all'
+    activeFilter === "all"
       ? books
-      : books.filter((book) => book.status === activeFilter)
+      : books.filter((book) => book.status === activeFilter);
 
   return (
     <section id="books" className="py-20">
@@ -175,12 +189,13 @@ function BooksLoading() {
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {filters.map((filter) => (
             <button
+              type="button"
               key={filter.value}
               onClick={() => setActiveFilter(filter.value)}
               className={`px-4 py-2 rounded-full text-sm transition-colors ${
                 activeFilter === filter.value
-                  ? 'bg-accent text-accent-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                  ? "bg-accent text-accent-foreground"
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >
               {filter.label}
@@ -189,22 +204,22 @@ function BooksLoading() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredBooks.map((_, i) => (
-            <SkeletonBookCard key={i} />
+          {Array.from({ length: 8 }).map((_, i) => (
+            <SkeletonBookCard key={`skeleton-${i}`} />
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 function BooksStatic() {
-  const [activeFilter, setActiveFilter] = useState<BookStatus | 'all'>('all')
+  const [activeFilter, setActiveFilter] = useState<BookStatus | "all">("all");
 
   const filteredBooks =
-    activeFilter === 'all'
+    activeFilter === "all"
       ? books
-      : books.filter((book) => book.status === activeFilter)
+      : books.filter((book) => book.status === activeFilter);
 
   return (
     <section id="books" className="py-20">
@@ -219,12 +234,13 @@ function BooksStatic() {
         <div className="flex flex-wrap justify-center gap-2 mb-10">
           {filters.map((filter) => (
             <button
+              type="button"
               key={filter.value}
               onClick={() => setActiveFilter(filter.value)}
               className={`px-4 py-2 rounded-full text-sm transition-colors ${
                 activeFilter === filter.value
-                  ? 'bg-accent text-accent-foreground'
-                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
+                  ? "bg-accent text-accent-foreground"
+                  : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >
               {filter.label}
@@ -246,15 +262,19 @@ function BooksStatic() {
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   onError={(e) => {
-                    const target = e.target as HTMLImageElement
-                    target.style.display = 'none'
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = "none";
                   }}
                 />
               </div>
 
               <div className="p-3">
-                <h3 className="font-medium text-sm line-clamp-2 mb-1">{book.title}</h3>
-                <p className="text-xs text-muted-foreground mb-2">{book.author}</p>
+                <h3 className="font-medium text-sm line-clamp-2 mb-1">
+                  {book.title}
+                </h3>
+                <p className="text-xs text-muted-foreground mb-2">
+                  {book.author}
+                </p>
                 <span
                   className={`inline-block text-xs px-2 py-0.5 rounded-full ${
                     bookStatusColors[book.status]
@@ -274,23 +294,23 @@ function BooksStatic() {
         )}
       </div>
     </section>
-  )
+  );
 }
 
 export function Books() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return <BooksStatic />
+    return <BooksStatic />;
   }
 
   return (
     <Suspense fallback={<BooksLoading />}>
       <BooksGrid />
     </Suspense>
-  )
+  );
 }

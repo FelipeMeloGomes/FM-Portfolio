@@ -1,20 +1,13 @@
-'use client'
+"use client";
 
-import { cn } from '@/lib/utils'
+import { cn } from "@/lib/utils";
 
 interface SkeletonProps {
-  className?: string
+  className?: string;
 }
 
 export function Skeleton({ className }: SkeletonProps) {
-  return (
-    <div
-      className={cn(
-        'animate-pulse rounded-md bg-muted',
-        className
-      )}
-    />
-  )
+  return <div className={cn("animate-pulse rounded-md bg-muted", className)} />;
 }
 
 export function SkeletonCard() {
@@ -31,7 +24,7 @@ export function SkeletonCard() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
 export function SkeletonBookCard() {
@@ -44,7 +37,7 @@ export function SkeletonBookCard() {
         <Skeleton className="h-5 w-16 rounded-full" />
       </div>
     </div>
-  )
+  );
 }
 
 export function SkeletonCertCard() {
@@ -57,5 +50,5 @@ export function SkeletonCertCard() {
         <Skeleton className="h-3 w-1/4" />
       </div>
     </div>
-  )
+  );
 }

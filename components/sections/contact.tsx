@@ -1,51 +1,55 @@
-'use client'
+"use client";
 
-import { useState, useRef, useEffect } from 'react'
-import Link from 'next/link'
-import { motion, useInView, useReducedMotion } from 'framer-motion'
-import { Github, Linkedin, Mail, ArrowUpRight } from 'lucide-react'
+import { motion, useInView, useReducedMotion } from "framer-motion";
+import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 
 const variants = {
   hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' as const } },
-}
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: "easeOut" as const },
+  },
+};
 
 function ContactContent() {
-  const ref = useRef<HTMLDivElement>(null)
-  const isInView = useInView(ref, { once: true, margin: '-50px', amount: 0.1 })
-  const shouldReduceMotion = useReducedMotion()
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 });
+  const shouldReduceMotion = useReducedMotion();
 
   const finalVariants = shouldReduceMotion
     ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
-    : variants
+    : variants;
 
   const links = [
     {
-      href: 'https://github.com/FelipeMelogomes',
+      href: "https://github.com/FelipeMelogomes",
       icon: Github,
-      label: 'GitHub',
+      label: "GitHub",
       external: true,
     },
     {
-      href: 'https://www.linkedin.com/in/felipemelog/',
+      href: "https://www.linkedin.com/in/felipemelog/",
       icon: Linkedin,
-      label: 'LinkedIn',
+      label: "LinkedIn",
       external: true,
     },
     {
-      href: 'mailto:felipe@example.com',
+      href: "mailto:felipe@example.com",
       icon: Mail,
-      label: 'Email',
+      label: "Email",
       external: false,
     },
-  ]
+  ];
 
   return (
     <section id="contact" className="py-20 bg-muted/30">
       <motion.div
         ref={ref}
         initial="hidden"
-        animate={isInView ? 'visible' : 'hidden'}
+        animate={isInView ? "visible" : "hidden"}
         variants={finalVariants}
         className="container mx-auto max-w-4xl px-4"
       >
@@ -61,18 +65,21 @@ function ContactContent() {
           {links.map((link, index) => (
             <motion.div
               key={link.href}
-              initial={{ opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 20 }}
+              initial={{
+                opacity: shouldReduceMotion ? 1 : 0,
+                y: shouldReduceMotion ? 0 : 20,
+              }}
               animate={{ opacity: 1, y: 0 }}
               transition={{
                 duration: 0.4,
                 delay: shouldReduceMotion ? 0 : 0.1 + index * 0.1,
-                ease: 'easeOut',
+                ease: "easeOut",
               }}
             >
               <Link
                 href={link.href}
-                target={link.external ? '_blank' : undefined}
-                rel={link.external ? 'noopener noreferrer' : undefined}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
                 className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-md hover:bg-muted transition-colors"
               >
                 <link.icon className="w-5 h-5" />
@@ -84,30 +91,30 @@ function ContactContent() {
         </div>
       </motion.div>
     </section>
-  )
+  );
 }
 
 function ContactStatic() {
   const links = [
     {
-      href: 'https://github.com/FelipeMelogomes',
+      href: "https://github.com/FelipeMelogomes",
       icon: Github,
-      label: 'GitHub',
+      label: "GitHub",
       external: true,
     },
     {
-      href: 'https://www.linkedin.com/in/felipemelog/',
+      href: "https://www.linkedin.com/in/felipemelog/",
       icon: Linkedin,
-      label: 'LinkedIn',
+      label: "LinkedIn",
       external: true,
     },
     {
-      href: 'mailto:felipe@example.com',
+      href: "mailto:felipe@example.com",
       icon: Mail,
-      label: 'Email',
+      label: "Email",
       external: false,
     },
-  ]
+  ];
 
   return (
     <section id="contact" className="py-20 bg-muted/30">
@@ -125,8 +132,8 @@ function ContactStatic() {
             <Link
               key={link.href}
               href={link.href}
-              target={link.external ? '_blank' : undefined}
-              rel={link.external ? 'noopener noreferrer' : undefined}
+              target={link.external ? "_blank" : undefined}
+              rel={link.external ? "noopener noreferrer" : undefined}
               className="inline-flex items-center gap-2 px-6 py-3 border border-border rounded-md hover:bg-muted transition-colors"
             >
               <link.icon className="w-5 h-5" />
@@ -137,19 +144,19 @@ function ContactStatic() {
         </div>
       </div>
     </section>
-  )
+  );
 }
 
 export function Contact() {
-  const [mounted, setMounted] = useState(false)
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return <ContactStatic />
+    return <ContactStatic />;
   }
 
-  return <ContactContent />
+  return <ContactContent />;
 }

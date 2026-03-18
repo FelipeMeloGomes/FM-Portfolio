@@ -1,4 +1,4 @@
-import createMDX from '@next/mdx'
+import createMDX from "@next/mdx";
 
 const nextMDX = createMDX({
   extension: /\.mdx?$/,
@@ -6,6 +6,6 @@ const nextMDX = createMDX({
     remarkPlugins: [],
     rehypePlugins: [],
   },
-})
+});
 
-export default nextMDX
+export default nextMDX;
