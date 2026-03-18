@@ -18,6 +18,7 @@ export function ThemeToggle() {
     return (
       <button
         type="button"
+        aria-label="Alternar tema"
         className="p-2 rounded-md hover:bg-muted transition-colors"
       >
         <Sun className="h-5 w-5" />

@@ -24,7 +24,9 @@ export function LanguageToggle() {
       type="button"
       onClick={toggleLocale}
       className="flex items-center gap-1 px-2 py-1.5 text-sm rounded-md hover:bg-muted transition-colors"
-      aria-label={t("switchTo", { language: targetLanguage })}
+      aria-label={
+        locale === "pt" ? "Switch to English" : "Mudar para Português"
+      }
     >
       <motion.span
         key="pt"

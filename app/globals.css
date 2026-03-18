@@ -8,8 +8,8 @@
     --foreground: 222.2 84% 4.9%;
     --muted: 210 40% 96.1%;
     --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 221.2 83.2% 53.3%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 250 70% 25%;
+    --accent-foreground: 0 0% 100%;
     --border: 214.3 31.8% 91.4%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
@@ -20,7 +20,7 @@
     --foreground: 210 40% 98%;
     --muted: 217.2 32.6% 17.5%;
     --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 91.2% 65.9%;
+    --accent: 245 70% 65%;
     --accent-foreground: 222.2 47.4% 11.2%;
     --border: 217.2 32.6% 17.5%;
     --card: 222.2 84% 9.5%;

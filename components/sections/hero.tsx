@@ -102,7 +102,7 @@ function HeroContent() {
             >
               <Link
                 href="#projects"
-                className="inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground rounded-md hover:bg-accent/90 transition-colors"
+                className="inline-flex items-center justify-center px-6 py-3 bg-accent text-white rounded-md hover:bg-accent/90 transition-colors"
               >
                 {t("viewProjects")}
               </Link>
@@ -201,7 +201,7 @@ function HeroStatic() {
             <div className="flex flex-wrap gap-4">
               <Link
                 href="#projects"
-                className="inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground rounded-md hover:bg-accent/90 transition-colors"
+                className="inline-flex items-center justify-center px-6 py-3 bg-accent text-white rounded-md hover:bg-accent/90 transition-colors"
               >
                 {t("viewProjects")}
               </Link>
