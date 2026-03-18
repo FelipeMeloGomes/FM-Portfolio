@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { CommandPalette } from "@/components/command-palette";
@@ -18,6 +18,16 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 const SITE_URL = process.env.SITE_URL || "https://felipemelo.dev";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#000000" },
+  ],
+};
 
 export const metadata: Metadata = {
   title: {
@@ -54,11 +64,6 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "default",
     title: "Felipe Melo",
-  },
-  viewport: {
-    width: "device-width",
-    initialScale: 1,
-    maximumScale: 1,
   },
   openGraph: {
     type: "website",
