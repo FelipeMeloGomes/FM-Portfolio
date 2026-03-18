@@ -1,7 +1,6 @@
 "use client";
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { ExternalLink } from "lucide-react";
 import Image from "next/image";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { SkeletonCertCard } from "@/components/skeleton";
@@ -61,18 +60,7 @@ function CertificationCard({ cert }: { cert: (typeof certifications)[0] }) {
       <div className="p-4">
         <h3 className="font-semibold text-sm mb-1">{cert.title}</h3>
         <p className="text-xs text-muted-foreground mb-2">{cert.institution}</p>
-        <p className="text-xs text-muted-foreground mb-3">{cert.date}</p>
-        {cert.credentialUrl && (
-          <a
-            href={cert.credentialUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 text-xs text-accent hover:underline"
-          >
-            <ExternalLink className="w-3 h-3" />
-            Ver credencial
-          </a>
-        )}
+        <p className="text-xs text-muted-foreground">{cert.date}</p>
       </div>
     </motion.article>
   );
@@ -181,20 +169,7 @@ function CertificationsStatic() {
                 <p className="text-xs text-muted-foreground mb-2">
                   {cert.institution}
                 </p>
-                <p className="text-xs text-muted-foreground mb-3">
-                  {cert.date}
-                </p>
-                {cert.credentialUrl && (
-                  <a
-                    href={cert.credentialUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-xs text-accent hover:underline"
-                  >
-                    <ExternalLink className="w-3 h-3" />
-                    Ver credencial
-                  </a>
-                )}
+                <p className="text-xs text-muted-foreground">{cert.date}</p>
               </div>
             </article>
           ))}
