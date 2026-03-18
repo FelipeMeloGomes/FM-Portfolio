@@ -4,6 +4,7 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Download, Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
 const containerVariants = {
@@ -30,6 +31,7 @@ function HeroContent() {
   const ref = useRef<HTMLDivElement>(null);
   const _isInView = useInView(ref, { once: true });
   const shouldReduceMotion = useReducedMotion();
+  const t = useTranslations("hero");
 
   const itemVariantsReduced = {
     hidden: { opacity: 1, y: 0 },
@@ -74,26 +76,25 @@ function HeroContent() {
               variants={itemVariants}
               className="text-muted-foreground mb-4"
             >
-              Olá 👋, eu sou
+              {t("greeting")} 👋
             </motion.p>
             <motion.h1
               variants={itemVariants}
               className="text-4xl md:text-6xl font-bold mb-4"
             >
-              Felipe Melo
+              {t("name")}
             </motion.h1>
             <motion.h2
               variants={itemVariants}
               className="text-xl md:text-2xl text-accent mb-6"
             >
-              Desenvolvedor Fullstack
+              {t("role")}
             </motion.h2>
             <motion.p
               variants={itemVariants}
               className="text-muted-foreground mb-8 max-w-md"
             >
-              Apaixonado por tecnologia, interfaces modernas e experiências de
-              usuário fluidas. Construindo soluções com React, Next.js e PHP.
+              {t("description")}
             </motion.p>
             <motion.div
               variants={itemVariants}
@@ -103,13 +104,13 @@ function HeroContent() {
                 href="#projects"
                 className="inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground rounded-md hover:bg-accent/90 transition-colors"
               >
-                Ver Projetos
+                {t("viewProjects")}
               </Link>
               <Link
                 href="#contact"
                 className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-md hover:bg-muted transition-colors"
               >
-                Contato
+                {t("contactMe")}
               </Link>
               <a
                 href="/assets/FelipeMeloGomesDesenvolvedorFullStack.docx"
@@ -117,7 +118,7 @@ function HeroContent() {
                 className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-md hover:bg-muted transition-colors"
               >
                 <Download className="w-4 h-4 mr-2" />
-                Baixar Currículo
+                {t("downloadCV")}
               </a>
             </motion.div>
           </motion.div>
@@ -182,32 +183,33 @@ function HeroContent() {
 }
 
 function HeroStatic() {
+  const t = useTranslations("hero");
+
   return (
     <section id="home" className="min-h-[80vh] flex items-center py-20">
       <div className="container mx-auto max-w-4xl px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <p className="text-muted-foreground mb-4">Olá 👋, eu sou</p>
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">Felipe Melo</h1>
+            <p className="text-muted-foreground mb-4">{t("greeting")} 👋</p>
+            <h1 className="text-4xl md:text-6xl font-bold mb-4">{t("name")}</h1>
             <h2 className="text-xl md:text-2xl text-accent mb-6">
-              Desenvolvedor Fullstack
+              {t("role")}
             </h2>
             <p className="text-muted-foreground mb-8 max-w-md">
-              Apaixonado por tecnologia, interfaces modernas e experiências de
-              usuário fluidas. Construindo soluções com React, Next.js e PHP.
+              {t("description")}
             </p>
             <div className="flex flex-wrap gap-4">
               <Link
                 href="#projects"
                 className="inline-flex items-center justify-center px-6 py-3 bg-accent text-accent-foreground rounded-md hover:bg-accent/90 transition-colors"
               >
-                Ver Projetos
+                {t("viewProjects")}
               </Link>
               <Link
                 href="#contact"
                 className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-md hover:bg-muted transition-colors"
               >
-                Contato
+                {t("contactMe")}
               </Link>
               <a
                 href="/assets/FelipeMeloGomesDesenvolvedorFullStack.docx"
@@ -215,7 +217,7 @@ function HeroStatic() {
                 className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-md hover:bg-muted transition-colors"
               >
                 <Download className="w-4 h-4 mr-2" />
-                Baixar Currículo
+                {t("downloadCV")}
               </a>
             </div>
           </div>

@@ -14,6 +14,7 @@ import {
   X,
 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useCallback, useEffect, useState } from "react";
 
 interface CommandItem {
@@ -23,27 +24,34 @@ interface CommandItem {
   href: string;
 }
 
-const commands: CommandItem[] = [
-  { id: "home", label: "Home", icon: Home, href: "#home" },
-  { id: "about", label: "Sobre", icon: User, href: "#about" },
-  { id: "carreira", label: "Carreira", icon: Briefcase, href: "#carreira" },
-  { id: "skills", label: "Skills", icon: Wrench, href: "#skills" },
-  {
-    id: "certifications",
-    label: "Certificações",
-    icon: Award,
-    href: "#certifications",
-  },
-  { id: "projects", label: "Projetos", icon: FolderKanban, href: "#projects" },
-  { id: "books", label: "Livros", icon: BookOpen, href: "#books" },
-  { id: "contact", label: "Contato", icon: Mail, href: "#contact" },
-];
-
 export function CommandPalette() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const shouldReduceMotion = useReducedMotion();
   const router = useRouter();
+  const t = useTranslations("commandPalette");
+  const tNav = useTranslations("navbar");
+
+  const commands: CommandItem[] = [
+    { id: "home", label: tNav("home"), icon: Home, href: "#home" },
+    { id: "about", label: tNav("about"), icon: User, href: "#about" },
+    { id: "career", label: tNav("career"), icon: Briefcase, href: "#carreira" },
+    { id: "skills", label: tNav("skills"), icon: Wrench, href: "#skills" },
+    {
+      id: "certifications",
+      label: tNav("certifications"),
+      icon: Award,
+      href: "#certifications",
+    },
+    {
+      id: "projects",
+      label: tNav("projects"),
+      icon: FolderKanban,
+      href: "#projects",
+    },
+    { id: "books", label: tNav("books"), icon: BookOpen, href: "#books" },
+    { id: "contact", label: tNav("contact"), icon: Mail, href: "#contact" },
+  ];
 
   const filteredCommands = commands.filter((cmd) =>
     cmd.label.toLowerCase().includes(query.toLowerCase())
@@ -102,7 +110,7 @@ export function CommandPalette() {
         className="fixed bottom-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-muted border border-border rounded-lg text-sm text-muted-foreground hover:bg-muted/80 transition-colors"
       >
         <Search className="w-4 h-4" />
-        <span className="hidden sm:inline">Buscar...</span>
+        <span className="hidden sm:inline">{t("placeholder")}</span>
         <kbd className="hidden sm:inline ml-2 px-1.5 py-0.5 text-xs bg-background rounded border border-border">
           ⌘K
         </kbd>
@@ -143,7 +151,7 @@ export function CommandPalette() {
                   type="text"
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
-                  placeholder="Buscar..."
+                  placeholder={t("placeholder")}
                   className="flex-1 bg-transparent outline-none text-sm placeholder:text-muted-foreground"
                 />
                 <button
@@ -158,7 +166,7 @@ export function CommandPalette() {
               <div className="max-h-[300px] overflow-y-auto p-2">
                 {filteredCommands.length === 0 ? (
                   <p className="px-4 py-6 text-center text-sm text-muted-foreground">
-                    Nenhum resultado encontrado
+                    {t("noResults")}
                   </p>
                 ) : (
                   <div className="space-y-1">
@@ -180,9 +188,9 @@ export function CommandPalette() {
               </div>
 
               <div className="px-4 py-2 border-t border-border text-xs text-muted-foreground">
-                Pressione{" "}
-                <kbd className="px-1.5 py-0.5 bg-muted rounded">ESC</kbd> para
-                fechar
+                {t("pressEsc")}{" "}
+                <kbd className="px-1.5 py-0.5 bg-muted rounded">ESC</kbd>{" "}
+                {t("toClose")}
               </div>
             </motion.div>
           </motion.div>

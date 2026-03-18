@@ -2,6 +2,7 @@
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Award, BookOpen, FolderKanban } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import { books } from "@/data/books";
 import { certifications } from "@/data/certifications";
@@ -13,27 +14,6 @@ interface StatItem {
   value: number;
   icon: React.ElementType;
 }
-
-const statsData: StatItem[] = [
-  {
-    id: "projects",
-    label: "Projetos",
-    value: projects.length,
-    icon: FolderKanban,
-  },
-  {
-    id: "books-read",
-    label: "Livros Lidos",
-    value: books.filter((b) => b.status === "lido").length,
-    icon: BookOpen,
-  },
-  {
-    id: "certifications",
-    label: "Certificações",
-    value: certifications.length,
-    icon: Award,
-  },
-];
 
 function AnimatedCounter({
   value,
@@ -75,6 +55,28 @@ function StatsGrid() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const shouldReduceMotion = useReducedMotion();
+  const t = useTranslations("stats");
+
+  const statsData: StatItem[] = [
+    {
+      id: "projects",
+      label: t("projects"),
+      value: projects.length,
+      icon: FolderKanban,
+    },
+    {
+      id: "books-read",
+      label: t("books"),
+      value: books.filter((b) => b.status === "lido").length,
+      icon: BookOpen,
+    },
+    {
+      id: "certifications",
+      label: t("certifications"),
+      value: certifications.length,
+      icon: Award,
+    },
+  ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -123,6 +125,29 @@ function StatsGrid() {
 }
 
 function StatsStatic() {
+  const t = useTranslations("stats");
+
+  const statsData: StatItem[] = [
+    {
+      id: "projects",
+      label: t("projects"),
+      value: projects.length,
+      icon: FolderKanban,
+    },
+    {
+      id: "books-read",
+      label: t("books"),
+      value: books.filter((b) => b.status === "lido").length,
+      icon: BookOpen,
+    },
+    {
+      id: "certifications",
+      label: t("certifications"),
+      value: certifications.length,
+      icon: Award,
+    },
+  ];
+
   return (
     <section className="py-12 border-y border-border">
       <div className="container mx-auto max-w-4xl px-4">

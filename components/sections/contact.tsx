@@ -3,6 +3,7 @@
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
 const variants = {
@@ -18,6 +19,7 @@ function ContactContent() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
+  const t = useTranslations("contact");
 
   const finalVariants = shouldReduceMotion
     ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
@@ -27,19 +29,19 @@ function ContactContent() {
     {
       href: "https://github.com/FelipeMelogomes",
       icon: Github,
-      label: "GitHub",
+      label: t("github"),
       external: true,
     },
     {
       href: "https://www.linkedin.com/in/felipemelog/",
       icon: Linkedin,
-      label: "LinkedIn",
+      label: t("linkedin"),
       external: true,
     },
     {
       href: "mailto:felipe@example.com",
       icon: Mail,
-      label: "Email",
+      label: t("email"),
       external: false,
     },
   ];
@@ -53,12 +55,9 @@ function ContactContent() {
         variants={finalVariants}
         className="container mx-auto max-w-4xl px-4"
       >
-        <h2 className="text-3xl font-bold mb-4 text-center">
-          Vamos <span className="text-accent">Conversar</span>
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
         <p className="text-muted-foreground text-center mb-12 max-w-xl mx-auto">
-          Estou sempre aberto a novas oportunidades e projetos interessantes.
-          Sinta-se livre para entrar em contato!
+          {t("subtitle")}
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">
@@ -95,23 +94,25 @@ function ContactContent() {
 }
 
 function ContactStatic() {
+  const t = useTranslations("contact");
+
   const links = [
     {
       href: "https://github.com/FelipeMelogomes",
       icon: Github,
-      label: "GitHub",
+      label: t("github"),
       external: true,
     },
     {
       href: "https://www.linkedin.com/in/felipemelog/",
       icon: Linkedin,
-      label: "LinkedIn",
+      label: t("linkedin"),
       external: true,
     },
     {
       href: "mailto:felipe@example.com",
       icon: Mail,
-      label: "Email",
+      label: t("email"),
       external: false,
     },
   ];
@@ -119,12 +120,9 @@ function ContactStatic() {
   return (
     <section id="contact" className="py-20 bg-muted/30">
       <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="text-3xl font-bold mb-4 text-center">
-          Vamos <span className="text-accent">Conversar</span>
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
         <p className="text-muted-foreground text-center mb-12 max-w-xl mx-auto">
-          Estou sempre aberto a novas oportunidades e projetos interessantes.
-          Sinta-se livre para entrar em contato!
+          {t("subtitle")}
         </p>
 
         <div className="flex flex-wrap justify-center gap-4">

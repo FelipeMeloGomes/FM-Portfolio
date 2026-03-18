@@ -3,10 +3,12 @@
 import { motion } from "framer-motion";
 import { Home, Search } from "lucide-react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 
 export default function NotFound() {
   const [mounted, setMounted] = useState(false);
+  const t = useTranslations("notFound");
 
   useEffect(() => {
     setMounted(true);
@@ -17,15 +19,13 @@ export default function NotFound() {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-6xl font-bold text-accent mb-4">404</h1>
-          <p className="text-muted-foreground mb-8">
-            Ops! Esta página não foi encontrada.
-          </p>
+          <p className="text-muted-foreground mb-8">{t("title")}</p>
           <Link
             href="/"
             className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-md hover:bg-accent/90 transition-colors"
           >
             <Home className="w-4 h-4" />
-            Voltar para Home
+            {t("backHome")}
           </Link>
         </div>
       </div>
@@ -57,14 +57,11 @@ export default function NotFound() {
         >
           <div className="flex items-center justify-center gap-2 mb-4">
             <Search className="w-5 h-5 text-muted-foreground" />
-            <p className="text-xl text-muted-foreground">
-              Ops! Esta página não foi encontrada.
-            </p>
+            <p className="text-xl text-muted-foreground">{t("title")}</p>
           </div>
 
           <p className="text-muted-foreground mb-8 max-w-md mx-auto">
-            A página que você está procurando pode ter sido removida, teve seu
-            nome alterado ou está temporariamente indisponível.
+            {t("message")}
           </p>
 
           <Link
@@ -72,7 +69,7 @@ export default function NotFound() {
             className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-accent-foreground rounded-md hover:bg-accent/90 transition-colors"
           >
             <Home className="w-4 h-4" />
-            Voltar para Home
+            {t("backHome")}
           </Link>
         </motion.div>
       </motion.div>

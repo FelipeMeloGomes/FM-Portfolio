@@ -2,21 +2,11 @@
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { SkeletonBookCard } from "@/components/skeleton";
-import {
-  type BookStatus,
-  bookStatusColors,
-  bookStatusLabels,
-  books,
-} from "@/data/books";
-
-const filters: { label: string; value: BookStatus | "all" }[] = [
-  { label: "Todos", value: "all" },
-  { label: "Lendo", value: "lendo" },
-  { label: "Lido", value: "lido" },
-  { label: "Quero ler", value: "quero ler" },
-];
+import { type BookStatus, bookStatusColors, books } from "@/data/books";
+import { BookStatusLabel } from "./book-status-label";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -82,7 +72,7 @@ function BookCard({ book }: { book: (typeof books)[0] }) {
             bookStatusColors[book.status]
           }`}
         >
-          {bookStatusLabels[book.status]}
+          <BookStatusLabel status={book.status} />
         </span>
       </div>
     </motion.div>
@@ -90,6 +80,7 @@ function BookCard({ book }: { book: (typeof books)[0] }) {
 }
 
 function BooksGrid() {
+  const t = useTranslations("books");
   const [activeFilter, setActiveFilter] = useState<BookStatus | "all">("all");
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 });
@@ -108,6 +99,13 @@ function BooksGrid() {
     ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
     : containerVariants;
 
+  const statusLabels: Record<string, string> = {
+    all: t("status.all"),
+    lendo: t("status.reading"),
+    lido: t("status.read"),
+    "quero ler": t("status.wantToRead"),
+  };
+
   return (
     <section id="books" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
@@ -118,10 +116,10 @@ function BooksGrid() {
           variants={finalHeaderVariants}
         >
           <h2 className="text-3xl font-bold mb-4 text-center">
-            Livros <span className="text-accent">Lidos</span>
+            {t("title")} <span className="text-accent"></span>
           </h2>
           <p className="text-muted-foreground text-center mb-8">
-            Livros que li, estou lendo ou pretendo ler.
+            {t("subtitle")}
           </p>
         </motion.div>
 
@@ -131,18 +129,18 @@ function BooksGrid() {
           transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
           className="flex flex-wrap justify-center gap-2 mb-10"
         >
-          {filters.map((filter) => (
+          {["all", "lendo", "lido", "quero ler"].map((filterValue) => (
             <button
               type="button"
-              key={filter.value}
-              onClick={() => setActiveFilter(filter.value)}
+              key={filterValue}
+              onClick={() => setActiveFilter(filterValue as BookStatus | "all")}
               className={`px-4 py-2 rounded-full text-sm transition-colors ${
-                activeFilter === filter.value
+                activeFilter === filterValue
                   ? "bg-accent text-accent-foreground"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >
-              {filter.label}
+              {statusLabels[filterValue]}
             </button>
           ))}
         </motion.div>
@@ -160,7 +158,7 @@ function BooksGrid() {
 
         {filteredBooks.length === 0 && (
           <p className="text-center text-muted-foreground py-8">
-            Nenhum livro encontrado com este filtro.
+            {t("noResults")}
           </p>
         )}
       </div>
@@ -169,24 +167,33 @@ function BooksGrid() {
 }
 
 function BooksLoading() {
+  const t = useTranslations("books");
+
+  const statusLabels: Record<string, string> = {
+    all: t("status.all"),
+    lendo: t("status.reading"),
+    lido: t("status.read"),
+    "quero ler": t("status.wantToRead"),
+  };
+
   return (
     <section id="books" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
         <h2 className="text-3xl font-bold mb-4 text-center">
-          Livros <span className="text-accent">Lidos</span>
+          {t("title")} <span className="text-accent"></span>
         </h2>
         <p className="text-muted-foreground text-center mb-8">
-          Livros que li, estou lendo ou pretendo ler.
+          {t("subtitle")}
         </p>
 
         <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {filters.map((filter) => (
+          {["all", "lendo", "lido", "quero ler"].map((filterValue) => (
             <button
               type="button"
-              key={filter.value}
+              key={filterValue}
               className="px-4 py-2 rounded-full text-sm transition-colors bg-muted text-muted-foreground"
             >
-              {filter.label}
+              {statusLabels[filterValue]}
             </button>
           ))}
         </div>
@@ -203,6 +210,7 @@ function BooksLoading() {
 }
 
 function BooksStatic() {
+  const t = useTranslations("books");
   const [activeFilter, setActiveFilter] = useState<BookStatus | "all">("all");
 
   const filteredBooks =
@@ -210,29 +218,36 @@ function BooksStatic() {
       ? books
       : books.filter((book) => book.status === activeFilter);
 
+  const statusLabels: Record<string, string> = {
+    all: t("status.all"),
+    lendo: t("status.reading"),
+    lido: t("status.read"),
+    "quero ler": t("status.wantToRead"),
+  };
+
   return (
     <section id="books" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
         <h2 className="text-3xl font-bold mb-4 text-center">
-          Livros <span className="text-accent">Lidos</span>
+          {t("title")} <span className="text-accent"></span>
         </h2>
         <p className="text-muted-foreground text-center mb-8">
-          Livros que li, estou lendo ou pretendo ler.
+          {t("subtitle")}
         </p>
 
         <div className="flex flex-wrap justify-center gap-2 mb-10">
-          {filters.map((filter) => (
+          {["all", "lendo", "lido", "quero ler"].map((filterValue) => (
             <button
               type="button"
-              key={filter.value}
-              onClick={() => setActiveFilter(filter.value)}
+              key={filterValue}
+              onClick={() => setActiveFilter(filterValue as BookStatus | "all")}
               className={`px-4 py-2 rounded-full text-sm transition-colors ${
-                activeFilter === filter.value
+                activeFilter === filterValue
                   ? "bg-accent text-accent-foreground"
                   : "bg-muted text-muted-foreground hover:bg-muted/80"
               }`}
             >
-              {filter.label}
+              {statusLabels[filterValue]}
             </button>
           ))}
         </div>
@@ -269,7 +284,7 @@ function BooksStatic() {
                     bookStatusColors[book.status]
                   }`}
                 >
-                  {bookStatusLabels[book.status]}
+                  <BookStatusLabel status={book.status} />
                 </span>
               </div>
             </div>
@@ -278,7 +293,7 @@ function BooksStatic() {
 
         {filteredBooks.length === 0 && (
           <p className="text-center text-muted-foreground py-8">
-            Nenhum livro encontrado com este filtro.
+            {t("noResults")}
           </p>
         )}
       </div>

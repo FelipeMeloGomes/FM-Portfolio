@@ -1,9 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import { CommandPalette } from "@/components/command-palette";
-import { ScrollProgress } from "@/components/scroll-progress";
-import { ScrollToTop } from "@/components/scroll-to-top";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import { ThemeProvider } from "@/components/theme-provider";
 import { UmamiAnalytics } from "@/components/umami-analytics";
 
@@ -17,8 +16,6 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-mono",
 });
 
-const SITE_URL = process.env.SITE_URL || "https://felipemelo.dev";
-
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
@@ -30,31 +27,6 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: {
-    default: "Felipe Melo | Desenvolvedor Fullstack",
-    template: "%s | Felipe Melo",
-  },
-  description:
-    "Desenvolvedor Fullstack com formação em Análise e Desenvolvimento de Sistemas. Especializado em React, Next.js, TypeScript, Tailwind CSS, PHP e Laravel.",
-  keywords: [
-    "Desenvolvedor Fullstack",
-    "Frontend",
-    "Backend",
-    "React",
-    "Next.js",
-    "TypeScript",
-    "Tailwind CSS",
-    "PHP",
-    "Laravel",
-    "Portfolio",
-  ],
-  authors: [{ name: "Felipe Melo" }],
-  creator: "Felipe Melo",
-  publisher: "Felipe Melo",
-  metadataBase: new URL(SITE_URL),
-  alternates: {
-    canonical: "/",
-  },
   icons: {
     icon: "/assets/img/logo.webp",
     apple: "/assets/img/logo.webp",
@@ -64,31 +36,6 @@ export const metadata: Metadata = {
     capable: true,
     statusBarStyle: "default",
     title: "Felipe Melo",
-  },
-  openGraph: {
-    type: "website",
-    locale: "pt_BR",
-    url: SITE_URL,
-    siteName: "Felipe Melo",
-    title: "Felipe Melo | Desenvolvedor Fullstack",
-    description:
-      "Desenvolvedor Fullstack especializado em React, Next.js, TypeScript e PHP/Laravel.",
-    images: [
-      {
-        url: "/assets/img/perfil.webp",
-        width: 512,
-        height: 512,
-        alt: "Felipe Melo - Desenvolvedor Fullstack",
-      },
-    ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Felipe Melo | Desenvolvedor Fullstack",
-    description:
-      "Desenvolvedor Fullstack especializado em React, Next.js, TypeScript e PHP/Laravel.",
-    creator: "@felipemelog",
-    images: ["/assets/img/perfil.webp"],
   },
   robots: {
     index: true,
@@ -103,29 +50,10 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return (
-    <html lang="pt-BR" suppressHydrationWarning>
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
-      >
-        <UmamiAnalytics />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <ScrollProgress />
-          <CommandPalette />
-          {children}
-          <ScrollToTop />
-        </ThemeProvider>
-      </body>
-    </html>
-  );
+  return children;
 }

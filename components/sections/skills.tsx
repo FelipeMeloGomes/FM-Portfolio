@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
 const skills = {
@@ -8,12 +9,6 @@ const skills = {
   backend: ["PHP & Laravel", "MySQL & PostgreSQL", "Node.js", "REST APIs"],
   tools: ["Git & GitHub", "Docker", "Linux", "Figma"],
 };
-
-const categories = [
-  { title: "Frontend", skills: skills.frontend },
-  { title: "Backend", skills: skills.backend },
-  { title: "Tools", skills: skills.tools },
-];
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -36,6 +31,13 @@ function SkillsContent() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
+  const t = useTranslations("skills");
+
+  const categories = [
+    { title: t("frontend"), skills: skills.frontend },
+    { title: t("backend"), skills: skills.backend },
+    { title: t("tools"), skills: skills.tools },
+  ];
 
   const finalContainerVariants = shouldReduceMotion
     ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
@@ -54,11 +56,9 @@ function SkillsContent() {
         variants={finalContainerVariants}
         className="container mx-auto max-w-4xl px-4"
       >
-        <h2 className="text-3xl font-bold mb-4 text-center">
-          Minhas <span className="text-accent">Skills</span>
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
         <p className="text-muted-foreground text-center mb-12">
-          Tecnologias e ferramentas que utilizo no dia a dia.
+          {t("subtitle")}
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -88,14 +88,20 @@ function SkillsContent() {
 }
 
 function SkillsStatic() {
+  const t = useTranslations("skills");
+
+  const categories = [
+    { title: t("frontend"), skills: skills.frontend },
+    { title: t("backend"), skills: skills.backend },
+    { title: t("tools"), skills: skills.tools },
+  ];
+
   return (
     <section id="skills" className="py-20 bg-muted/30">
       <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="text-3xl font-bold mb-4 text-center">
-          Minhas <span className="text-accent">Skills</span>
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
         <p className="text-muted-foreground text-center mb-12">
-          Tecnologias e ferramentas que utilizo no dia a dia.
+          {t("subtitle")}
         </p>
 
         <div className="grid md:grid-cols-3 gap-8">

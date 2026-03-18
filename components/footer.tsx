@@ -1,7 +1,10 @@
 import { Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
+import { useTranslations } from "next-intl";
 
 export function Footer() {
+  const t = useTranslations("footer");
+
   return (
     <footer className="py-8 border-t border-border">
       <div className="container mx-auto max-w-4xl px-4">
@@ -10,9 +13,7 @@ export function Footer() {
             <Link href="/" className="font-semibold">
               Felipe <span className="text-accent">Melo</span>
             </Link>
-            <p className="text-sm text-muted-foreground">
-              Desenvolvedor Fullstack
-            </p>
+            <p className="text-sm text-muted-foreground">{t("role")}</p>
           </div>
 
           <div className="flex gap-4">
@@ -45,8 +46,8 @@ export function Footer() {
         </div>
 
         <p className="text-center text-sm text-muted-foreground mt-6">
-          © {new Date().getFullYear()} Felipe Melo. Todos os direitos
-          reservados.
+          © {new Date().getFullYear()} {t("copyright")} ❤️ {t("by")}.{" "}
+          {t("rights")}.
         </p>
       </div>
     </footer>

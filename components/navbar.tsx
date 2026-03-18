@@ -8,30 +8,33 @@ import {
 } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { LanguageToggle } from "@/components/language-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { cn } from "@/lib/utils";
 
-const navItems = [
-  { href: "#home", label: "Home" },
-  { href: "#about", label: "Sobre" },
-  { href: "#carreira", label: "Carreira" },
-  { href: "#skills", label: "Skills" },
-  { href: "#certifications", label: "Certificações" },
-  { href: "#projects", label: "Projetos" },
-  { href: "#books", label: "Livros" },
-  { href: "#contact", label: "Contato" },
-];
-
 export function Navbar() {
   const pathname = usePathname();
+  const t = useTranslations("navbar");
   const [scrolled, setScrolled] = useState(false);
   const { scrollY } = useScroll();
-  const _shouldReduceMotion = useReducedMotion();
+  const shouldReduceMotion = useReducedMotion();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setScrolled(latest > 20);
   });
+
+  const navItems = [
+    { href: "#home", label: t("home") },
+    { href: "#about", label: t("about") },
+    { href: "#carreira", label: t("career") },
+    { href: "#skills", label: t("skills") },
+    { href: "#certifications", label: t("certifications") },
+    { href: "#projects", label: t("projects") },
+    { href: "#books", label: t("books") },
+    { href: "#contact", label: t("contact") },
+  ];
 
   return (
     <motion.header
@@ -71,6 +74,7 @@ export function Navbar() {
               ))}
             </ul>
 
+            <LanguageToggle />
             <ThemeToggle />
           </div>
         </nav>

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useRef, useState } from "react";
 
 interface TooltipProps {
@@ -9,11 +9,7 @@ interface TooltipProps {
   side?: "top" | "bottom" | "left" | "right";
 }
 
-export function Tooltip({
-  content,
-  children,
-  side = "top",
-}: TooltipProps) {
+export function Tooltip({ content, children, side = "top" }: TooltipProps) {
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
@@ -27,9 +23,11 @@ export function Tooltip({
 
   const arrowClasses = {
     top: "top-full left-1/2 -translate-x-1/2 border-t-foreground border-x-transparent border-b-transparent",
-    bottom: "bottom-full left-1/2 -translate-x-1/2 border-b-foreground border-x-transparent border-t-transparent",
+    bottom:
+      "bottom-full left-1/2 -translate-x-1/2 border-b-foreground border-x-transparent border-t-transparent",
     left: "left-full top-1/2 -translate-y-1/2 border-l-foreground border-y-transparent border-r-transparent",
-    right: "right-full top-1/2 -translate-y-1/2 border-r-foreground border-y-transparent border-l-transparent",
+    right:
+      "right-full top-1/2 -translate-y-1/2 border-r-foreground border-y-transparent border-l-transparent",
   };
 
   if (shouldReduceMotion) {
