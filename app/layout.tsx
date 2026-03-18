@@ -5,6 +5,7 @@ import { ThemeProvider } from '@/components/theme-provider'
 import { ScrollToTop } from '@/components/scroll-to-top'
 import { ScrollProgress } from '@/components/scroll-progress'
 import { CommandPalette } from '@/components/command-palette'
+import { UmamiAnalytics } from '@/components/umami-analytics'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -96,6 +97,7 @@ export default function RootLayout({
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased`}
       >
+        <UmamiAnalytics />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
