@@ -7,3 +7,5 @@ build
 .env
 .env.local
 .vercel
+tsconfig.tsbuildinfo
+public/sw.js
