@@ -4,6 +4,7 @@ import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { ScrollToTop } from '@/components/scroll-to-top'
 import { ScrollProgress } from '@/components/scroll-progress'
+import { CommandPalette } from '@/components/command-palette'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -102,6 +103,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ScrollProgress />
+          <CommandPalette />
           {children}
           <ScrollToTop />
         </ThemeProvider>
