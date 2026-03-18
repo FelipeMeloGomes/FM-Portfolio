@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { SkeletonCard } from "@/components/skeleton";
+import { Tooltip } from "@/components/ui/tooltip";
 import { projects } from "@/data/projects";
 
 const containerVariants = {
@@ -68,9 +69,11 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
 
         <div className="flex flex-wrap gap-2 mb-4">
           {project.stack.map((tech) => (
-            <span key={tech} className="text-xs px-2 py-1 bg-muted rounded-md">
-              {tech}
-            </span>
+            <Tooltip key={tech} content={tech}>
+              <span className="text-xs px-2 py-1 bg-muted rounded-md">
+                {tech}
+              </span>
+            </Tooltip>
           ))}
         </div>
 
@@ -206,12 +209,11 @@ function ProjectsStatic() {
 
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.stack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="text-xs px-2 py-1 bg-muted rounded-md"
-                    >
-                      {tech}
-                    </span>
+                    <Tooltip key={tech} content={tech}>
+                      <span className="text-xs px-2 py-1 bg-muted rounded-md">
+                        {tech}
+                      </span>
+                    </Tooltip>
                   ))}
                 </div>
 
