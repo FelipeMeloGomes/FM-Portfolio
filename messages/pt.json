@@ -84,7 +84,8 @@
     "placeholder": "Buscar...",
     "noResults": "Nenhum resultado encontrado",
     "pressEsc": "Pressione",
-    "toClose": "para fechar"
+    "toClose": "para fechar",
+    "open": "Abrir busca rápida"
   },
   "notFound": {
     "title": "Página não encontrada",

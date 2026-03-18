@@ -1,14 +1,18 @@
 "use client";
 
 import { ArrowUp } from "lucide-react";
+import { useTranslations } from "next-intl";
 import ScrollToTop from "react-scroll-to-top";
 
 export function ScrollToTopWrapper() {
+  const t = useTranslations("scrollToTop");
+
   return (
     <ScrollToTop
       smooth
       top={300}
       component={<ArrowUp size={20} />}
+      aria-label={t("label")}
       style={{
         background: "hsl(var(--accent))",
         color: "hsl(var(--accent-foreground))",

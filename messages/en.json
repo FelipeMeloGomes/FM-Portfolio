@@ -84,7 +84,8 @@
     "placeholder": "Search...",
     "noResults": "No results found",
     "pressEsc": "Press",
-    "toClose": "to close"
+    "toClose": "to close",
+    "open": "Open quick search"
   },
   "notFound": {
     "title": "Page not found",
