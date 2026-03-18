@@ -14,6 +14,8 @@ const jetbrainsMono = JetBrains_Mono({
   variable: '--font-mono',
 })
 
+const SITE_URL = process.env.SITE_URL || 'https://felipemelo.dev'
+
 export const metadata: Metadata = {
   title: {
     default: 'Felipe Melo | Desenvolvedor Fullstack',
@@ -35,17 +37,31 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: 'Felipe Melo' }],
   creator: 'Felipe Melo',
+  publisher: 'Felipe Melo',
+  metadataBase: new URL(SITE_URL),
+  alternates: {
+    canonical: '/',
+  },
   icons: {
     icon: '/assets/img/logo.webp',
+    apple: '/assets/img/logo.webp',
   },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
-    url: 'https://felipemelo.dev',
+    url: SITE_URL,
+    siteName: 'Felipe Melo',
     title: 'Felipe Melo | Desenvolvedor Fullstack',
     description:
       'Desenvolvedor Fullstack especializado em React, Next.js, TypeScript e PHP/Laravel.',
-    siteName: 'Felipe Melo',
+    images: [
+      {
+        url: '/assets/img/perfil.webp',
+        width: 512,
+        height: 512,
+        alt: 'Felipe Melo - Desenvolvedor Fullstack',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
@@ -53,6 +69,7 @@ export const metadata: Metadata = {
     description:
       'Desenvolvedor Fullstack especializado em React, Next.js, TypeScript e PHP/Laravel.',
     creator: '@felipemelog',
+    images: ['/assets/img/perfil.webp'],
   },
   robots: {
     index: true,
