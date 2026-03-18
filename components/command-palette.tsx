@@ -107,7 +107,7 @@ export function CommandPalette() {
       <button
         type="button"
         onClick={handleOpen}
-        className="fixed bottom-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-muted border border-border rounded-lg text-sm text-muted-foreground hover:bg-muted/80 transition-colors"
+        className="fixed bottom-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-muted border border-border rounded-lg text-sm text-foreground hover:bg-muted/80 transition-colors"
       >
         <Search className="w-4 h-4" />
         <span className="hidden sm:inline">{t("placeholder")}</span>

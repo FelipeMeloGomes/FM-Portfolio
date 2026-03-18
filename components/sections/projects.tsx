@@ -4,8 +4,8 @@ import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { Suspense, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { SkeletonCard } from "@/components/skeleton";
 import { Tooltip } from "@/components/ui/tooltip";
 import { projects } from "@/data/projects";
@@ -85,6 +85,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={t("demoLabel", { title: project.title })}
               className="inline-flex items-center gap-1 text-sm hover:text-accent transition-colors"
             >
               <ArrowUpRight className="w-4 h-4" />
@@ -96,6 +97,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
               href={project.repoUrl}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={t("codeLabel", { title: project.title })}
               className="inline-flex items-center gap-1 text-sm hover:text-accent transition-colors"
             >
               <Github className="w-4 h-4" />
@@ -131,9 +133,7 @@ function ProjectsGrid() {
           animate={isInView ? "visible" : "hidden"}
           variants={finalHeaderVariants}
         >
-          <h2 className="text-3xl font-bold mb-4 text-center">
-            {t("title")}
-          </h2>
+          <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
           <p className="text-muted-foreground text-center mb-12 max-w-2xl">
             {t("subtitle")}
           </p>
@@ -160,9 +160,7 @@ function ProjectsLoading() {
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="text-3xl font-bold mb-4 text-center">
-          {t("title")}
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
         <p className="text-muted-foreground text-center mb-12 max-w-2xl">
           {t("subtitle")}
         </p>
@@ -183,9 +181,7 @@ function ProjectsStatic() {
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="text-3xl font-bold mb-4 text-center">
-          {t("title")}
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
         <p className="text-muted-foreground text-center mb-12 max-w-2xl">
           {t("subtitle")}
         </p>
@@ -228,6 +224,7 @@ function ProjectsStatic() {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={t("demoLabel", { title: project.title })}
                       className="inline-flex items-center gap-1 text-sm hover:text-accent transition-colors"
                     >
                       <ArrowUpRight className="w-4 h-4" />
@@ -239,6 +236,7 @@ function ProjectsStatic() {
                       href={project.repoUrl}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={t("codeLabel", { title: project.title })}
                       className="inline-flex items-center gap-1 text-sm hover:text-accent transition-colors"
                     >
                       <Github className="w-4 h-4" />

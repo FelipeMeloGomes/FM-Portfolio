@@ -49,7 +49,9 @@
     "title": "Projetos",
     "subtitle": "Projetos selecionados nos quais trabalhei, utilizando tecnologias modernas e boas práticas de desenvolvimento.",
     "demo": "Demo",
-    "code": "Código"
+    "code": "Código",
+    "demoLabel": "Demo do projeto {title}",
+    "codeLabel": "Código do projeto {title}"
   },
   "books": {
     "title": "Livros Lidos",
