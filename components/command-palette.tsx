@@ -8,6 +8,7 @@ import {
   Search,
   Home,
   User,
+  Briefcase,
   FolderKanban,
   Wrench,
   BookOpen,
@@ -26,6 +27,7 @@ interface CommandItem {
 const commands: CommandItem[] = [
   { id: 'home', label: 'Home', icon: Home, href: '#home' },
   { id: 'about', label: 'Sobre', icon: User, href: '#about' },
+  { id: 'carreira', label: 'Carreira', icon: Briefcase, href: '#carreira' },
   { id: 'skills', label: 'Skills', icon: Wrench, href: '#skills' },
   { id: 'certifications', label: 'Certificações', icon: Award, href: '#certifications' },
   { id: 'projects', label: 'Projetos', icon: FolderKanban, href: '#projects' },
