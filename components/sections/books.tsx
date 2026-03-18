@@ -169,13 +169,6 @@ function BooksGrid() {
 }
 
 function BooksLoading() {
-  const [activeFilter, setActiveFilter] = useState<BookStatus | "all">("all");
-
-  const filteredBooks =
-    activeFilter === "all"
-      ? books
-      : books.filter((book) => book.status === activeFilter);
-
   return (
     <section id="books" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
@@ -191,12 +184,7 @@ function BooksLoading() {
             <button
               type="button"
               key={filter.value}
-              onClick={() => setActiveFilter(filter.value)}
-              className={`px-4 py-2 rounded-full text-sm transition-colors ${
-                activeFilter === filter.value
-                  ? "bg-accent text-accent-foreground"
-                  : "bg-muted text-muted-foreground hover:bg-muted/80"
-              }`}
+              className="px-4 py-2 rounded-full text-sm transition-colors bg-muted text-muted-foreground"
             >
               {filter.label}
             </button>
@@ -204,8 +192,9 @@ function BooksLoading() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <SkeletonBookCard key={`skeleton-${i}`} />
+          {Array.from({ length: 8 }).map((_, idx) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: Skeleton loaders are static placeholders
+            <SkeletonBookCard key={`book-skeleton-${idx}`} />
           ))}
         </div>
       </div>

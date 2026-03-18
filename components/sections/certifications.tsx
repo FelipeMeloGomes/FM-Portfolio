@@ -138,8 +138,9 @@ function CertificationsLoading() {
 
       <div className="container mx-auto max-w-5xl px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <SkeletonCertCard key={`skeleton-${i}`} />
+          {Array.from({ length: 6 }).map((_, idx) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: Skeleton loaders are static placeholders
+            <SkeletonCertCard key={`cert-skeleton-${idx}`} />
           ))}
         </div>
       </div>

@@ -3,7 +3,6 @@
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   Award,
-  BookMarked,
   BookOpen,
   Briefcase,
   FolderKanban,
@@ -28,7 +27,6 @@ const commands: CommandItem[] = [
   { id: "home", label: "Home", icon: Home, href: "#home" },
   { id: "about", label: "Sobre", icon: User, href: "#about" },
   { id: "carreira", label: "Carreira", icon: Briefcase, href: "#carreira" },
-  { id: "blog", label: "Blog", icon: BookMarked, href: "/blog" },
   { id: "skills", label: "Skills", icon: Wrench, href: "#skills" },
   {
     id: "certifications",

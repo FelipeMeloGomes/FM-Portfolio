@@ -1,23 +1,23 @@
 "use client";
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
-import { Briefcase, GraduationCap, Star } from "lucide-react";
+import { Briefcase, GraduationCap, Trophy } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import type { TimelineItem } from "@/src/data/timeline";
 
 const typeConfig = {
-  work: {
+  trabalho: {
     icon: Briefcase,
     color: "text-blue-500 dark:text-blue-400",
     bgColor: "bg-blue-500/10 dark:bg-blue-400/10",
   },
-  education: {
+  formacao: {
     icon: GraduationCap,
     color: "text-green-500 dark:text-green-400",
     bgColor: "bg-green-500/10 dark:bg-green-400/10",
   },
-  milestone: {
-    icon: Star,
+  conquista: {
+    icon: Trophy,
     color: "text-yellow-500 dark:text-yellow-400",
     bgColor: "bg-yellow-500/10 dark:bg-yellow-400/10",
   },

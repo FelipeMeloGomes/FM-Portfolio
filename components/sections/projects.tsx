@@ -160,8 +160,9 @@ function ProjectsLoading() {
           Projetos selecionados nos quais trabalhei.
         </p>
         <div className="grid md:grid-cols-2 gap-6">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <SkeletonCard key={`skeleton-${i}`} />
+          {Array.from({ length: 4 }).map((_, idx) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: Skeleton loaders are static placeholders
+            <SkeletonCard key={`project-skeleton-${idx}`} />
           ))}
         </div>
       </div>
