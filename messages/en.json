@@ -91,5 +91,8 @@
   },
   "theme": {
     "toggle": "Toggle theme"
+  },
+  "language": {
+    "switchTo": "Switch to {language}"
   }
 }

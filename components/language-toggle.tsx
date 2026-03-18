@@ -2,12 +2,13 @@
 
 import { motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 export function LanguageToggle() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
+  const t = useTranslations("language");
 
   const toggleLocale = () => {
     const newLocale = locale === "pt" ? "en" : "pt";
@@ -16,13 +17,14 @@ export function LanguageToggle() {
     router.push(segments.join("/"));
   };
 
+  const targetLanguage = locale === "pt" ? "English" : "Português";
+
   return (
     <button
+      type="button"
       onClick={toggleLocale}
       className="flex items-center gap-1 px-2 py-1.5 text-sm rounded-md hover:bg-muted transition-colors"
-      aria-label={
-        locale === "pt" ? "Switch to English" : "Mudar para Português"
-      }
+      aria-label={t("switchTo", { language: targetLanguage })}
     >
       <motion.span
         key="pt"
