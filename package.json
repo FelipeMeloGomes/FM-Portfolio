@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "biome lint --write .",
     "format": "biome format --write .",
-    "check": "biome check --write ."
+    "check": "biome check --write .",
+    "lighthouse": "lighthouse http://localhost:3000/pt --output=html --output-path=./lighthouse-report.html --chrome-flags=\"--headless\"",
+    "lighthouse:en": "lighthouse http://localhost:3000/en --output=html --output-path=./lighthouse-report-en.html --chrome-flags=\"--headless\""
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.9",
