@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { Suspense, useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { books, bookStatusLabels, bookStatusColors, type BookStatus } from '@/data/books'
+import { SkeletonBookCard } from '@/components/skeleton'
 
 const filters: { label: string; value: BookStatus | 'all' }[] = [
   { label: 'Todos', value: 'all' },
@@ -75,7 +76,7 @@ function BookCard({ book }: { book: typeof books[0] }) {
   )
 }
 
-function BooksContent() {
+function BooksGrid() {
   const [activeFilter, setActiveFilter] = useState<BookStatus | 'all'>('all')
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-50px', amount: 0.1 })
@@ -148,6 +149,50 @@ function BooksContent() {
             Nenhum livro encontrado com este filtro.
           </p>
         )}
+      </div>
+    </section>
+  )
+}
+
+function BooksLoading() {
+  const [activeFilter, setActiveFilter] = useState<BookStatus | 'all'>('all')
+
+  const filteredBooks =
+    activeFilter === 'all'
+      ? books
+      : books.filter((book) => book.status === activeFilter)
+
+  return (
+    <section id="books" className="py-20">
+      <div className="container mx-auto max-w-4xl px-4">
+        <h2 className="text-3xl font-bold mb-4 text-center">
+          Livros <span className="text-accent">Lidos</span>
+        </h2>
+        <p className="text-muted-foreground text-center mb-8">
+          Livros que li, estou lendo ou pretendo ler.
+        </p>
+
+        <div className="flex flex-wrap justify-center gap-2 mb-10">
+          {filters.map((filter) => (
+            <button
+              key={filter.value}
+              onClick={() => setActiveFilter(filter.value)}
+              className={`px-4 py-2 rounded-full text-sm transition-colors ${
+                activeFilter === filter.value
+                  ? 'bg-accent text-accent-foreground'
+                  : 'bg-muted text-muted-foreground hover:bg-muted/80'
+              }`}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {filteredBooks.map((_, i) => (
+            <SkeletonBookCard key={i} />
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -243,5 +288,9 @@ export function Books() {
     return <BooksStatic />
   }
 
-  return <BooksContent />
+  return (
+    <Suspense fallback={<BooksLoading />}>
+      <BooksGrid />
+    </Suspense>
+  )
 }

@@ -1,10 +1,11 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { Suspense, useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { ExternalLink } from 'lucide-react'
 import { certifications } from '@/data/certifications'
+import { SkeletonCertCard } from '@/components/skeleton'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -69,7 +70,7 @@ function CertificationCard({ cert }: { cert: typeof certifications[0] }) {
   )
 }
 
-function CertificationsContent() {
+function CertificationsGrid() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-50px', amount: 0.1 })
   const shouldReduceMotion = useReducedMotion()
@@ -111,6 +112,29 @@ function CertificationsContent() {
           ))}
         </div>
       </motion.div>
+    </section>
+  )
+}
+
+function CertificationsLoading() {
+  return (
+    <section id="certifications" className="py-20">
+      <div className="container mx-auto max-w-4xl px-4">
+        <h2 className="text-3xl font-bold mb-4 text-center">
+          Certifi<span className="text-accent">cações</span>
+        </h2>
+        <p className="text-muted-foreground text-center mb-12">
+          Certificações e cursos completados.
+        </p>
+      </div>
+
+      <div className="container mx-auto max-w-5xl px-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <SkeletonCertCard key={i} />
+          ))}
+        </div>
+      </div>
     </section>
   )
 }
@@ -178,5 +202,9 @@ export function Certifications() {
     return <CertificationsStatic />
   }
 
-  return <CertificationsContent />
+  return (
+    <Suspense fallback={<CertificationsLoading />}>
+      <CertificationsGrid />
+    </Suspense>
+  )
 }

@@ -1,11 +1,12 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import { Suspense, useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 import { ArrowUpRight, Github } from 'lucide-react'
 import { projects } from '@/data/projects'
+import { SkeletonCard } from '@/components/skeleton'
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -94,7 +95,7 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
   )
 }
 
-function ProjectsContent() {
+function ProjectsGrid() {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-50px', amount: 0.1 })
   const shouldReduceMotion = useReducedMotion()
@@ -135,6 +136,26 @@ function ProjectsContent() {
             <ProjectCard key={project.id} project={project} />
           ))}
         </motion.div>
+      </div>
+    </section>
+  )
+}
+
+function ProjectsLoading() {
+  return (
+    <section id="projects" className="py-20">
+      <div className="container mx-auto max-w-4xl px-4">
+        <h2 className="text-3xl font-bold mb-4 text-center">
+          Meus <span className="text-accent">Projetos</span>
+        </h2>
+        <p className="text-muted-foreground text-center mb-12 max-w-2xl">
+          Projetos selecionados nos quais trabalhei.
+        </p>
+        <div className="grid md:grid-cols-2 gap-6">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <SkeletonCard key={i} />
+          ))}
+        </div>
       </div>
     </section>
   )
@@ -226,5 +247,9 @@ export function Projects() {
     return <ProjectsStatic />
   }
 
-  return <ProjectsContent />
+  return (
+    <Suspense fallback={<ProjectsLoading />}>
+      <ProjectsGrid />
+    </Suspense>
+  )
 }
