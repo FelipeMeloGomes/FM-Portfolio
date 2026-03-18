@@ -1,0 +1,95 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "Sobre",
+    "career": "Carreira",
+    "skills": "Skills",
+    "certifications": "Certificações",
+    "projects": "Projetos",
+    "books": "Livros",
+    "contact": "Contato"
+  },
+  "hero": {
+    "greeting": "Olá, eu sou",
+    "name": "Felipe Melo",
+    "role": "Desenvolvedor Full-Stack",
+    "description": "Transformando ideias em experiências digitais inovadoras.",
+    "downloadCV": "Download CV",
+    "contactMe": "Entre em contato",
+    "viewProjects": "Ver Projetos"
+  },
+  "about": {
+    "title": "Sobre",
+    "subtitle": "Minha história",
+    "viewSkills": "Ver Skills",
+    "paragraph1": "Sou um desenvolvedor Full-Stack apaixonado por criar soluções web modernas e eficientes. Com formação em Análise e Desenvolvimento de Sistemas pela UNOPAR e mais de 1 ano de experiência profissional.",
+    "paragraph2": "Especializado em tecnologias como React, Next.js, TypeScript, PHP e Laravel. Busco constantemente aprender novas tecnologias e aplicar boas práticas de desenvolvimento.",
+    "paragraph3": "Fora do código, gosto de explorar novas tecnologias, ler livros sobre desenvolvimento pessoal e pratico exercícios físicos."
+  },
+  "stats": {
+    "projects": "Projetos",
+    "books": "Livros",
+    "certifications": "Certificações"
+  },
+  "career": {
+    "title": "Carreira"
+  },
+  "skills": {
+    "title": "Skills",
+    "subtitle": "Tecnologias que domino",
+    "frontend": "Frontend",
+    "backend": "Backend",
+    "tools": "Ferramentas"
+  },
+  "certifications": {
+    "title": "Certificações",
+    "subtitle": "Certificações e cursos completados"
+  },
+  "projects": {
+    "title": "Projetos",
+    "subtitle": "Projetos selecionados nos quais trabalhei, utilizando tecnologias modernas e boas práticas de desenvolvimento.",
+    "demo": "Demo",
+    "code": "Código"
+  },
+  "books": {
+    "title": "Livros Lidos",
+    "subtitle": "Livros que li, estou lendo ou pretendo ler.",
+    "status": {
+      "all": "Todos",
+      "reading": "Lendo",
+      "read": "Lido",
+      "wantToRead": "Quero ler"
+    },
+    "noResults": "Nenhum livro encontrado com este filtro."
+  },
+  "contact": {
+    "title": "Vamos Conversar",
+    "subtitle": "Estou sempre aberto a novas oportunidades e projetos interessantes. Sinta-se livre para entrar em contato!",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "email": "Email"
+  },
+  "footer": {
+    "copyright": "Feito com",
+    "by": "por Felipe Melo",
+    "rights": "Todos os direitos reservados",
+    "role": "Desenvolvedor Fullstack"
+  },
+  "scrollToTop": {
+    "label": "Voltar ao topo"
+  },
+  "commandPalette": {
+    "placeholder": "Buscar...",
+    "noResults": "Nenhum resultado encontrado",
+    "pressEsc": "Pressione",
+    "toClose": "para fechar"
+  },
+  "notFound": {
+    "title": "Página não encontrada",
+    "message": "A página que você está procurando não existe ou foi movida.",
+    "backHome": "Voltar para home"
+  },
+  "theme": {
+    "toggle": "Alternar tema"
+  }
+}
