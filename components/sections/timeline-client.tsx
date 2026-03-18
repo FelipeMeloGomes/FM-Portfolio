@@ -2,6 +2,7 @@
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { Briefcase, GraduationCap, Trophy } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 import type { TimelineItem } from "@/src/data/timeline";
 
@@ -130,6 +131,7 @@ function AnimatedSection({
 
 export function TimelineClient({ items }: TimelineClientProps) {
   const [mounted, setMounted] = useState(false);
+  const t = useTranslations("career");
 
   useEffect(() => {
     setMounted(true);
@@ -141,7 +143,7 @@ export function TimelineClient({ items }: TimelineClientProps) {
         <div className="container mx-auto px-4">
           <div className="max-w-2xl mx-auto">
             <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-              Carreira
+              {t("title")}
             </h2>
             <div className="relative" />
           </div>
@@ -155,7 +157,7 @@ export function TimelineClient({ items }: TimelineClientProps) {
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto">
           <h2 className="text-2xl sm:text-3xl font-bold text-center mb-12">
-            Carreira
+            {t("title")}
           </h2>
 
           <div className="relative">
