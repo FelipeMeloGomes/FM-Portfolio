@@ -77,9 +77,6 @@
     "rights": "All rights reserved",
     "role": "Fullstack Developer"
   },
-  "scrollToTop": {
-    "label": "Back to top"
-  },
   "commandPalette": {
     "placeholder": "Search...",
     "noResults": "No results found",

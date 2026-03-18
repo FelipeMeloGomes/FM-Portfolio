@@ -77,9 +77,6 @@
     "rights": "Todos os direitos reservados",
     "role": "Desenvolvedor Fullstack"
   },
-  "scrollToTop": {
-    "label": "Voltar ao topo"
-  },
   "commandPalette": {
     "placeholder": "Buscar...",
     "noResults": "Nenhum resultado encontrado",
