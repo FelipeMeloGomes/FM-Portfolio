@@ -1,4 +1,12 @@
 import createMDX from '@next/mdx'
+import withPWAInit from 'next-pwa'
+
+const withPWA = withPWAInit({
+  dest: 'public',
+  register: true,
+  skipWaiting: true,
+  disable: process.env.NODE_ENV === 'development',
+})
 
 const withMDX = createMDX({
   extension: /\.mdx?$/,
@@ -21,4 +29,4 @@ const nextConfig = {
   },
 }
 
-export default withMDX(nextConfig)
+export default withPWA(withMDX(nextConfig))

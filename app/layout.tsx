@@ -49,6 +49,17 @@ export const metadata: Metadata = {
     icon: '/assets/img/logo.webp',
     apple: '/assets/img/logo.webp',
   },
+  manifest: '/manifest.json',
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: 'default',
+    title: 'Felipe Melo',
+  },
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 1,
+  },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
