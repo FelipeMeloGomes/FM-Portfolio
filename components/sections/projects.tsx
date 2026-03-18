@@ -5,6 +5,7 @@ import { ArrowUpRight, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Suspense, useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { SkeletonCard } from "@/components/skeleton";
 import { Tooltip } from "@/components/ui/tooltip";
 import { projects } from "@/data/projects";
@@ -37,6 +38,7 @@ const headerVariants = {
 
 function ProjectCard({ project }: { project: (typeof projects)[0] }) {
   const shouldReduceMotion = useReducedMotion();
+  const t = useTranslations("projects");
 
   const cardMotionProps = shouldReduceMotion
     ? {}
@@ -86,7 +88,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
               className="inline-flex items-center gap-1 text-sm hover:text-accent transition-colors"
             >
               <ArrowUpRight className="w-4 h-4" />
-              Demo
+              {t("demo")}
             </Link>
           )}
           {project.repoUrl && (
@@ -97,7 +99,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
               className="inline-flex items-center gap-1 text-sm hover:text-accent transition-colors"
             >
               <Github className="w-4 h-4" />
-              Código
+              {t("code")}
             </Link>
           )}
         </div>
@@ -110,6 +112,7 @@ function ProjectsGrid() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
+  const t = useTranslations("projects");
 
   const finalHeaderVariants = shouldReduceMotion
     ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
@@ -129,11 +132,10 @@ function ProjectsGrid() {
           variants={finalHeaderVariants}
         >
           <h2 className="text-3xl font-bold mb-4 text-center">
-            Meus <span className="text-accent">Projetos</span>
+            {t("title")}
           </h2>
           <p className="text-muted-foreground text-center mb-12 max-w-2xl">
-            Projetos selecionados nos quais trabalhhei, utilizando tecnologias
-            modernas e boas práticas de desenvolvimento.
+            {t("subtitle")}
           </p>
         </motion.div>
 
@@ -153,14 +155,16 @@ function ProjectsGrid() {
 }
 
 function ProjectsLoading() {
+  const t = useTranslations("projects");
+
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
         <h2 className="text-3xl font-bold mb-4 text-center">
-          Meus <span className="text-accent">Projetos</span>
+          {t("title")}
         </h2>
         <p className="text-muted-foreground text-center mb-12 max-w-2xl">
-          Projetos selecionados nos quais trabalhei.
+          {t("subtitle")}
         </p>
         <div className="grid md:grid-cols-2 gap-6">
           {Array.from({ length: 4 }).map((_, idx) => (
@@ -174,15 +178,16 @@ function ProjectsLoading() {
 }
 
 function ProjectsStatic() {
+  const t = useTranslations("projects");
+
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
         <h2 className="text-3xl font-bold mb-4 text-center">
-          Meus <span className="text-accent">Projetos</span>
+          {t("title")}
         </h2>
         <p className="text-muted-foreground text-center mb-12 max-w-2xl">
-          Projetos selecionados nos quais trabalhhei, utilizando tecnologias
-          modernas e boas práticas de desenvolvimento.
+          {t("subtitle")}
         </p>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -226,7 +231,7 @@ function ProjectsStatic() {
                       className="inline-flex items-center gap-1 text-sm hover:text-accent transition-colors"
                     >
                       <ArrowUpRight className="w-4 h-4" />
-                      Demo
+                      {t("demo")}
                     </Link>
                   )}
                   {project.repoUrl && (
@@ -237,7 +242,7 @@ function ProjectsStatic() {
                       className="inline-flex items-center gap-1 text-sm hover:text-accent transition-colors"
                     >
                       <Github className="w-4 h-4" />
-                      Código
+                      {t("code")}
                     </Link>
                   )}
                 </div>

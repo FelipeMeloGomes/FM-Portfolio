@@ -3,6 +3,7 @@
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { Suspense, useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
 import { SkeletonCertCard } from "@/components/skeleton";
 import { certifications } from "@/data/certifications";
 
@@ -70,6 +71,7 @@ function CertificationsGrid() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
+  const t = useTranslations("certifications");
 
   const finalHeaderVariants = shouldReduceMotion
     ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
@@ -89,10 +91,10 @@ function CertificationsGrid() {
         className="container mx-auto max-w-4xl px-4"
       >
         <h2 className="text-3xl font-bold mb-4 text-center">
-          Certifi<span className="text-accent">cações</span>
+          {t("title")}
         </h2>
         <p className="text-muted-foreground text-center mb-12">
-          Certificações e cursos completados.
+          {t("subtitle")}
         </p>
       </motion.div>
 
@@ -113,14 +115,16 @@ function CertificationsGrid() {
 }
 
 function CertificationsLoading() {
+  const t = useTranslations("certifications");
+
   return (
     <section id="certifications" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
         <h2 className="text-3xl font-bold mb-4 text-center">
-          Certifi<span className="text-accent">cações</span>
+          {t("title")}
         </h2>
         <p className="text-muted-foreground text-center mb-12">
-          Certificações e cursos completados.
+          {t("subtitle")}
         </p>
       </div>
 
@@ -137,14 +141,16 @@ function CertificationsLoading() {
 }
 
 function CertificationsStatic() {
+  const t = useTranslations("certifications");
+
   return (
     <section id="certifications" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
         <h2 className="text-3xl font-bold mb-4 text-center">
-          Certifi<span className="text-accent">cações</span>
+          {t("title")}
         </h2>
         <p className="text-muted-foreground text-center mb-12">
-          Certificações e cursos completados.
+          {t("subtitle")}
         </p>
       </div>
 
