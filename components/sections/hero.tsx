@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+import { useConfetti } from "@/hooks/use-confetti";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -32,6 +33,7 @@ function HeroContent() {
   const _isInView = useInView(ref, { once: true });
   const shouldReduceMotion = useReducedMotion();
   const t = useTranslations("hero");
+  const { fireConfetti } = useConfetti();
 
   const itemVariantsReduced = {
     hidden: { opacity: 1, y: 0 },
@@ -115,6 +117,7 @@ function HeroContent() {
               <a
                 href="/assets/FelipeMeloGomesDesenvolvedorFullStack.docx"
                 download="FelipeMeloGomesDesenvolvedorFullStack.docx"
+                onClick={fireConfetti}
                 className="inline-flex items-center justify-center px-6 py-3 border border-border rounded-md hover:bg-muted transition-colors"
               >
                 <Download className="w-4 h-4 mr-2" />
