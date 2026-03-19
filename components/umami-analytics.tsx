@@ -1,17 +1,20 @@
 "use client";
 
-const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
+import Script from "next/script";
 
 export function UmamiAnalytics() {
-  if (!UMAMI_WEBSITE_ID) {
+  const websiteId = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID;
+
+  if (!websiteId) {
     return null;
   }
 
   return (
-    <script
+    <Script
       defer
-      src="https://analytics.umami.is/script.js"
-      data-website-id={UMAMI_WEBSITE_ID}
+      src="https://cloud.umami.is/script.js"
+      data-website-id={websiteId}
+      strategy="afterInteractive"
     />
   );
 }
