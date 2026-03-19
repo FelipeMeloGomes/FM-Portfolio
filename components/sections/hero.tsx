@@ -136,7 +136,7 @@ function HeroContent() {
               <div className="absolute inset-0 bg-accent/20 rounded-full blur-3xl" />
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-border">
                 <Image
-                  src="/assets/img/perfil.webp"
+                  src="/assets/img/perfil.jpg"
                   alt="Felipe Melo - Desenvolvedor Fullstack"
                   fill
                   className="object-cover"
@@ -229,7 +229,7 @@ function HeroStatic() {
               <div className="absolute inset-0 bg-accent/20 rounded-full blur-3xl" />
               <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-border">
                 <Image
-                  src="/assets/img/perfil.webp"
+                  src="/assets/img/perfil.jpg"
                   alt="Felipe Melo - Desenvolvedor Fullstack"
                   fill
                   className="object-cover"

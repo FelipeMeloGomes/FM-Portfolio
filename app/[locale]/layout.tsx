@@ -85,7 +85,7 @@ export async function generateMetadata({
         descriptions[locale as keyof typeof descriptions] || descriptions.pt,
       images: [
         {
-          url: "/assets/img/perfil.webp",
+          url: "/assets/img/perfil.jpg",
           width: 512,
           height: 512,
           alt: "Felipe Melo - Desenvolvedor Fullstack",
@@ -98,7 +98,7 @@ export async function generateMetadata({
       description:
         descriptions[locale as keyof typeof descriptions] || descriptions.pt,
       creator: "@felipemelog",
-      images: ["/assets/img/perfil.webp"],
+      images: ["/assets/img/perfil.jpg"],
     },
   };
 }
