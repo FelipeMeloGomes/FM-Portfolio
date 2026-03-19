@@ -7,6 +7,7 @@ import { CommandPalette } from "@/components/command-palette";
 import { ScrollProgress } from "@/components/scroll-progress";
 import { ScrollToTopWrapper } from "@/components/scroll-to-top";
 import { ThemeProvider } from "@/components/theme-provider";
+import { Cursor } from "@/components/ui/cursor";
 import { UmamiAnalytics } from "@/components/umami-analytics";
 
 const locales = ["pt", "en"];
@@ -129,6 +130,7 @@ export default async function LocaleLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <Cursor />
           <NextIntlClientProvider locale={locale} messages={messages}>
             <ScrollProgress />
             <CommandPalette />
