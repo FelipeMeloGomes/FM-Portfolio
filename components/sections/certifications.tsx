@@ -2,8 +2,8 @@
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { Suspense, useEffect, useRef, useState } from "react";
 import { useTranslations } from "next-intl";
+import { Suspense, useEffect, useRef, useState } from "react";
 import { SkeletonCertCard } from "@/components/skeleton";
 import { certifications } from "@/data/certifications";
 
@@ -90,9 +90,7 @@ function CertificationsGrid() {
         variants={finalHeaderVariants}
         className="container mx-auto max-w-4xl px-4"
       >
-        <h2 className="text-3xl font-bold mb-4 text-center">
-          {t("title")}
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
         <p className="text-muted-foreground text-center mb-12">
           {t("subtitle")}
         </p>
@@ -120,9 +118,7 @@ function CertificationsLoading() {
   return (
     <section id="certifications" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="text-3xl font-bold mb-4 text-center">
-          {t("title")}
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
         <p className="text-muted-foreground text-center mb-12">
           {t("subtitle")}
         </p>
@@ -146,9 +142,7 @@ function CertificationsStatic() {
   return (
     <section id="certifications" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="text-3xl font-bold mb-4 text-center">
-          {t("title")}
-        </h2>
+        <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
         <p className="text-muted-foreground text-center mb-12">
           {t("subtitle")}
         </p>
