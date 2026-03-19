@@ -33,6 +33,7 @@ export function Tooltip({ content, children, side = "top" }: TooltipProps) {
   if (shouldReduceMotion) {
     return (
       <div
+        role="group"
         ref={ref}
         className="relative inline-flex"
         onMouseEnter={() => setIsVisible(true)}
@@ -52,6 +53,7 @@ export function Tooltip({ content, children, side = "top" }: TooltipProps) {
 
   return (
     <div
+      role="group"
       ref={ref}
       className="relative inline-flex"
       onMouseEnter={() => setIsVisible(true)}

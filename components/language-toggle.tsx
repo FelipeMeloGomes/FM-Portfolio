@@ -2,13 +2,12 @@
 
 import { motion } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
 
 export function LanguageToggle() {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
-  const t = useTranslations("language");
 
   const toggleLocale = () => {
     const newLocale = locale === "pt" ? "en" : "pt";
@@ -16,8 +15,6 @@ export function LanguageToggle() {
     segments[1] = newLocale;
     router.push(segments.join("/"));
   };
-
-  const targetLanguage = locale === "pt" ? "English" : "Português";
 
   return (
     <button

@@ -36,6 +36,7 @@
       "**/*.jsx",
       "**/*.json",
       "**/*.mdx"
-    ]
+    ],
+    "experimentalScannerIgnores": ["public/**", ".next/**"]
   }
 }
