@@ -32,8 +32,8 @@ export function Tooltip({ content, children, side = "top" }: TooltipProps) {
 
   if (shouldReduceMotion) {
     return (
+      // biome-ignore lint/a11y/noStaticElementInteractions: tooltip trigger wrapper
       <div
-        role="group"
         ref={ref}
         className="relative inline-flex"
         onMouseEnter={() => setIsVisible(true)}
@@ -52,8 +52,8 @@ export function Tooltip({ content, children, side = "top" }: TooltipProps) {
   }
 
   return (
+    // biome-ignore lint/a11y/noStaticElementInteractions: tooltip trigger wrapper
     <div
-      role="group"
       ref={ref}
       className="relative inline-flex"
       onMouseEnter={() => setIsVisible(true)}

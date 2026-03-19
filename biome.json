@@ -35,8 +35,10 @@
       "**/*.js",
       "**/*.jsx",
       "**/*.json",
-      "**/*.mdx"
-    ],
-    "experimentalScannerIgnores": ["public/**", ".next/**"]
+      "**/*.mdx",
+      "!!**/public",
+      "!!**/.next",
+      "!!**/node_modules"
+    ]
   }
 }
