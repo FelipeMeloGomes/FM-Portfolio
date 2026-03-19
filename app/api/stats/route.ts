@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const startAt = new Date("2026-03-19").getTime();
+    const startAt = new Date("2026-03-19T00:00:00Z").getTime();
     const endAt = Date.now();
 
     const apiUrl = process.env.UMAMI_API_URL;
@@ -10,6 +10,7 @@ export async function GET() {
     const apiKey = process.env.UMAMI_API_KEY;
 
     if (!apiUrl || !siteId || !apiKey) {
+      console.error("Missing Umami environment variables");
       throw new Error("Missing Umami environment variables");
     }
 
@@ -31,8 +32,8 @@ export async function GET() {
 
     const data = await response.json();
     return NextResponse.json({
-      totalVisits: data.pageviews?.value || 0,
-      uniqueVisitors: data.visitors?.value || 0,
+      totalVisits: data.pageviews || 0,
+      uniqueVisitors: data.visitors || 0,
     });
   } catch (error) {
     console.error("Stats error:", error);
