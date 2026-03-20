@@ -11,3 +11,5 @@ tsconfig.tsbuildinfo
 public/sw.js
 lighthouse-report.html
 lighthouse-report-en.html
+/playwright-report/
+/test-results/

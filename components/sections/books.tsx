@@ -46,6 +46,7 @@ function BookCard({ book }: { book: (typeof books)[0] }) {
 
   return (
     <motion.div
+      data-testid="book-card"
       variants={cardVariants}
       {...cardMotionProps}
       className="group relative bg-card rounded-lg overflow-hidden border border-border hover:border-accent/50 transition-colors"
@@ -132,6 +133,7 @@ function BooksGrid() {
           {["all", "lendo", "lido", "quero ler"].map((filterValue) => (
             <button
               type="button"
+              data-testid="book-filter"
               key={filterValue}
               onClick={() => setActiveFilter(filterValue as BookStatus | "all")}
               className={`px-4 py-2 rounded-full text-sm transition-colors ${
@@ -239,6 +241,7 @@ function BooksStatic() {
           {["all", "lendo", "lido", "quero ler"].map((filterValue) => (
             <button
               type="button"
+              data-testid="book-filter"
               key={filterValue}
               onClick={() => setActiveFilter(filterValue as BookStatus | "all")}
               className={`px-4 py-2 rounded-full text-sm transition-colors ${
@@ -256,6 +259,7 @@ function BooksStatic() {
           {filteredBooks.map((book) => (
             <div
               key={book.id}
+              data-testid="book-card"
               className="group relative bg-card rounded-lg overflow-hidden border border-border hover:border-accent/50 transition-colors"
             >
               <div className="aspect-[2/3] relative bg-muted">

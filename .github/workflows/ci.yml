@@ -27,10 +27,34 @@ jobs:
       - run: pnpm install --frozen-lockfile --prefer-offline
       - run: pnpm run check
 
+  test:
+    name: Run E2E Tests
+    runs-on: ubuntu-latest
+    needs: lint
+    env:
+      CI: true
+      NEXT_TELEMETRY_DISABLED: 1
+      UMAMI_SITE_ID: ${{ secrets.UMAMI_SITE_ID }}
+      UMAMI_API_KEY: ${{ secrets.UMAMI_API_KEY }}
+      UMAMI_API_URL: ${{ secrets.UMAMI_API_URL }}
+      NEXT_PUBLIC_EMAILJS_SERVICE_ID: ${{ secrets.NEXT_PUBLIC_EMAILJS_SERVICE_ID }}
+      NEXT_PUBLIC_EMAILJS_TEMPLATE_ID: ${{ secrets.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID }}
+      NEXT_PUBLIC_EMAILJS_PUBLIC_KEY: ${{ secrets.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile --prefer-offline
+      - run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm run test:e2e
+
   build:
     name: Build Application
     runs-on: ubuntu-latest
-    needs: lint
+    needs: test
     env:
       CI: true
       NEXT_TELEMETRY_DISABLED: 1

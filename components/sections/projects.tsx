@@ -49,6 +49,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
 
   return (
     <motion.article
+      data-testid="project-card"
       variants={cardVariants}
       {...cardMotionProps}
       className="group border border-border rounded-lg overflow-hidden hover:border-accent/50 transition-colors"
@@ -190,6 +191,7 @@ function ProjectsStatic() {
           {projects.map((project) => (
             <article
               key={project.id}
+              data-testid="project-card"
               className="group border border-border rounded-lg overflow-hidden hover:border-accent/50 transition-colors"
             >
               <div className="aspect-video relative bg-muted">
