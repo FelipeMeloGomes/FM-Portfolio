@@ -2,8 +2,6 @@ export type BookStatus = "lido" | "lendo" | "quero ler";
 
 export interface Book {
   id: string;
-  title: string;
-  author: string;
   cover: string;
   status: BookStatus;
   year?: number;
@@ -11,42 +9,32 @@ export interface Book {
 
 export const books: Book[] = [
   {
-    id: "1",
-    title: "Entendendo Algoritmos",
-    author: "Aditya Bhargava",
+    id: "entendendoAlgoritmos",
     cover: "https://covers.openlibrary.org/b/isbn/9788575225639-L.jpg",
     status: "lido",
     year: 2016,
   },
   {
-    id: "2",
-    title: "Introdução à Linguagem SQL",
-    author: "Thomas Nield",
+    id: "introducaoSql",
     cover:
       "https://m.media-amazon.com/images/I/711siL1zU1L._AC_UF1000,1000_QL80_.jpg",
     status: "lido",
     year: 2016,
   },
   {
-    id: "3",
-    title: "Estruturas de Dados e Algoritmos com JavaScript",
-    author: "Loiane Groner",
+    id: "estruturaDadosJs",
     cover: "https://m.media-amazon.com/images/I/71KGa1y8eaL.jpg",
     status: "lido",
     year: 2019,
   },
   {
-    id: "4",
-    title: "Arquitetura Limpa",
-    author: "Robert C. Martin",
+    id: "arquiteturaLimpa",
     cover: "https://m.media-amazon.com/images/I/815d9tE7jSL.jpg",
     status: "quero ler",
     year: 2018,
   },
   {
-    id: "5",
-    title: "Código Limpo",
-    author: "Robert C. Martin",
+    id: "codigoLimpo",
     cover:
       "https://m.media-amazon.com/images/I/71JpZHEGvWL._UF1000,1000_QL80_.jpg",
     status: "quero ler",

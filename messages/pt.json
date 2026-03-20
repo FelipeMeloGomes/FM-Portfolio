@@ -64,7 +64,29 @@
       "read": "Lido",
       "wantToRead": "Quero ler"
     },
-    "noResults": "Nenhum livro encontrado com este filtro."
+    "noResults": "Nenhum livro encontrado com este filtro.",
+    "data": {
+      "entendendoAlgoritmos": {
+        "title": "Entendendo Algoritmos",
+        "author": "Aditya Bhargava"
+      },
+      "introducaoSql": {
+        "title": "Introdução à Linguagem SQL",
+        "author": "Thomas Nield"
+      },
+      "estruturaDadosJs": {
+        "title": "Estruturas de Dados e Algoritmos com JavaScript",
+        "author": "Loiane Groner"
+      },
+      "arquiteturaLimpa": {
+        "title": "Arquitetura Limpa",
+        "author": "Robert C. Martin"
+      },
+      "codigoLimpo": {
+        "title": "Código Limpo",
+        "author": "Robert C. Martin"
+      }
+    }
   },
   "contact": {
     "title": "Vamos Conversar",

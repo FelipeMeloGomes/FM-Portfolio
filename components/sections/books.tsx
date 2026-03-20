@@ -35,6 +35,7 @@ const headerVariants = {
 };
 
 function BookCard({ book }: { book: (typeof books)[0] }) {
+  const t = useTranslations("books");
   const shouldReduceMotion = useReducedMotion();
 
   const cardMotionProps = shouldReduceMotion
@@ -43,6 +44,11 @@ function BookCard({ book }: { book: (typeof books)[0] }) {
         whileHover: { scale: 1.02 },
         transition: { duration: 0.2, ease: "easeOut" as const },
       };
+
+  const bookData = t.raw(`data.${book.id}`) as {
+    title: string;
+    author: string;
+  };
 
   return (
     <m.div
@@ -54,7 +60,7 @@ function BookCard({ book }: { book: (typeof books)[0] }) {
       <div className="aspect-[2/3] relative bg-muted">
         <Image
           src={book.cover}
-          alt={book.title}
+          alt={bookData.title}
           fill
           className="object-cover"
           sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
@@ -66,8 +72,10 @@ function BookCard({ book }: { book: (typeof books)[0] }) {
       </div>
 
       <div className="p-3">
-        <h3 className="font-medium text-sm line-clamp-2 mb-1">{book.title}</h3>
-        <p className="text-xs text-muted-foreground mb-2">{book.author}</p>
+        <h3 className="font-medium text-sm line-clamp-2 mb-1">
+          {bookData.title}
+        </h3>
+        <p className="text-xs text-muted-foreground mb-2">{bookData.author}</p>
         <span
           className={`inline-block text-xs px-2 py-0.5 rounded-full ${
             bookStatusColors[book.status]
@@ -256,43 +264,49 @@ function BooksStatic() {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-          {filteredBooks.map((book) => (
-            <div
-              key={book.id}
-              data-testid="book-card"
-              className="group relative bg-card rounded-lg overflow-hidden border border-border hover:border-accent/50 transition-colors"
-            >
-              <div className="aspect-[2/3] relative bg-muted">
-                <Image
-                  src={book.cover}
-                  alt={book.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.style.display = "none";
-                  }}
-                />
-              </div>
+          {filteredBooks.map((book) => {
+            const bookData = t.raw(`data.${book.id}`) as {
+              title: string;
+              author: string;
+            };
+            return (
+              <div
+                key={book.id}
+                data-testid="book-card"
+                className="group relative bg-card rounded-lg overflow-hidden border border-border hover:border-accent/50 transition-colors"
+              >
+                <div className="aspect-[2/3] relative bg-muted">
+                  <Image
+                    src={book.cover}
+                    alt={bookData.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.style.display = "none";
+                    }}
+                  />
+                </div>
 
-              <div className="p-3">
-                <h3 className="font-medium text-sm line-clamp-2 mb-1">
-                  {book.title}
-                </h3>
-                <p className="text-xs text-muted-foreground mb-2">
-                  {book.author}
-                </p>
-                <span
-                  className={`inline-block text-xs px-2 py-0.5 rounded-full ${
-                    bookStatusColors[book.status]
-                  }`}
-                >
-                  <BookStatusLabel status={book.status} />
-                </span>
+                <div className="p-3">
+                  <h3 className="font-medium text-sm line-clamp-2 mb-1">
+                    {bookData.title}
+                  </h3>
+                  <p className="text-xs text-muted-foreground mb-2">
+                    {bookData.author}
+                  </p>
+                  <span
+                    className={`inline-block text-xs px-2 py-0.5 rounded-full ${
+                      bookStatusColors[book.status]
+                    }`}
+                  >
+                    <BookStatusLabel status={book.status} />
+                  </span>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
 
         {filteredBooks.length === 0 && (

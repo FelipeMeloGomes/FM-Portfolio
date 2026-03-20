@@ -64,7 +64,29 @@
       "read": "Read",
       "wantToRead": "Want to Read"
     },
-    "noResults": "No books found with this filter."
+    "noResults": "No books found with this filter.",
+    "data": {
+      "entendendoAlgoritmos": {
+        "title": "Grokking Algorithms",
+        "author": "Aditya Bhargava"
+      },
+      "introducaoSql": {
+        "title": "Getting Started with SQL",
+        "author": "Thomas Nield"
+      },
+      "estruturaDadosJs": {
+        "title": "Learning JavaScript Data Structures and Algorithms",
+        "author": "Loiane Groner"
+      },
+      "arquiteturaLimpa": {
+        "title": "Clean Architecture",
+        "author": "Robert C. Martin"
+      },
+      "codigoLimpo": {
+        "title": "Clean Code",
+        "author": "Robert C. Martin"
+      }
+    }
   },
   "contact": {
     "title": "Let's Talk",
