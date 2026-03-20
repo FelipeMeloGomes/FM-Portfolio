@@ -2,7 +2,7 @@
 
 import { m, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { SkeletonCertCard } from "@/components/skeleton";
 import { certifications } from "@/data/certifications";
@@ -35,6 +35,7 @@ const headerVariants = {
 
 function CertificationCard({ cert }: { cert: (typeof certifications)[0] }) {
   const shouldReduceMotion = useReducedMotion();
+  const locale = useLocale();
 
   const cardMotionProps = shouldReduceMotion
     ? {}
@@ -52,14 +53,16 @@ function CertificationCard({ cert }: { cert: (typeof certifications)[0] }) {
       <div className="aspect-video relative bg-muted">
         <Image
           src={cert.image}
-          alt={cert.title}
+          alt={cert.title[locale as "pt" | "en"]}
           fill
           className="object-cover cursor-pointer"
           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
       </div>
       <div className="p-4">
-        <h3 className="font-semibold text-sm mb-1">{cert.title}</h3>
+        <h3 className="font-semibold text-sm mb-1">
+          {cert.title[locale as "pt" | "en"]}
+        </h3>
         <p className="text-xs text-muted-foreground mb-2">{cert.institution}</p>
         <p className="text-xs text-muted-foreground">{cert.date}</p>
       </div>
@@ -138,6 +141,7 @@ function CertificationsLoading() {
 
 function CertificationsStatic() {
   const t = useTranslations("certifications");
+  const locale = useLocale();
 
   return (
     <section id="certifications" className="py-20">
@@ -158,14 +162,16 @@ function CertificationsStatic() {
               <div className="aspect-video relative bg-muted">
                 <Image
                   src={cert.image}
-                  alt={cert.title}
+                  alt={cert.title[locale as "pt" | "en"]}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
               </div>
               <div className="p-4">
-                <h3 className="font-semibold text-sm mb-1">{cert.title}</h3>
+                <h3 className="font-semibold text-sm mb-1">
+                  {cert.title[locale as "pt" | "en"]}
+                </h3>
                 <p className="text-xs text-muted-foreground mb-2">
                   {cert.institution}
                 </p>

@@ -1,6 +1,9 @@
 export interface Certification {
   id: string;
-  title: string;
+  title: {
+    pt: string;
+    en: string;
+  };
   institution: string;
   date: string;
   image: string;
@@ -9,56 +12,80 @@ export interface Certification {
 export const certifications: Certification[] = [
   {
     id: "1",
-    title: "Desenvolvimento Front-end",
+    title: {
+      pt: "Desenvolvimento Front-end",
+      en: "Front-end Development",
+    },
     institution: "FreeCodeCamp",
     date: "2023",
     image: "/assets/certifications/FM-FrontEndDevelopment.webp",
   },
   {
     id: "2",
-    title: "JavaScript Developer",
+    title: {
+      pt: "JavaScript Developer",
+      en: "JavaScript Developer",
+    },
     institution: "Dio",
     date: "2024",
     image: "/assets/certifications/FM-JavaScriptDeveloper.webp",
   },
   {
     id: "3",
-    title: "React Developer",
+    title: {
+      pt: "React Developer",
+      en: "React Developer",
+    },
     institution: "Dio",
     date: "2024",
     image: "/assets/certifications/FM-ReactDeveloper.webp",
   },
   {
     id: "4",
-    title: "TypeScript",
+    title: {
+      pt: "TypeScript",
+      en: "TypeScript",
+    },
     institution: "Dio",
     date: "2024",
     image: "/assets/certifications/FM-TypeScript.webp",
   },
   {
     id: "5",
-    title: "Git e GitHub",
+    title: {
+      pt: "Git e GitHub",
+      en: "Git and GitHub",
+    },
     institution: "Udemy",
     date: "2024",
     image: "/assets/certifications/FM-GitGitHub.webp",
   },
   {
     id: "6",
-    title: "PHP",
+    title: {
+      pt: "PHP",
+      en: "PHP",
+    },
     institution: "Udemy",
     date: "2026",
     image: "/assets/certifications/FM-PHP.webp",
   },
   {
     id: "7",
-    title: "Laravel",
+    title: {
+      pt: "Laravel",
+      en: "Laravel",
+    },
     institution: "Udemy",
     date: "2026",
     image: "/assets/certifications/FM-LARAVEL.webp",
   },
   {
     id: "8",
-    title: "SQL",
+    title: {
+      pt: "SQL",
+      en: "SQL",
+    },
     institution: "Dio",
     date: "2024",
     image: "/assets/certifications/FM-SQL.webp",
