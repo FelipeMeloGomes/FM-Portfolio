@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import {
   Award,
   BookOpen,
@@ -24,10 +24,9 @@ interface CommandItem {
   href: string;
 }
 
-export function CommandPalette() {
+function CommandPaletteContent() {
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const shouldReduceMotion = useReducedMotion();
   const router = useRouter();
   const t = useTranslations("commandPalette");
   const tNav = useTranslations("navbar");
@@ -136,13 +135,9 @@ export function CommandPalette() {
             />
 
             <motion.div
-              initial={
-                shouldReduceMotion ? {} : { opacity: 0, scale: 0.95, y: -20 }
-              }
+              initial={{ opacity: 0, scale: 0.95, y: -20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={
-                shouldReduceMotion ? {} : { opacity: 0, scale: 0.95, y: -20 }
-              }
+              exit={{ opacity: 0, scale: 0.95, y: -20 }}
               transition={{ duration: 0.2, ease: "easeOut" }}
               className="relative w-full max-w-md mx-4 bg-background border border-border rounded-xl shadow-2xl overflow-hidden"
             >
@@ -199,4 +194,33 @@ export function CommandPalette() {
       </AnimatePresence>
     </>
   );
+}
+
+function CommandPaletteStatic() {
+  return (
+    <button
+      type="button"
+      className="fixed bottom-6 left-6 z-50 flex items-center gap-2 px-4 py-2 bg-muted border border-border rounded-lg text-sm text-foreground"
+    >
+      <Search className="w-4 h-4" />
+      <span className="hidden sm:inline">Search...</span>
+      <kbd className="hidden sm:inline ml-2 px-1.5 py-0.5 text-xs bg-background rounded border border-border">
+        ⌘K
+      </kbd>
+    </button>
+  );
+}
+
+export function CommandPalette() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return <CommandPaletteStatic />;
+  }
+
+  return <CommandPaletteContent />;
 }

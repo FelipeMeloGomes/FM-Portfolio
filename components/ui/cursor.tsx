@@ -4,6 +4,7 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export function Cursor() {
+  const [mounted, setMounted] = useState(false);
   const [visible, setVisible] = useState(false);
   const [hovering, setHovering] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
@@ -18,6 +19,8 @@ export function Cursor() {
   const circleY = useSpring(mouseY, { stiffness: 150, damping: 20 });
 
   useEffect(() => {
+    setMounted(true);
+
     const isTouchDevice = window.matchMedia("(pointer: coarse)").matches;
     setIsTouch(isTouchDevice);
     if (isTouchDevice) return;
@@ -52,7 +55,7 @@ export function Cursor() {
     };
   }, [mouseX, mouseY]);
 
-  if (isTouch) return null;
+  if (!mounted || isTouch) return null;
 
   return (
     <>
