@@ -1,6 +1,5 @@
 import { domAnimation, LazyMotion } from "framer-motion";
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -13,16 +12,6 @@ import { Cursor } from "@/components/ui/cursor";
 import { UmamiAnalytics } from "@/components/umami-analytics";
 
 const locales = ["pt", "en"];
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-});
 
 const SITE_URL = process.env.SITE_URL || "https://felipemelo.dev";
 
@@ -125,10 +114,7 @@ export default async function LocaleLayout({
       <head>
         <JsonLd locale={locale} />
       </head>
-      <body
-        className={`${inter.variable} ${jetbrainsMono.variable} antialiased font-sans`}
-        suppressHydrationWarning
-      >
+      <body className="antialiased font-sans" suppressHydrationWarning>
         <UmamiAnalytics />
         <ThemeProvider
           attribute="class"
