@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import { Award, BookOpen, Eye, FolderKanban, Users } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
@@ -104,7 +104,7 @@ function StatsGrid() {
 
   return (
     <section className="py-12 border-y border-border">
-      <motion.div
+      <m.div
         ref={ref}
         initial="hidden"
         animate={isInView || shouldReduceMotion ? "visible" : "hidden"}
@@ -113,7 +113,7 @@ function StatsGrid() {
       >
         <div className="grid grid-cols-3 md:grid-cols-5 gap-8">
           {statsData.map((stat) => (
-            <motion.div
+            <m.div
               key={stat.id}
               variants={itemVariants}
               className="flex flex-col items-center text-center"
@@ -123,10 +123,10 @@ function StatsGrid() {
                 <AnimatedCounter value={stat.value} isInView={isInView} />
               </div>
               <p className="text-sm text-muted-foreground">{stat.label}</p>
-            </motion.div>
+            </m.div>
           ))}
 
-          <motion.div
+          <m.div
             variants={itemVariants}
             className="flex flex-col items-center text-center"
           >
@@ -142,9 +142,9 @@ function StatsGrid() {
               )}
             </div>
             <p className="text-sm text-muted-foreground">{t("visits")}</p>
-          </motion.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             variants={itemVariants}
             className="flex flex-col items-center text-center"
           >
@@ -160,9 +160,9 @@ function StatsGrid() {
               )}
             </div>
             <p className="text-sm text-muted-foreground">{t("visitors")}</p>
-          </motion.div>
+          </m.div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

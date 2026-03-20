@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { m, useMotionValue, useSpring } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export function Cursor() {
@@ -59,7 +59,7 @@ export function Cursor() {
 
   return (
     <>
-      <motion.div
+      <m.div
         style={{
           x: dotX,
           y: dotY,
@@ -71,7 +71,7 @@ export function Cursor() {
         transition={{ duration: 0.15 }}
         className="pointer-events-none fixed left-0 top-0 z-[99999] h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent"
       />
-      <motion.div
+      <m.div
         style={{
           x: circleX,
           y: circleY,

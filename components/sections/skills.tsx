@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
 
@@ -49,7 +49,7 @@ function SkillsContent() {
 
   return (
     <section id="skills" className="py-20 bg-muted/30">
-      <motion.div
+      <m.div
         ref={ref}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -63,7 +63,7 @@ function SkillsContent() {
 
         <div className="grid md:grid-cols-3 gap-8">
           {categories.map((category) => (
-            <motion.div
+            <m.div
               key={category.title}
               variants={finalCardVariants}
               className="bg-background p-6 rounded-lg border border-border"
@@ -79,10 +79,10 @@ function SkillsContent() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </m.div>
           ))}
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

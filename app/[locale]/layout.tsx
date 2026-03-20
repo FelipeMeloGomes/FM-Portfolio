@@ -1,3 +1,4 @@
+import { domAnimation, LazyMotion } from "framer-motion";
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import { notFound } from "next/navigation";
@@ -135,13 +136,15 @@ export default async function LocaleLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <Cursor />
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            <ScrollProgress />
-            <CommandPalette />
-            {children}
-          </NextIntlClientProvider>
-          <ScrollToTopWrapper />
+          <LazyMotion features={domAnimation} strict>
+            <Cursor />
+            <NextIntlClientProvider locale={locale} messages={messages}>
+              <ScrollProgress />
+              <CommandPalette />
+              {children}
+            </NextIntlClientProvider>
+            <ScrollToTopWrapper />
+          </LazyMotion>
         </ThemeProvider>
       </body>
     </html>

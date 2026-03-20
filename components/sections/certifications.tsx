@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Suspense, useEffect, useRef, useState } from "react";
@@ -44,7 +44,7 @@ function CertificationCard({ cert }: { cert: (typeof certifications)[0] }) {
       };
 
   return (
-    <motion.article
+    <m.article
       variants={cardVariants}
       {...cardMotionProps}
       className="group border border-border rounded-lg overflow-hidden hover:border-accent/50 transition-colors"
@@ -63,7 +63,7 @@ function CertificationCard({ cert }: { cert: (typeof certifications)[0] }) {
         <p className="text-xs text-muted-foreground mb-2">{cert.institution}</p>
         <p className="text-xs text-muted-foreground">{cert.date}</p>
       </div>
-    </motion.article>
+    </m.article>
   );
 }
 
@@ -83,7 +83,7 @@ function CertificationsGrid() {
 
   return (
     <section id="certifications" className="py-20">
-      <motion.div
+      <m.div
         ref={ref}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -94,9 +94,9 @@ function CertificationsGrid() {
         <p className="text-muted-foreground text-center mb-12">
           {t("subtitle")}
         </p>
-      </motion.div>
+      </m.div>
 
-      <motion.div
+      <m.div
         variants={finalContainerVariants}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -107,7 +107,7 @@ function CertificationsGrid() {
             <CertificationCard key={cert.id} cert={cert} />
           ))}
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

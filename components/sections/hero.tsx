@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import { Download, Github, Linkedin, Mail } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -66,7 +66,7 @@ function HeroContent() {
     <section id="home" className="min-h-[80vh] flex items-center py-20">
       <div className="container mx-auto max-w-4xl px-4">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <motion.div
+          <m.div
             ref={ref}
             variants={
               shouldReduceMotion ? itemVariantsReduced : containerVariants
@@ -74,34 +74,28 @@ function HeroContent() {
             initial="hidden"
             animate="visible"
           >
-            <motion.p
-              variants={itemVariants}
-              className="text-muted-foreground mb-4"
-            >
+            <m.p variants={itemVariants} className="text-muted-foreground mb-4">
               {t("greeting")} 👋
-            </motion.p>
-            <motion.h1
+            </m.p>
+            <m.h1
               variants={itemVariants}
               className="text-4xl md:text-6xl font-bold mb-4"
             >
               {t("name")}
-            </motion.h1>
-            <motion.h2
+            </m.h1>
+            <m.h2
               variants={itemVariants}
               className="text-xl md:text-2xl text-accent mb-6"
             >
               {t("role")}
-            </motion.h2>
-            <motion.p
+            </m.h2>
+            <m.p
               variants={itemVariants}
               className="text-muted-foreground mb-8 max-w-md"
             >
               {t("description")}
-            </motion.p>
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap gap-4"
-            >
+            </m.p>
+            <m.div variants={itemVariants} className="flex flex-wrap gap-4">
               <Link
                 href="#projects"
                 className="inline-flex items-center justify-center px-6 py-3 bg-accent text-white rounded-md hover:bg-accent/90 transition-colors"
@@ -123,10 +117,10 @@ function HeroContent() {
                 <Download className="w-4 h-4 mr-2" />
                 {t("downloadCV")}
               </a>
-            </motion.div>
-          </motion.div>
+            </m.div>
+          </m.div>
 
-          <motion.div
+          <m.div
             variants={avatarVariants}
             initial="hidden"
             animate="visible"
@@ -145,10 +139,10 @@ function HeroContent() {
                 />
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </div>
 
-        <motion.div
+        <m.div
           variants={socialVariants}
           initial="hidden"
           animate="visible"
@@ -179,7 +173,7 @@ function HeroContent() {
           >
             <Mail className="w-6 h-6" />
           </Link>
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

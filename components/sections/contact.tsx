@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import dynamic from "next/dynamic";
 import Link from "next/link";
@@ -59,7 +59,7 @@ function ContactContent() {
 
   return (
     <section id="contact" className="py-20 bg-muted/30">
-      <motion.div
+      <m.div
         ref={ref}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -75,7 +75,7 @@ function ContactContent() {
 
         <div className="flex flex-wrap justify-center gap-4 mt-8">
           {links.map((link, index) => (
-            <motion.div
+            <m.div
               key={link.href}
               initial={{
                 opacity: shouldReduceMotion ? 1 : 0,
@@ -98,10 +98,10 @@ function ContactContent() {
                 {link.label}
                 {link.external && <ArrowUpRight className="w-4 h-4" />}
               </Link>
-            </motion.div>
+            </m.div>
           ))}
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

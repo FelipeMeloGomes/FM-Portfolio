@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Suspense, useEffect, useRef, useState } from "react";
@@ -45,7 +45,7 @@ function BookCard({ book }: { book: (typeof books)[0] }) {
       };
 
   return (
-    <motion.div
+    <m.div
       data-testid="book-card"
       variants={cardVariants}
       {...cardMotionProps}
@@ -76,7 +76,7 @@ function BookCard({ book }: { book: (typeof books)[0] }) {
           <BookStatusLabel status={book.status} />
         </span>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -110,7 +110,7 @@ function BooksGrid() {
   return (
     <section id="books" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
-        <motion.div
+        <m.div
           ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -122,9 +122,9 @@ function BooksGrid() {
           <p className="text-muted-foreground text-center mb-8">
             {t("subtitle")}
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 10 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.4, delay: 0.2, ease: "easeOut" }}
@@ -145,9 +145,9 @@ function BooksGrid() {
               {statusLabels[filterValue]}
             </button>
           ))}
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           variants={finalContainerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -156,7 +156,7 @@ function BooksGrid() {
           {filteredBooks.map((book) => (
             <BookCard key={book.id} book={book} />
           ))}
-        </motion.div>
+        </m.div>
 
         {filteredBooks.length === 0 && (
           <p className="text-center text-muted-foreground py-8">

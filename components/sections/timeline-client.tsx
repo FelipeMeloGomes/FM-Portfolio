@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import { Briefcase, GraduationCap, Trophy } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
@@ -77,7 +77,7 @@ function TimelineItemComponent({
   }
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, x: -20 }}
       animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
@@ -88,7 +88,7 @@ function TimelineItemComponent({
       }}
     >
       {content}
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -116,7 +116,7 @@ function AnimatedSection({
   }
 
   return (
-    <motion.section
+    <m.section
       ref={ref}
       id={id}
       initial={{ opacity: 0, y: 30 }}
@@ -125,7 +125,7 @@ function AnimatedSection({
       className={className}
     >
       {children}
-    </motion.section>
+    </m.section>
   );
 }
 

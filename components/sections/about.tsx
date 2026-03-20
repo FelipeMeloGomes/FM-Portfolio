@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
@@ -26,7 +26,7 @@ function AboutContent() {
 
   return (
     <section id="about" className="py-20 bg-muted/30">
-      <motion.div
+      <m.div
         ref={ref}
         initial="hidden"
         animate={isInView ? "visible" : "hidden"}
@@ -62,7 +62,7 @@ function AboutContent() {
             </div>
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 
@@ -25,7 +25,7 @@ export function LanguageToggle() {
         locale === "pt" ? "Switch to English" : "Mudar para Português"
       }
     >
-      <motion.span
+      <m.span
         key="pt"
         initial={{ opacity: 0, y: -5 }}
         animate={{ opacity: 1, y: 0 }}
@@ -33,9 +33,9 @@ export function LanguageToggle() {
         className={locale === "pt" ? "font-semibold" : "text-muted-foreground"}
       >
         PT
-      </motion.span>
+      </m.span>
       <span className="text-muted-foreground">|</span>
-      <motion.span
+      <m.span
         key="en"
         initial={{ opacity: 0, y: 5 }}
         animate={{ opacity: 1, y: 0 }}
@@ -43,7 +43,7 @@ export function LanguageToggle() {
         className={locale === "en" ? "font-semibold" : "text-muted-foreground"}
       >
         EN
-      </motion.span>
+      </m.span>
     </button>
   );
 }

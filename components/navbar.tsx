@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { m, useMotionValueEvent, useScroll } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -31,7 +31,7 @@ export function Navbar() {
   ];
 
   return (
-    <motion.header
+    <m.header
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, ease: "easeOut" }}
@@ -73,6 +73,6 @@ export function Navbar() {
           </div>
         </nav>
       </div>
-    </motion.header>
+    </m.header>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -48,7 +48,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
       };
 
   return (
-    <motion.article
+    <m.article
       data-testid="project-card"
       variants={cardVariants}
       {...cardMotionProps}
@@ -107,7 +107,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
           )}
         </div>
       </div>
-    </motion.article>
+    </m.article>
   );
 }
 
@@ -128,7 +128,7 @@ function ProjectsGrid() {
   return (
     <section id="projects" className="py-20">
       <div className="container mx-auto max-w-4xl px-4">
-        <motion.div
+        <m.div
           ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -138,9 +138,9 @@ function ProjectsGrid() {
           <p className="text-muted-foreground text-center mb-12 max-w-2xl">
             {t("subtitle")}
           </p>
-        </motion.div>
+        </m.div>
 
-        <motion.div
+        <m.div
           variants={finalContainerVariants}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
@@ -149,7 +149,7 @@ function ProjectsGrid() {
           {projects.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

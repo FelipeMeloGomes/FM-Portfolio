@@ -2,7 +2,7 @@
 
 import {
   type MotionValue,
-  motion,
+  m,
   useReducedMotion,
   useScroll,
   useSpring,
@@ -22,7 +22,7 @@ export function ScrollProgress() {
   }
 
   return (
-    <motion.div
+    <m.div
       className="fixed top-0 left-0 right-0 h-[3px] bg-accent origin-[0%] z-[60]"
       style={{ scaleX }}
     />

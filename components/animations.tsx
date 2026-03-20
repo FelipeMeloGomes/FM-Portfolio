@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useInView, useReducedMotion } from "framer-motion";
+import { m, useInView, useReducedMotion } from "framer-motion";
 import { type ReactNode, useRef } from "react";
 
 interface AnimatedSectionProps {
@@ -29,7 +29,7 @@ export function AnimatedSection({
   }
 
   return (
-    <motion.section
+    <m.section
       ref={ref}
       id={id}
       initial={{ opacity: 0, y: 30 }}
@@ -38,7 +38,7 @@ export function AnimatedSection({
       className={className}
     >
       {children}
-    </motion.section>
+    </m.section>
   );
 }
 
@@ -58,7 +58,7 @@ export function FadeIn({ children, className, delay = 0 }: FadeInProps) {
   }
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
@@ -66,6 +66,6 @@ export function FadeIn({ children, className, delay = 0 }: FadeInProps) {
       className={className}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

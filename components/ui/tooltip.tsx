@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { useRef, useState } from "react";
 
 interface TooltipProps {
@@ -63,7 +63,7 @@ export function Tooltip({ content, children, side = "top" }: TooltipProps) {
       <AnimatePresence>
         {isVisible && (
           <>
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
@@ -71,8 +71,8 @@ export function Tooltip({ content, children, side = "top" }: TooltipProps) {
               className={`absolute z-50 px-2 py-1 text-xs bg-foreground text-background rounded-md whitespace-nowrap ${sideClasses[side]}`}
             >
               {content}
-            </motion.div>
-            <motion.div
+            </m.div>
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
