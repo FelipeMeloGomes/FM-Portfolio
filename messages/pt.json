@@ -71,7 +71,17 @@
     "subtitle": "Estou sempre aberto a novas oportunidades e projetos interessantes. Sinta-se livre para entrar em contato!",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "email": "Email"
+    "email": "Email",
+    "form": {
+      "name": "Seu nome",
+      "email": "Seu email",
+      "subject": "Assunto",
+      "message": "Sua mensagem",
+      "send": "Enviar mensagem",
+      "sending": "Enviando...",
+      "success": "Mensagem enviada com sucesso!",
+      "error": "Erro ao enviar. Tente novamente."
+    }
   },
   "footer": {
     "copyright": "Feito com",

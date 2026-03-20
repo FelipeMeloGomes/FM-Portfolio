@@ -71,7 +71,17 @@
     "subtitle": "I'm always open to new opportunities and interesting projects. Feel free to reach out!",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "email": "Email"
+    "email": "Email",
+    "form": {
+      "name": "Your name",
+      "email": "Your email",
+      "subject": "Subject",
+      "message": "Your message",
+      "send": "Send message",
+      "sending": "Sending...",
+      "success": "Message sent successfully!",
+      "error": "Error sending. Please try again."
+    }
   },
   "footer": {
     "copyright": "Built with",

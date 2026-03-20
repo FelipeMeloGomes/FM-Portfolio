@@ -2,9 +2,20 @@
 
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+
+const ContactForm = dynamic(
+  () => import("@/components/contact-form").then((mod) => mod.ContactForm),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full max-w-lg mx-auto h-64 animate-pulse rounded-lg bg-muted" />
+    ),
+  }
+);
 
 const variants = {
   hidden: { opacity: 0, y: 30 },
@@ -60,7 +71,9 @@ function ContactContent() {
           {t("subtitle")}
         </p>
 
-        <div className="flex flex-wrap justify-center gap-4">
+        <ContactForm />
+
+        <div className="flex flex-wrap justify-center gap-4 mt-8">
           {links.map((link, index) => (
             <motion.div
               key={link.href}
@@ -125,7 +138,9 @@ function ContactStatic() {
           {t("subtitle")}
         </p>
 
-        <div className="flex flex-wrap justify-center gap-4">
+        <div className="w-full max-w-lg mx-auto h-64 animate-pulse rounded-lg bg-muted" />
+
+        <div className="flex flex-wrap justify-center gap-4 mt-8">
           {links.map((link) => (
             <Link
               key={link.href}
