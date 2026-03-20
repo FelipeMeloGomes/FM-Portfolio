@@ -31,16 +31,6 @@ export const projects: Project[] = [
   },
   {
     id: "3",
-    title: "FM Marketplace",
-    description:
-      "Marketplace com autenticação e integração ao Stripe para pagamentos. Focado em práticas modernas de front-end e APIs.",
-    image: "/assets/img/projects/FM-Marketplace.webp",
-    stack: ["Next.js", "TypeScript", "TailwindCSS", "Stripe"],
-    liveUrl: "https://fm-marketplace.netlify.app/",
-    repoUrl: "https://github.com/FelipeMeloGomes/FM-Marketplace",
-  },
-  {
-    id: "4",
     title: "FM Dummer",
     description:
       "Aplicativo mobile com gerenciamento de usuários, planos e licenças para controle de acesso a um APK exclusivo.",
