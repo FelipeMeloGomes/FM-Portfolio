@@ -11,6 +11,9 @@ importers:
       '@ducanh2912/next-pwa':
         specifier: ^10.2.9
         version: 10.2.9(next@14.2.5(@babel/core@7.29.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(webpack@5.105.4)
+      '@emailjs/browser':
+        specifier: ^4.4.1
+        version: 4.4.1
       '@radix-ui/react-slot':
         specifier: ^1.0.2
         version: 1.2.4(@types/react@18.3.28)(react@18.3.1)
@@ -654,6 +657,10 @@ packages:
     peerDependencies:
       next: '>=14.0.0'
       webpack: '>=5.9.0'
+
+  '@emailjs/browser@4.4.1':
+    resolution: {integrity: sha512-DGSlP9sPvyFba3to2A50kDtZ+pXVp/0rhmqs2LmbMS3I5J8FSOgLwzY2Xb4qfKlOVHh29EAutLYwe5yuEZmEFg==}
+    engines: {node: '>=14.0.0'}
 
   '@formatjs/ecma402-abstract@2.3.6':
     resolution: {integrity: sha512-HJnTFeRM2kVFVr5gr5kH1XP6K0JcJtE7Lzvtr3FS/so5f1kpsqqqxy5JF+FRaO6H2qmcMfAUIox7AJteieRtVw==}
@@ -3083,6 +3090,8 @@ snapshots:
     transitivePeerDependencies:
       - '@types/babel__core'
       - supports-color
+
+  '@emailjs/browser@4.4.1': {}
 
   '@formatjs/ecma402-abstract@2.3.6':
     dependencies:
