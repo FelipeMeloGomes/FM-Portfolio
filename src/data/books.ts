@@ -2,7 +2,10 @@ export type BookStatus = "lido" | "lendo" | "quero ler";
 
 export interface Book {
   id: string;
-  cover: string;
+  cover: {
+    pt: string;
+    en: string;
+  };
   status: BookStatus;
   year?: number;
 }
@@ -10,33 +13,46 @@ export interface Book {
 export const books: Book[] = [
   {
     id: "entendendoAlgoritmos",
-    cover: "https://covers.openlibrary.org/b/isbn/9788575225639-L.jpg",
+    cover: {
+      pt: "https://covers.openlibrary.org/b/isbn/9788575225639-L.jpg",
+      en: "https://covers.openlibrary.org/b/isbn/9781617292231-L.jpg",
+    },
     status: "lido",
     year: 2016,
   },
   {
     id: "introducaoSql",
-    cover:
-      "https://m.media-amazon.com/images/I/711siL1zU1L._AC_UF1000,1000_QL80_.jpg",
+    cover: {
+      pt: "https://m.media-amazon.com/images/I/711siL1zU1L._AC_UF1000,1000_QL80_.jpg",
+      en: "https://covers.openlibrary.org/b/isbn/9781491938614-L.jpg",
+    },
     status: "lido",
     year: 2016,
   },
   {
     id: "estruturaDadosJs",
-    cover: "https://m.media-amazon.com/images/I/71KGa1y8eaL.jpg",
+    cover: {
+      pt: "https://m.media-amazon.com/images/I/71KGa1y8eaL.jpg",
+      en: "https://covers.openlibrary.org/b/isbn/9781785285493-L.jpg",
+    },
     status: "lido",
     year: 2019,
   },
   {
     id: "arquiteturaLimpa",
-    cover: "https://m.media-amazon.com/images/I/815d9tE7jSL.jpg",
+    cover: {
+      pt: "https://m.media-amazon.com/images/I/815d9tE7jSL.jpg",
+      en: "https://covers.openlibrary.org/b/isbn/9780134494166-L.jpg",
+    },
     status: "quero ler",
     year: 2018,
   },
   {
     id: "codigoLimpo",
-    cover:
-      "https://m.media-amazon.com/images/I/71JpZHEGvWL._UF1000,1000_QL80_.jpg",
+    cover: {
+      pt: "https://m.media-amazon.com/images/I/71JpZHEGvWL._UF1000,1000_QL80_.jpg",
+      en: "https://covers.openlibrary.org/b/isbn/9780132350884-L.jpg",
+    },
     status: "quero ler",
     year: 2008,
   },

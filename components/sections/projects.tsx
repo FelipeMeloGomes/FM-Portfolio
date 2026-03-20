@@ -4,7 +4,7 @@ import { m, useInView, useReducedMotion } from "framer-motion";
 import { ArrowUpRight, Github } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { SkeletonCard } from "@/components/skeleton";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -39,6 +39,7 @@ const headerVariants = {
 function ProjectCard({ project }: { project: (typeof projects)[0] }) {
   const shouldReduceMotion = useReducedMotion();
   const t = useTranslations("projects");
+  const locale = useLocale();
 
   const cardMotionProps = shouldReduceMotion
     ? {}
@@ -67,7 +68,7 @@ function ProjectCard({ project }: { project: (typeof projects)[0] }) {
       <div className="p-6">
         <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
         <p className="text-muted-foreground text-sm mb-4">
-          {project.description}
+          {project.description[locale as "pt" | "en"]}
         </p>
 
         <div className="flex flex-wrap gap-2 mb-4">
@@ -178,6 +179,7 @@ function ProjectsLoading() {
 
 function ProjectsStatic() {
   const t = useTranslations("projects");
+  const locale = useLocale();
 
   return (
     <section id="projects" className="py-20">
@@ -207,7 +209,7 @@ function ProjectsStatic() {
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
                 <p className="text-muted-foreground text-sm mb-4">
-                  {project.description}
+                  {project.description[locale as "pt" | "en"]}
                 </p>
 
                 <div className="flex flex-wrap gap-2 mb-4">

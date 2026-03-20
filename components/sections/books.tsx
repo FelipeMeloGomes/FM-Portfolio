@@ -2,7 +2,7 @@
 
 import { m, useInView, useReducedMotion } from "framer-motion";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Suspense, useEffect, useRef, useState } from "react";
 import { SkeletonBookCard } from "@/components/skeleton";
 import { type BookStatus, bookStatusColors, books } from "@/data/books";
@@ -36,6 +36,7 @@ const headerVariants = {
 
 function BookCard({ book }: { book: (typeof books)[0] }) {
   const t = useTranslations("books");
+  const locale = useLocale();
   const shouldReduceMotion = useReducedMotion();
 
   const cardMotionProps = shouldReduceMotion
@@ -59,7 +60,7 @@ function BookCard({ book }: { book: (typeof books)[0] }) {
     >
       <div className="aspect-[2/3] relative bg-muted">
         <Image
-          src={book.cover}
+          src={book.cover[locale as "pt" | "en"]}
           alt={bookData.title}
           fill
           className="object-cover"
@@ -221,6 +222,7 @@ function BooksLoading() {
 
 function BooksStatic() {
   const t = useTranslations("books");
+  const locale = useLocale();
   const [activeFilter, setActiveFilter] = useState<BookStatus | "all">("all");
 
   const filteredBooks =
@@ -277,7 +279,7 @@ function BooksStatic() {
               >
                 <div className="aspect-[2/3] relative bg-muted">
                   <Image
-                    src={book.cover}
+                    src={book.cover[locale as "pt" | "en"]}
                     alt={bookData.title}
                     fill
                     className="object-cover"
