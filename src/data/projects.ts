@@ -21,7 +21,7 @@ export const projects: Project[] = [
     },
     image: "/assets/img/projects/FM-Blog.webp",
     stack: ["React", "TypeScript", "TailwindCSS", "Chakra UI", "Firebase"],
-    liveUrl: "https://fm-blog-react.netlify.app/",
+    liveUrl: "https://fm-blog.vercel.app/",
     repoUrl: "https://github.com/FelipeMelogomes/FM-Blog",
   },
   {
