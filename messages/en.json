@@ -13,7 +13,7 @@
     "greeting": "Hi, I'm",
     "name": "Felipe Melo",
     "role": "Full-Stack Developer",
-    "description": "Turning ideas into innovative digital experiences.",
+    "description": "Junior Full-Stack Developer specialized in React, Next.js, and Laravel.",
     "downloadCV": "Download CV",
     "contactMe": "Contact me",
     "viewProjects": "View Projects"
@@ -22,9 +22,9 @@
     "title": "About",
     "subtitle": "My story",
     "viewSkills": "View Skills",
-    "paragraph1": "I'm a passionate Full-Stack developer creating modern and efficient web solutions. With a degree in Systems Analysis and Development from UNOPAR and over 1 year of professional experience.",
-    "paragraph2": "Specialized in technologies like React, Next.js, TypeScript, PHP and Laravel. I constantly seek to learn new technologies and apply development best practices.",
-    "paragraph3": "Outside of coding, I enjoy exploring new technologies, reading personal development books and exercising."
+    "paragraph1": "I'm a Junior Full-Stack developer with a degree in Systems Analysis and Development from UNOPAR and over 1 year of professional experience building real projects with React, Next.js, and Laravel.",
+    "paragraph2": "I work with the JavaScript ecosystem on the frontend and PHP/Laravel on the backend, focusing on clean code, best practices, and delivering value. I have experience with automated testing, REST APIs, and PostgreSQL.",
+    "paragraph3": "Outside of coding, I explore new technologies, read personal development books, and exercise to stay balanced."
   },
   "stats": {
     "visits": "Visits",
@@ -38,7 +38,7 @@
   },
   "skills": {
     "title": "Skills",
-    "subtitle": "Technologies I master",
+    "subtitle": "Technologies I work with",
     "frontend": "Frontend",
     "backend": "Backend",
     "tools": "Tools"

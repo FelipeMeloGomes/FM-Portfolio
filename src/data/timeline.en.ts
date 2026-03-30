@@ -7,7 +7,7 @@ export const timelineEn: TimelineItem[] = [
     title: "Junior Full-Stack Developer",
     company: "Nucleogov Assessoria e Tecnologia",
     description:
-      "Frontend development with Next.js, React and TypeScript. Backend implementation with PHP (Laravel), APIs and integrations. Automated testing with Pest. PostgreSQL usage and automation with Python. Participation in code reviews.",
+      "Leader in websites and transparency for public institutions in Brazil, serving more than 200 municipalities across 4 states. Developed an internal dashboard centralizing law registration data — previously scattered across Excel spreadsheets — with metrics by collaborator, system, month, and year. Automated data extraction via web scraping for system migration. Implemented REST APIs with PHP (Laravel), frontend interfaces with Next.js, React and TypeScript, automated tests with Pest, PDF and Excel report generation with Python, and PostgreSQL query optimization.",
     type: "trabalho",
   },
   {
@@ -25,7 +25,7 @@ export const timelineEn: TimelineItem[] = [
     title: "Front-End Developer",
     company: "Código Certo",
     description:
-      "Responsive interface development with HTML, CSS and JavaScript. Dynamic landing pages creation. Versioning with Git and Kanban methodology.",
+      "Developed an institutional landing page to attract new developers to the community. Built responsive interfaces with HTML, CSS and JavaScript. Mentored beginner members in HTML, CSS and JavaScript. Collaborated with design and backend teams using Git and Kanban methodology.",
     type: "trabalho",
   },
   {
