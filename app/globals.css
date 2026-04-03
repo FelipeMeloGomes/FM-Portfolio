@@ -47,46 +47,46 @@
 
 @layer base {
   :root {
-    --background: 40 30% 97%;
-    --foreground: 220 20% 15%;
-    --muted: 220 15% 90%;
-    --muted-foreground: 220 10% 45%;
-    --accent: 15 85% 55%;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 250 70% 45%;
     --accent-foreground: 0 0% 100%;
-    --border: 220 10% 85%;
+    --border: 214.3 31.8% 91.4%;
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 15%;
+    --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 15%;
-    --primary: 15 85% 55%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 250 70% 45%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 220 10% 96%;
-    --secondary-foreground: 220 20% 15%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 84% 4.9%;
     --destructive: 0 70% 50%;
     --destructive-foreground: 0 0% 100%;
-    --ring: 15 85% 55%;
+    --ring: 250 70% 45%;
     --radius: 1rem;
   }
 
   .dark {
-    --background: 220 25% 8%;
-    --foreground: 40 20% 95%;
-    --muted: 220 20% 12%;
-    --muted-foreground: 220 10% 60%;
-    --accent: 25 90% 60%;
-    --accent-foreground: 0 0% 100%;
-    --border: 220 15% 20%;
-    --card: 220 20% 10%;
-    --card-foreground: 40 20% 95%;
-    --popover: 220 20% 12%;
-    --popover-foreground: 40 20% 95%;
-    --primary: 25 90% 60%;
-    --primary-foreground: 220 25% 8%;
-    --secondary: 220 15% 18%;
-    --secondary-foreground: 40 20% 95%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 245 70% 65%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --border: 217.2 32.6% 17.5%;
+    --card: 222.2 84% 9.5%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 9.5%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 245 70% 65%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
-    --ring: 25 90% 60%;
+    --ring: 245 70% 65%;
   }
 }
 
