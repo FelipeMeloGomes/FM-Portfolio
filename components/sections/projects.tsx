@@ -1,31 +1,11 @@
 "use client";
 
 import { m, useInView, useReducedMotion } from "framer-motion";
-import { ArrowUpRight, Github } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-import { useLocale, useTranslations } from "next-intl";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { useTranslations } from "next-intl";
+import { useEffect, useRef, useState } from "react";
 import { SkeletonCard } from "@/components/skeleton";
-import { Tooltip } from "@/components/ui/tooltip";
+import { ProjectsGrid } from "@/components/ui/projects-grid";
 import { projects } from "@/data/projects";
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-};
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.5, ease: "easeOut" as const },
-  },
-};
 
 const headerVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -36,83 +16,7 @@ const headerVariants = {
   },
 };
 
-function ProjectCard({ project }: { project: (typeof projects)[0] }) {
-  const shouldReduceMotion = useReducedMotion();
-  const t = useTranslations("projects");
-  const locale = useLocale();
-
-  const cardMotionProps = shouldReduceMotion
-    ? {}
-    : {
-        whileHover: { scale: 1.02 },
-        transition: { duration: 0.2, ease: "easeOut" as const },
-      };
-
-  return (
-    <m.article
-      data-testid="project-card"
-      variants={cardVariants}
-      {...cardMotionProps}
-      className="group border border-border rounded-lg overflow-hidden hover:border-accent/50 transition-colors"
-    >
-      <div className="aspect-video relative bg-muted">
-        <Image
-          src={project.image}
-          alt={project.title}
-          fill
-          className="object-cover"
-          sizes="(max-width: 768px) 100vw, 50vw"
-        />
-      </div>
-
-      <div className="p-6">
-        <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-        <p className="text-muted-foreground text-sm mb-4">
-          {project.description[locale as "pt" | "en"]}
-        </p>
-
-        <div className="flex flex-wrap gap-2 mb-4">
-          {project.stack.map((tech) => (
-            <Tooltip key={tech} content={tech}>
-              <span className="text-xs px-2 py-1 bg-muted rounded-md">
-                {tech}
-              </span>
-            </Tooltip>
-          ))}
-        </div>
-
-        <div className="flex gap-4">
-          {project.liveUrl && (
-            <Link
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t("demoLabel", { title: project.title })}
-              className="inline-flex items-center gap-1 text-sm hover:text-accent transition-colors"
-            >
-              <ArrowUpRight className="w-4 h-4" />
-              {t("demo")}
-            </Link>
-          )}
-          {project.repoUrl && (
-            <Link
-              href={project.repoUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t("codeLabel", { title: project.title })}
-              className="inline-flex items-center gap-1 text-sm hover:text-accent transition-colors"
-            >
-              <Github className="w-4 h-4" />
-              {t("code")}
-            </Link>
-          )}
-        </div>
-      </div>
-    </m.article>
-  );
-}
-
-function ProjectsGrid() {
+function ProjectsContent() {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px", amount: 0.1 });
   const shouldReduceMotion = useReducedMotion();
@@ -122,35 +26,23 @@ function ProjectsGrid() {
     ? { hidden: { opacity: 1, y: 0 }, visible: { opacity: 1, y: 0 } }
     : headerVariants;
 
-  const finalContainerVariants = shouldReduceMotion
-    ? { hidden: { opacity: 1 }, visible: { opacity: 1 } }
-    : containerVariants;
-
   return (
     <section id="projects" className="py-20">
-      <div className="container mx-auto max-w-4xl px-4">
+      <div className="container mx-auto max-w-5xl px-4">
         <m.div
           ref={ref}
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}
           variants={finalHeaderVariants}
+          className="mb-12 text-center"
         >
-          <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
-          <p className="text-muted-foreground text-center mb-12 max-w-2xl">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("title")}</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
             {t("subtitle")}
           </p>
         </m.div>
 
-        <m.div
-          variants={finalContainerVariants}
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          className="grid md:grid-cols-2 gap-6"
-        >
-          {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
-        </m.div>
+        <ProjectsGrid projects={projects} />
       </div>
     </section>
   );
@@ -161,95 +53,18 @@ function ProjectsLoading() {
 
   return (
     <section id="projects" className="py-20">
-      <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
-        <p className="text-muted-foreground text-center mb-12 max-w-2xl">
-          {t("subtitle")}
-        </p>
+      <div className="container mx-auto max-w-5xl px-4">
+        <div className="mb-12 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("title")}</h2>
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            {t("subtitle")}
+          </p>
+        </div>
+
         <div className="grid md:grid-cols-2 gap-6">
-          {Array.from({ length: 4 }).map((_, idx) => (
+          {Array.from({ length: 2 }).map((_, idx) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: Skeleton loaders are static placeholders
             <SkeletonCard key={`project-skeleton-${idx}`} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function ProjectsStatic() {
-  const t = useTranslations("projects");
-  const locale = useLocale();
-
-  return (
-    <section id="projects" className="py-20">
-      <div className="container mx-auto max-w-4xl px-4">
-        <h2 className="text-3xl font-bold mb-4 text-center">{t("title")}</h2>
-        <p className="text-muted-foreground text-center mb-12 max-w-2xl">
-          {t("subtitle")}
-        </p>
-
-        <div className="grid md:grid-cols-2 gap-6">
-          {projects.map((project) => (
-            <article
-              key={project.id}
-              data-testid="project-card"
-              className="group border border-border rounded-lg overflow-hidden hover:border-accent/50 transition-colors"
-            >
-              <div className="aspect-video relative bg-muted">
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-muted-foreground text-sm mb-4">
-                  {project.description[locale as "pt" | "en"]}
-                </p>
-
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.stack.map((tech) => (
-                    <Tooltip key={tech} content={tech}>
-                      <span className="text-xs px-2 py-1 bg-muted rounded-md">
-                        {tech}
-                      </span>
-                    </Tooltip>
-                  ))}
-                </div>
-
-                <div className="flex gap-4">
-                  {project.liveUrl && (
-                    <Link
-                      href={project.liveUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={t("demoLabel", { title: project.title })}
-                      className="inline-flex items-center gap-1 text-sm hover:text-accent transition-colors"
-                    >
-                      <ArrowUpRight className="w-4 h-4" />
-                      {t("demo")}
-                    </Link>
-                  )}
-                  {project.repoUrl && (
-                    <Link
-                      href={project.repoUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      aria-label={t("codeLabel", { title: project.title })}
-                      className="inline-flex items-center gap-1 text-sm hover:text-accent transition-colors"
-                    >
-                      <Github className="w-4 h-4" />
-                      {t("code")}
-                    </Link>
-                  )}
-                </div>
-              </div>
-            </article>
           ))}
         </div>
       </div>
@@ -265,12 +80,8 @@ export function Projects() {
   }, []);
 
   if (!mounted) {
-    return <ProjectsStatic />;
+    return <ProjectsLoading />;
   }
 
-  return (
-    <Suspense fallback={<ProjectsLoading />}>
-      <ProjectsGrid />
-    </Suspense>
-  );
+  return <ProjectsContent />;
 }

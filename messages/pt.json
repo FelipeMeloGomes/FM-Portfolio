@@ -52,6 +52,7 @@
     "subtitle": "Projetos selecionados nos quais trabalhei, utilizando tecnologias modernas e boas práticas de desenvolvimento.",
     "demo": "Demo",
     "code": "Código",
+    "details": "Detalhes",
     "demoLabel": "Demo do projeto {title}",
     "codeLabel": "Código do projeto {title}"
   },
