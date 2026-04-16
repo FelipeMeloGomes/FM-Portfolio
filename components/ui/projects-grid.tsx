@@ -58,22 +58,22 @@ function ProjectCard({ project }: { project: Project }) {
           </div>
         </div>
 
-        <div className="p-6">
-          <h3 className="text-xl font-bold mb-2">{project.title}</h3>
+        <div className="p-4 sm:p-6">
+          <h3 className="text-lg sm:text-xl font-bold mb-2">{project.title}</h3>
 
-          <p className="text-muted-foreground text-sm mb-6 line-clamp-2">
+          <p className="text-muted-foreground text-sm mb-4 sm:mb-6 line-clamp-2">
             {project.description[locale]}
           </p>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap gap-2">
             {project.liveUrl && (
               <Link
                 href={project.liveUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 bg-accent text-white rounded-xl font-medium text-sm hover:bg-accent/90 transition-colors"
+                className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 bg-accent text-white rounded-lg sm:rounded-xl font-medium text-xs sm:text-sm hover:bg-accent/90 transition-colors"
               >
-                <ArrowUpRight className="w-4 h-4" />
+                <ArrowUpRight className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
                 {t("demo")}
               </Link>
             )}
@@ -82,18 +82,18 @@ function ProjectCard({ project }: { project: Project }) {
                 href={project.repoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2.5 border border-border rounded-xl font-medium text-sm hover:bg-accent hover:border-accent hover:text-white transition-colors"
+                className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 border border-border rounded-lg sm:rounded-xl font-medium text-xs sm:text-sm hover:bg-accent hover:border-accent hover:text-white transition-colors"
               >
-                <Github className="w-4 h-4" />
+                <Github className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
                 {t("code")}
               </Link>
             )}
             <button
               type="button"
               onClick={() => setSelectedProject(project)}
-              className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl font-medium text-sm bg-muted hover:bg-muted/80 transition-colors"
+              className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-lg sm:rounded-xl font-medium text-xs sm:text-sm bg-muted hover:bg-muted/80 transition-colors"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
               {t("details")}
             </button>
           </div>
