@@ -36,16 +36,4 @@ export const projects: Project[] = [
     liveUrl: "https://fm-ecommerce-jade.vercel.app/",
     repoUrl: "https://github.com/FelipeMeloGomes/FM_Ecommerce",
   },
-  {
-    id: "3",
-    title: "FM Dummer",
-    description: {
-      pt: "Sistema de controle de acesso mobile com gerenciamento de usuários, planos e licenças. Demonstra experiência com lógica de permissões e distribuição de software em ambiente mobile.",
-      en: "Mobile access control system with user, plan, and license management. Demonstrates experience with permission logic and software distribution in a mobile environment.",
-    },
-    image: "/assets/img/projects/FM-Dumer.webp",
-    stack: ["React Native", "Firebase", "TypeScript"],
-    liveUrl: "https://github.com/FelipeMeloGomes/FM-Dummer",
-    repoUrl: "https://github.com/FelipeMeloGomes/FM-Dummer",
-  },
 ];
