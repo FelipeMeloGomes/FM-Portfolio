@@ -15,11 +15,11 @@ test.describe("Hero", () => {
   });
 
   test("deve ter botao de download do curriculo", async ({ page }) => {
-    const btn = page.locator("a[download]");
+    const btn = page.locator("a[href*='FelipeMeloGomesDesenvolvedorFullStack.pdf']");
     await expect(btn).toBeVisible();
     await expect(btn).toHaveAttribute(
       "href",
-      /FelipeMeloGomesDesenvolvedorFullStack/
+      /FelipeMeloGomesDesenvolvedorFullStack\.pdf/
     );
   });
 
