@@ -145,9 +145,22 @@ function HeroContent() {
                 {t("contactMe")}
               </Link>
               <a
-                href="/assets/FelipeMeloGomesDesenvolvedorFullStack.docx"
-                download="FelipeMeloGomesDesenvolvedorFullStack.docx"
-                onClick={fireConfetti}
+                href="/assets/FelipeMeloGomesDesenvolvedorFullStack.pdf"
+                onClick={(e) => {
+                  e.preventDefault();
+                  fireConfetti?.();
+                  window.open('/assets/FelipeMeloGomesDesenvolvedorFullStack.pdf', '_blank');
+                  fetch('/assets/FelipeMeloGomesDesenvolvedorFullStack.pdf')
+                    .then(res => res.blob())
+                    .then(blob => {
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url;
+                      a.download = 'FelipeMeloGomesDesenvolvedorFullStack.pdf';
+                      a.click();
+                      URL.revokeObjectURL(url);
+                    });
+                }}
                 className="inline-flex items-center justify-center px-6 py-4 border border-border rounded-xl hover:bg-muted transition-all duration-300 group"
               >
                 <Download className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
@@ -291,8 +304,21 @@ function HeroStatic() {
                 {t("contactMe")}
               </Link>
               <a
-                href="/assets/FelipeMeloGomesDesenvolvedorFullStack.docx"
-                download="FelipeMeloGomesDesenvolvedorFullStack.docx"
+                href="/assets/FelipeMeloGomesDesenvolvedorFullStack.pdf"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.open('/assets/FelipeMeloGomesDesenvolvedorFullStack.pdf', '_blank');
+                  fetch('/assets/FelipeMeloGomesDesenvolvedorFullStack.pdf')
+                    .then(res => res.blob())
+                    .then(blob => {
+                      const url = URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url;
+                      a.download = 'FelipeMeloGomesDesenvolvedorFullStack.pdf';
+                      a.click();
+                      URL.revokeObjectURL(url);
+                    });
+                }}
                 className="inline-flex items-center justify-center px-6 py-4 border border-border rounded-xl hover:bg-muted transition-all duration-300 group"
               >
                 <Download className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
