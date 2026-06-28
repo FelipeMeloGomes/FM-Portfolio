@@ -22,9 +22,9 @@
     "title": "About",
     "subtitle": "My story",
     "viewSkills": "View Skills",
-    "paragraph1": "I'm a Junior Full-Stack developer with a degree in Systems Analysis and Development from UNOPAR and over 1 year of professional experience building real projects with React, Next.js, and Laravel.",
-    "paragraph2": "I work with the JavaScript ecosystem on the frontend and PHP/Laravel on the backend, focusing on clean code, best practices, and delivering value. I have experience with automated testing, REST APIs, and PostgreSQL.",
-    "paragraph3": "Outside of coding, I explore new technologies, read personal development books, and exercise to stay balanced."
+    "paragraph1": "I build full-stack web solutions that turn scattered data into actionable insights. Most recently, as a Junior Full-Stack Developer at Nucleogov, I architected and built a centralized dashboard that replaced manual Excel-based law registration across 200+ municipalities in 4 Brazilian states.",
+    "paragraph2": "The system automated data extraction via web scraping, implemented REST APIs, and cut manual reporting work through PDF/Excel generation — all built with Next.js, React, TypeScript, and Laravel. I work across the full stack including PHP, Node.js, PostgreSQL, and automated testing with Pest, always focusing on clean code, best practices, and delivering real value.",
+    "paragraph3": "I hold a degree in Systems Analysis and Development (UNOPAR) and a Postgraduate degree in Fullstack Development. I'm constantly exploring new technologies through personal projects and books on software architecture and algorithms. Let's connect if you're working on interesting projects or looking for a dedicated developer!"
   },
   "stats": {
     "visits": "Visits",

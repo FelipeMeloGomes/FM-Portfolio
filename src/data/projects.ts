@@ -28,8 +28,8 @@ export const projects: Project[] = [
     id: "1",
     title: "FM Blog",
     description: {
-      pt: "Blog fullstack de tecnologia com sistema completo de autenticação, editor rich text e deploy automatizado na Vercel.",
-      en: "Full-stack technology blog with complete authentication system, rich text editor, and automated deployment on Vercel.",
+      pt: "Plataforma de blog fullstack de tecnologia com autenticação segura, editor rich text (TipTap) e engajamento em tempo real através de comentários e curtidas — deploy automatizado via CI/CD na Vercel.",
+      en: "A full-stack technology blog platform featuring secure authentication, a TipTap-powered rich text editor, and real-time community engagement through comments and likes — deployed with CI/CD on Vercel.",
     },
     image: "/assets/img/projects/FM-Blog.webp",
     images: [],
@@ -67,8 +67,8 @@ export const projects: Project[] = [
     id: "2",
     title: "FM Shop",
     description: {
-      pt: "E-commerce completo com checkout real via Stripe, CMS para gerenciamento de produtos e autenticação de usuários.",
-      en: "Complete e-commerce with real Stripe checkout, CMS for product management, and user authentication.",
+      pt: "Plataforma de e-commerce pronta para produção com processamento real de pagamentos via Stripe (cartão, boleto, Apple Pay, Google Pay), CMS headless com Sanity para gestão de produtos e autenticação integrada com Clerk.",
+      en: "Production-ready e-commerce platform with real Stripe payment processing (card, boleto, Apple Pay, Google Pay), headless CMS via Sanity for product management, and seamless authentication with Clerk.",
     },
     image: "/assets/img/projects/FM-Shop.webp",
     images: [],

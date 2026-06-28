@@ -11,8 +11,8 @@ export function JsonLd({ locale }: { locale: string }) {
     image: "https://felipemelo.dev/assets/img/perfil.webp",
     jobTitle: isPt ? "Desenvolvedor Fullstack" : "Fullstack Developer",
     description: isPt
-      ? "Desenvolvedor Fullstack com formação em Análise e Desenvolvimento de Sistemas. Especializado em React, Next.js, TypeScript, PHP e Laravel."
-      : "Fullstack Developer with a degree in Systems Analysis and Development. Specialized in React, Next.js, TypeScript, PHP and Laravel.",
+      ? "Desenvolvedor Fullstack especializado em React, Next.js, TypeScript, PHP e Laravel. Construindo soluções web escaláveis com código limpo e boas práticas."
+      : "Fullstack Developer specializing in React, Next.js, TypeScript, PHP and Laravel. Building scalable web solutions with clean code and best practices.",
     email: "mailto:felipemelog@gmail.com",
     sameAs: [
       "https://github.com/FelipeMeloGomes",

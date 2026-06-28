@@ -22,9 +22,9 @@
     "title": "Sobre",
     "subtitle": "Minha história",
     "viewSkills": "Ver Skills",
-    "paragraph1": "Sou desenvolvedor Full-Stack Júnior com formação em Análise e Desenvolvimento de Sistemas pela UNOPAR e mais de 1 ano de experiência profissional em projetos reais com React, Next.js e Laravel.",
-    "paragraph2": "Trabalho com o ecossistema JavaScript no frontend e PHP/Laravel no backend, com foco em código limpo, boas práticas e entrega de valor. Tenho experiência com testes automatizados, APIs REST e PostgreSQL.",
-    "paragraph3": "Fora do código, exploro novas tecnologias, leio sobre desenvolvimento pessoal e pratico exercícios físicos para manter o equilíbrio."
+    "paragraph1": "Construo soluções web completas que transformam dados dispersos em insights acionáveis. Mais recentemente, como Desenvolvedor Full-Stack Júnior na Nucleogov, projetei e construí um dashboard centralizado que substituiu planilhas manuais de cadastro de leis em mais de 200 municípios de 4 estados brasileiros.",
+    "paragraph2": "O sistema automatizou a extração de dados via web scraping, implementou APIs REST e eliminou trabalho manual de relatórios com geração em PDF e Excel — tudo construído com Next.js, React, TypeScript e Laravel. Trabalho em todo o stack incluindo PHP, Node.js, PostgreSQL e testes automatizados com Pest, sempre focado em código limpo, boas práticas e entrega de valor real.",
+    "paragraph3": "Sou Tecnólogo em Análise e Desenvolvimento de Sistemas (UNOPAR) e Pós-graduado em Desenvolvimento Fullstack. Estou sempre explorando novas tecnologias através de projetos pessoais e livros sobre arquitetura de software e algoritmos. Vamos nos conectar se você está em projetos interessantes ou busca um desenvolvedor dedicado!"
   },
   "stats": {
     "visits": "Visitas",
