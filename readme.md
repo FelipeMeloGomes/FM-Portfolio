@@ -395,3 +395,4 @@ vercel --prod
 ## Licença
 
 [MIT](./LICENSE)
+<!-- vercel git relink test -->
